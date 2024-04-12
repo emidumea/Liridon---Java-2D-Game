@@ -31,7 +31,7 @@ public class HelpMethods {
 		float yIndex = y / Game.TILES_SIZE;
 
 		int value = lvlData[(int) yIndex][(int) xIndex];
-		if (value >= 0 && value < 30)
+		if (value >= 0 && value < 37)
 			return true;
 		return false;
 	}

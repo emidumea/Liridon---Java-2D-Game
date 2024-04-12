@@ -17,11 +17,15 @@ public class TileManager {
 
 	public TileManager(Game game) {
 		this.game = game;
-		tile = new Tile[30];
+		tile = new Tile[37];
 		mapTile = new int[Game.TILES_IN_HEIGHT][Game.TILES_IN_WIDTH];
 		//mapTile = new int[Game.TILES_IN_HEIGHT][Game.TILES_IN_WIDTH];
 
-		int i,j;
+		for (int i = 0; i <Assets.land_lv1.length; i++)
+		{
+			tile[i] = new Tile(Assets.land_lv1[i]);
+		}
+		/*int i,j;
 		for (i = 0; i < Assets.land_grass.length; i++) {
 			tile[i] = new Tile(Assets.land_grass[i]);
 		}
@@ -38,7 +42,7 @@ public class TileManager {
 		for (i = 0; i < Assets.platforms_stone.length; i++)
 		{
 			tile[k + i] = new Tile(Assets.platforms_stone[i]);
-		}
+		}*/
 		loadMap("/maps/map1.txt");
 	}
 

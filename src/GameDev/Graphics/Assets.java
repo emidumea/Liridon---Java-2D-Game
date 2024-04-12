@@ -16,6 +16,7 @@ public class Assets
 	public static BufferedImage[] player_down;
 	// ------------------------------ lvl 1
 	public static BufferedImage[] level1_atlas;
+	public static BufferedImage[] land_lv1;
 	public static BufferedImage[] land_grass;
 	public static BufferedImage[] platforms_grass;
 	public static BufferedImage[] land_stone;
@@ -30,6 +31,44 @@ public class Assets
 	{
 		SpriteSheet environment1 = new SpriteSheet(ImageLoader.LoadImage("/lv1/environment.png"));
 
+		land_lv1 = new BufferedImage[37];
+		land_lv1[0] = ImageLoader.LoadImage("/lv1/Textures/image_0.png");
+		land_lv1[1] = ImageLoader.LoadImage("/lv1/Textures/image_1.png");
+		land_lv1[2] = ImageLoader.LoadImage("/lv1/Textures/image_2.png");
+		land_lv1[3] = ImageLoader.LoadImage("/lv1/Textures/image_3.png");
+		land_lv1[4] = ImageLoader.LoadImage("/lv1/Textures/image_4.png");
+		land_lv1[5] = ImageLoader.LoadImage("/lv1/Textures/image_5.png");
+		land_lv1[6] = ImageLoader.LoadImage("/lv1/Textures/image_6.png");
+		land_lv1[7] = ImageLoader.LoadImage("/lv1/Textures/image_7.png");
+		land_lv1[8] = ImageLoader.LoadImage("/lv1/Textures/image_8.png");
+		land_lv1[9] = ImageLoader.LoadImage("/lv1/Textures/image_9.png");
+		land_lv1[10] = ImageLoader.LoadImage("/lv1/Textures/image_10.png");
+		land_lv1[11] = ImageLoader.LoadImage("/lv1/Textures/image_11.png");
+		land_lv1[12] = ImageLoader.LoadImage("/lv1/Textures/image_12.png");
+		land_lv1[13] = ImageLoader.LoadImage("/lv1/Textures/image_13.png");
+		land_lv1[14] = ImageLoader.LoadImage("/lv1/Textures/image_14.png");
+		land_lv1[15] = ImageLoader.LoadImage("/lv1/Textures/image_15.png");
+		land_lv1[16] = ImageLoader.LoadImage("/lv1/Textures/image_16.png");
+		land_lv1[17] = ImageLoader.LoadImage("/lv1/Textures/image_17.png");
+		land_lv1[18] = ImageLoader.LoadImage("/lv1/Textures/image_18.png");
+		land_lv1[19] = ImageLoader.LoadImage("/lv1/Textures/image_19.png");
+		land_lv1[20] = ImageLoader.LoadImage("/lv1/Textures/image_20.png");
+		land_lv1[21] = ImageLoader.LoadImage("/lv1/Textures/image_21.png");
+		land_lv1[22] = ImageLoader.LoadImage("/lv1/Textures/image_22.png");
+		land_lv1[23] = ImageLoader.LoadImage("/lv1/Textures/image_23.png");
+		land_lv1[24] = ImageLoader.LoadImage("/lv1/Textures/image_24.png");
+		land_lv1[25] = ImageLoader.LoadImage("/lv1/Textures/image_25.png");
+		land_lv1[26] = ImageLoader.LoadImage("/lv1/Textures/tile000.png");
+		land_lv1[27] = ImageLoader.LoadImage("/lv1/Textures/tile001.png");
+		land_lv1[28] = ImageLoader.LoadImage("/lv1/Textures/tile002.png");
+		land_lv1[29] = ImageLoader.LoadImage("/lv1/Textures/tile003.png");
+		land_lv1[30] = ImageLoader.LoadImage("/lv1/Textures/tile004.png");
+		land_lv1[31] = ImageLoader.LoadImage("/lv1/Textures/grass.png");
+		land_lv1[32] = ImageLoader.LoadImage("/lv1/Textures/tile005.png");
+		land_lv1[33] = ImageLoader.LoadImage("/lv1/Textures/tile006.png");
+		land_lv1[34] = ImageLoader.LoadImage("/lv1/Textures/tilebridge_0.png");
+		land_lv1[35] = ImageLoader.LoadImage("/lv1/Textures/tilebridge_1.png");
+		land_lv1[36] = ImageLoader.LoadImage("/lv1/Textures/tilebridge_2.png");
 //		land_grass = new BufferedImage[20];
 //		land_grass[0] = environment1.crop(16,177,92,111);
 //		land_grass[1] = environment1.crop(124,105,32,55);
@@ -52,16 +91,16 @@ public class Assets
 //		land_grass[18] = environment1.crop(556,240,64,48);
 //		land_grass[19] = environment1.crop(636,240,48,48);
 		land_grass = new BufferedImage[13];
-//		land_grass[0] = environment1.crop(16,186,width128,height128) ; // bucata mare land
-//		land_grass[1] = environment1.crop(492,186,width128,height128); // bucata land sfarsit
-//		land_grass[2] = environment1.crop(124,183,width,height64); // piatra de pus intre iarba
-//		land_grass[3] = environment1.crop(124,105,width,height); //tot piatra da cu iarba
-//		land_grass[4] = environment1.crop(172,186,48,height); // continuare iarba land
-		land_grass[0] = environment1.crop(16,186,48,48) ; // bucata mare land
-		land_grass[1] = environment1.crop(492,186,48,48); // bucata land sfarsit
-		land_grass[2] = environment1.crop(124,183,48,48); // piatra de pus intre iarba
-		land_grass[3] = environment1.crop(124,105,48,48); //tot piatra da cu iarba
-		land_grass[4] = environment1.crop(172,186,48,48); // continuare iarba land
+		land_grass[0] = environment1.crop(16,186,width128,height128) ; // bucata mare land
+		land_grass[1] = environment1.crop(492,186,width128,height128); // bucata land sfarsit
+		land_grass[2] = environment1.crop(124,183,width,height64); // piatra de pus intre iarba
+		land_grass[3] = environment1.crop(124,105,width,height); //tot piatra da cu iarba
+		land_grass[4] = environment1.crop(172,186,48,height); // continuare iarba land
+//		land_grass[0] = environment1.crop(16,186,48,48) ; // bucata mare land
+//		land_grass[1] = environment1.crop(492,186,48,48); // bucata land sfarsit
+//		land_grass[2] = environment1.crop(124,183,48,48); // piatra de pus intre iarba
+//		land_grass[3] = environment1.crop(124,105,48,48); //tot piatra da cu iarba
+//		land_grass[4] = environment1.crop(172,186,48,48); // continuare iarba land
 		land_grass[5] = environment1.crop(236,180,width,height64); // iarba mai lata spre pamant
 		land_grass[6] = environment1.crop(284,186,width,height); // continuare iarba tile mic
 		land_grass[7] = environment1.crop(332,183,width64,height64); // iarba micuta spre pamant

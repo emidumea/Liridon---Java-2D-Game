@@ -56,7 +56,7 @@ public class Game implements Runnable
 	{
 
 		Assets.init();
-		player = new Player(100,100, (int) (64 * SCALE), (int) (40 * SCALE));
+		player = new Player(200,200, (int) (64 * SCALE), (int) (40 * SCALE));
 		anim = new Animation(player_idle,100);
 		tileM = new TileManager(this);
 		player.loadLvlData(tileM.getMapTile());
