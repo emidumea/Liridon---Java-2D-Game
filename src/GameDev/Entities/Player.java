@@ -1,5 +1,6 @@
 package GameDev.Entities;
 
+import GameDev.Game;
 import GameDev.Graphics.Animation;
 import GameDev.Graphics.Assets;
 import GameDev.Utils.HelpMethods.*;
@@ -9,11 +10,13 @@ import static GameDev.Utils.HelpMethods.CanMoveHere;
 
 public class Player extends Entity
 {
-	private Animation animIdle, animUp, animLeft, animRight, animDown, animAttack;
+	private Animation animIdle, animUp, animLeft, animRight, animDown, animAttack; // 20 29
 	private boolean moving = false, attacking = false;
 	private boolean left,right,up,down;
 	private float speed = 2.0f;
 	private int[][] lvlData;
+	private float xDrawOffset = 20 * Game.SCALE;
+	private float yDrawOffset = 6 * Game.SCALE;
 	public Player(float x, float y, int width, int height)
 	{
 		super(x,y,width,height);
@@ -23,6 +26,7 @@ public class Player extends Entity
 		animRight = new Animation(Assets.player_up,100);
 		animAttack = new Animation(Assets.player_attack,100);
 		animDown = new Animation(Assets.player_up,100);
+		initHitbox(x, y, 20 * Game.SCALE, 29 * Game.SCALE);
 	}
 
 	/*private void updatePos()
@@ -83,10 +87,20 @@ public class Player extends Entity
 			//moving = true;
 		}
 
-		if(CanMoveHere(x + dx, y + dy, width, height ,lvlData))
+//		if(CanMoveHere(x + dx, y + dy, width, height ,lvlData))
+//		{
+//			this.x += dx;
+//			this.y += dy;
+//			moving = true;
+//		}
+//		else
+//		{
+//			System.out.println("coliziune.....");
+//		}
+		if(CanMoveHere(hitbox.x + dx, hitbox.y + dy, hitbox.width , hitbox.height ,lvlData))
 		{
-			this.x += dx;
-			this.y += dy;
+			hitbox.x += dx;
+			hitbox.y += dy;
 			moving = true;
 		}
 		else
@@ -101,7 +115,6 @@ public class Player extends Entity
 	public void tick()
 	{
 		updatePos();
-		updateHitbox();
 		animIdle.tick();
 		if (moving)
 		{
@@ -134,32 +147,32 @@ public class Player extends Entity
 	{
 		if (attacking)
 		{
-			g.drawImage(animAttack.getCurrentFrame(), (int) x, (int) y,null);
+			g.drawImage(animAttack.getCurrentFrame(), (int) (hitbox.x - xDrawOffset), (int) (hitbox.y - yDrawOffset), width, height, null);
 		}
 		else if (moving) {
 			if (left)
 			{
-				g.drawImage(animLeft.getCurrentFrame(), (int) x, (int) y, null);
+				g.drawImage(animLeft.getCurrentFrame(), (int) (hitbox.x - xDrawOffset), (int) (hitbox.y - yDrawOffset), width, height, null);
 			} else if (right)
 			{
-				g.drawImage(animRight.getCurrentFrame(), (int) x, (int) y, null);
+				g.drawImage(animRight.getCurrentFrame(), (int) (hitbox.x - xDrawOffset), (int) (hitbox.y - yDrawOffset), width, height, null);
 			} else if (up)
 			{
-				g.drawImage(animUp.getCurrentFrame(), (int) x, (int) y, null);
+				g.drawImage(animUp.getCurrentFrame(), (int) (hitbox.x - xDrawOffset), (int) (hitbox.y - yDrawOffset), width, height, null);
 			} else if (down)
 			{
-				g.drawImage(animDown.getCurrentFrame(), (int) x, (int) y, null);
+				g.drawImage(animDown.getCurrentFrame(), (int) (hitbox.x - xDrawOffset), (int) (hitbox.y - yDrawOffset), width, height, null);
 			} else
 			{
 				// Dacă jucătorul nu se mișcă și nicio direcție nu este activă,
 				// se va afișa starea de repaus
-				g.drawImage(animIdle.getCurrentFrame(), (int) x, (int) y, null);
+				g.drawImage(animIdle.getCurrentFrame(), (int) (hitbox.x - xDrawOffset), (int) (hitbox.y - yDrawOffset), width, height, null);
 			}
 		}
 		else
 		{
 			// Dacă jucătorul nu se mișcă, se va afișa starea de repaus
-			g.drawImage(animIdle.getCurrentFrame(), (int) x, (int) y, null);
+			g.drawImage(animIdle.getCurrentFrame(), (int) (hitbox.x - xDrawOffset), (int) (hitbox.y - yDrawOffset), width, height, null);
 		}
 		drawHitbox(g);
 	}
