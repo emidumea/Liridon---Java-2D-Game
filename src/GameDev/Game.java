@@ -45,8 +45,8 @@ public class Game implements Runnable
 	//private Tile
 	public Game(String title, int width, int height)
 	{
-		width = GAME_WIDTH;
-		height = GAME_HEIGHT;
+		//width = GAME_WIDTH;
+		//height = GAME_HEIGHT;
 		wnd = new GameWindow(title, width, height);
 		//InitGame();
 		runState = false;
@@ -56,10 +56,11 @@ public class Game implements Runnable
 	{
 
 		Assets.init();
-		player = new Player(200,200, (int) (64 * SCALE), (int) (40 * SCALE));
+		player = new Player(100,100, (int) (64 * SCALE), (int) (40 * SCALE));
 		anim = new Animation(player_idle,100);
 		tileM = new TileManager(this);
 		player.loadLvlData(tileM.getMapTile());
+		tileM.printMap();
 		mouseInput = new MouseInput(this);
 		wnd = new GameWindow("Liridon", GAME_WIDTH, GAME_HEIGHT);
 		wnd.BuildGameWindow();
@@ -229,9 +230,9 @@ public class Game implements Runnable
 		//anim.tick();
 		//g.drawImage(anim.getCurrentFrame(),coordX,coordY,128,80,null);
 		//player.tick();
-		tileM.render(g);
+		tileM.draw(g);
 		player.render(g);
-		//player.tick();
+		player.tick();
 
 		/// operatie de desenare
 		// ...............

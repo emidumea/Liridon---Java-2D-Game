@@ -1,14 +1,13 @@
 package GameDev.Entities;
 
 import java.awt.*;
-import java.awt.geom.Rectangle2D;
 
 public abstract class Entity
 {
 	protected float x,y;
 	protected int width, height;
-	protected Rectangle2D.Float hitbox;
-	protected Rectangle hb;
+	protected Rectangle hitbox;
+
 	public Entity(float x, float y, int width, int height)
 	{
 		this.x = x;
@@ -16,50 +15,27 @@ public abstract class Entity
 		this.width = width;
 		this.height = height;
 
-		initHb();
+		initHitbox();
 	}
-	private void initHb()
+	protected void drawHitbox(Graphics g) // pt debug
 	{
-		hb = new Rectangle((int) x, (int) y, width, height);
+		g.drawRect(hitbox.x, hitbox.y, hitbox.width, hitbox.height);
 	}
-	protected void drawHb(Graphics g) // pt debug
+	private void initHitbox()
 	{
-		g.drawRect((int)hitbox.x, (int)hitbox.y, (int)hitbox.width, (int)hitbox.height);
+		hitbox = new Rectangle((int) x,(int) y,width,height);
 	}
-	protected void updateHb()
+
+	public void updateHitbox()
 	{
-		hb.x = (int) x;
-		hb.y = (int) y;
+		hitbox.x = (int) x;
+		hitbox.y = (int) y;
 	}
 
-	public Rectangle getHb()
+	public Rectangle getHitbox()
 	{
-		return hb;
-	}
-
-
-
-
-
-	protected void drawHitbox(Graphics g)
-	{
-		g.drawRect((int)hitbox.x, (int)hitbox.y, (int)hitbox.width, (int)hitbox.height);
-	}
-	public void initHitbox(float x, float y, float width, float height)
-	{
-		hitbox = new Rectangle2D.Float( x,  y, width, height);
-	}
-
-//	public void updateHitbox()
-//	{
-//		hitbox.x = (int) x;
-//		hitbox.y = (int) y;
-//	}
-
-	public Rectangle2D.Float getHitbox() {
 		return hitbox;
 	}
-
 	public abstract void tick();
 	public abstract void render(Graphics g);
 }
