@@ -31,7 +31,7 @@ public class Assets
 	{
 		SpriteSheet environment1 = new SpriteSheet(ImageLoader.LoadImage("/lv1/environment.png"));
 
-		land_lv1 = new BufferedImage[37];
+		land_lv1 = new BufferedImage[41];
 		land_lv1[0] = ImageLoader.LoadImage("/lv1/Textures/image_0.png");
 		land_lv1[1] = ImageLoader.LoadImage("/lv1/Textures/image_1.png");
 		land_lv1[2] = ImageLoader.LoadImage("/lv1/Textures/image_2.png");
@@ -69,6 +69,10 @@ public class Assets
 		land_lv1[34] = ImageLoader.LoadImage("/lv1/Textures/tilebridge_0.png");
 		land_lv1[35] = ImageLoader.LoadImage("/lv1/Textures/tilebridge_1.png");
 		land_lv1[36] = ImageLoader.LoadImage("/lv1/Textures/tilebridge_2.png");
+		land_lv1[37] = ImageLoader.LoadImage("/lv1/Textures/platform_0.png");
+		land_lv1[38] = ImageLoader.LoadImage("/lv1/Textures/platform_1.png");
+		land_lv1[39] = ImageLoader.LoadImage("/lv1/Textures/platform_2.png");
+		land_lv1[40] = ImageLoader.LoadImage("/lv1/Textures/platform_3.png");
 //		land_grass = new BufferedImage[20];
 //		land_grass[0] = environment1.crop(16,177,92,111);
 //		land_grass[1] = environment1.crop(124,105,32,55);

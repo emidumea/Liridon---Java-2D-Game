@@ -17,7 +17,7 @@ public class TileManager {
 
 	public TileManager(Game game) {
 		this.game = game;
-		tile = new Tile[37];
+		tile = new Tile[41];
 		mapTile = new int[Game.TILES_IN_HEIGHT][Game.TILES_IN_WIDTH];
 		//mapTile = new int[Game.TILES_IN_HEIGHT][Game.TILES_IN_WIDTH];
 
