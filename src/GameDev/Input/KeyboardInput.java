@@ -54,9 +54,9 @@ public class KeyboardInput implements KeyListener
 		keys[e.getKeyCode()] = true;
 		switch (e.getKeyCode())
 		{
-			case KeyEvent.VK_W:
-				game.getPlayer().setUp(true);
-				break;
+//			case KeyEvent.VK_W:
+//				game.getPlayer().setUp(true);
+//				break;
 			case KeyEvent.VK_A:
 				game.getPlayer().setLeft(true);
 				break;
@@ -69,6 +69,9 @@ public class KeyboardInput implements KeyListener
 			case KeyEvent.VK_R:
 				game.getPlayer().setAttacking(true);
 				break;
+			case KeyEvent.VK_W:
+				game.getPlayer().setJump(true);
+				break;
 		}
 	}
 
@@ -79,9 +82,9 @@ public class KeyboardInput implements KeyListener
 		keys[e.getKeyCode()] = false;
 		switch (e.getKeyCode())
 		{
-			case KeyEvent.VK_W:
-				game.getPlayer().setUp(false);
-				break;
+//			case KeyEvent.VK_W:
+//				game.getPlayer().setUp(false);
+//				break;
 			case KeyEvent.VK_A:
 				game.getPlayer().setLeft(false);
 				break;
@@ -93,6 +96,9 @@ public class KeyboardInput implements KeyListener
 				break;
 			case KeyEvent.VK_R:
 				game.getPlayer().setAttacking(false);
+				break;
+			case KeyEvent.VK_W:
+				game.getPlayer().setJump(false);
 				break;
 		}
 	}
