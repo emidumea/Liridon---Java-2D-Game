@@ -33,7 +33,7 @@ public class Assets
 	{
 		SpriteSheet environment1 = new SpriteSheet(ImageLoader.LoadImage("/lv1/environment.png"));
 
-		land_lv1 = new BufferedImage[41];
+		land_lv1 = new BufferedImage[48];
 		land_lv1[0] = ImageLoader.LoadImage("/lv1/Textures/image_0.png");
 		land_lv1[1] = ImageLoader.LoadImage("/lv1/Textures/image_1.png");
 		land_lv1[2] = ImageLoader.LoadImage("/lv1/Textures/image_2.png");
@@ -75,6 +75,14 @@ public class Assets
 		land_lv1[38] = ImageLoader.LoadImage("/lv1/Textures/platform_1.png");
 		land_lv1[39] = ImageLoader.LoadImage("/lv1/Textures/platform_2.png");
 		land_lv1[40] = ImageLoader.LoadImage("/lv1/Textures/platform_3.png");
+		land_lv1[41] = ImageLoader.LoadImage("/lv1/Textures/tree_0.png");
+		land_lv1[42] = ImageLoader.LoadImage("/lv1/Textures/tree_1.png");
+		land_lv1[43] = ImageLoader.LoadImage("/lv1/Textures/tree_2.png");
+		land_lv1[44] = ImageLoader.LoadImage("/lv1/Textures/tree_3.png");
+		land_lv1[45] = ImageLoader.LoadImage("/lv1/Textures/tree_4.png");
+		land_lv1[46] = ImageLoader.LoadImage("/lv1/Textures/tree_5.png");
+		land_lv1[47] = ImageLoader.LoadImage("/lv1/Textures/tree_6.png");
+
 
 		player_idle = new BufferedImage[4];
 		player_idle[0] = ImageLoader.LoadImage("/adventurer/adventurer-idle-00-1.3.png");

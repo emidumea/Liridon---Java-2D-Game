@@ -17,96 +17,18 @@ public class TileManager {
 
 	public TileManager(Game game) {
 		this.game = game;
-		tile = new Tile[41];
-		mapTile = new int[Game.TILES_IN_HEIGHT][Game.TILES_IN_WIDTH];
+		tile = new Tile[48];
+		mapTile = new int[game.maxWorldRow][game.maxWorldCol];
 		//mapTile = new int[Game.TILES_IN_HEIGHT][Game.TILES_IN_WIDTH];
 
 		for (int i = 0; i <Assets.land_lv1.length; i++)
 		{
 			tile[i] = new Tile(Assets.land_lv1[i]);
 		}
-		/*int i,j;
-		for (i = 0; i < Assets.land_grass.length; i++) {
-			tile[i] = new Tile(Assets.land_grass[i]);
-		}
-		for (j = 0; j < Assets.land_stone.length;j++)
-		{
-			tile[i + j] = new Tile(Assets.land_stone[j]);
-		}
-		int k = i + j;
-		for (i = 0; i < Assets.platforms_grass.length; i++)
-		{
-			tile[k + i] = new Tile(Assets.platforms_grass[i]);
-		}
-		int l = k + i + 1;
-		for (i = 0; i < Assets.platforms_stone.length; i++)
-		{
-			tile[k + i] = new Tile(Assets.platforms_stone[i]);
-		}*/
+
 		loadMap("/maps/map1.txt");
 	}
 
-
-	/*public void loadMap() {
-		try {
-			InputStream is = getClass().getResourceAsStream("/maps/map1.txt");
-			BufferedReader br = new BufferedReader(new InputStreamReader(is));
-
-			int col = 0, row = 0;
-
-			while (col < Game.TILES_IN_WIDTH && row < Game.TILES_IN_HEIGHT) {
-				String line = br.readLine();
-
-				while (col < Game.TILES_IN_WIDTH) {
-					String numbers[] = line.split(" ");
-
-					int num = Integer.parseInt(numbers[col]);
-
-					mapTile[col][row] = num;
-					col++;
-				}
-				if (col == Game.TILES_IN_WIDTH) {
-					col = 0;
-					row++;
-				}
-			}
-			br.close();
-		} catch (Exception e) {
-		}
-	}*/
-
-	/*public void loadMap() {
-		try {
-			InputStream is = getClass().getResourceAsStream("/maps/map1.txt");
-			BufferedReader br = new BufferedReader(new InputStreamReader(is));
-			int col = 0;
-			int row = 0; // Schimbăm coloanele cu rândurile
-			while (row < Game.TILES_IN_HEIGHT) { // Înlocuim Game.TILES_IN_WIDTH cu Game.TILES_IN_HEIGHT
-				String line = br.readLine();
-
-				//String numbers[] = line.split(" ");
-//				for (int col = 0; col < Game.TILES_IN_WIDTH; col++) { // Înlocuim Game.TILES_IN_HEIGHT cu Game.TILES_IN_WIDTH
-//					int num = Integer.parseInt(numbers[col]);
-//					mapTile[col][row] = num; // Înlocuim row cu col și col cu row pentru a inversa ordinea
-//				}
-//				row++; // Creștem row în loc de col pentru a inversa ordinea
-				while  (col < Game.TILES_IN_WIDTH)
-				{
-					String numbers[] = line.split(" ");
-					int num = Integer.parseInt(numbers[col]);
-					mapTile[col][row] = num;
-					col++;
-				}
-				if (col == Game.TILES_IN_WIDTH)
-				{
-					col = 0;
-					row++;
-				}
-			}
-			br.close();
-		} catch (Exception e) {
-		}
-	}*/
 	public void printMap()
 	{
 		for (int i = 0; i < mapTile.length; i++)
@@ -118,142 +40,13 @@ public class TileManager {
 			System.out.print("\n");
 		}
 	}
-	/////////// PRINCIPALA
-	/*public void render(Graphics g) {
-		int col = 0, row = 0, x = 0, y = 0;
-
-	//	while (col < Game.TILES_IN_WIDTH && row < Game.TILES_IN_HEIGHT) {
-		while (col < Game.TILES_IN_WIDTH && row < Game.TILES_IN_HEIGHT){
-			int tileNum = mapTile[col][row];
-			int spriteWidth = 0;// = tile[tileNum].getSprite().getWidth();
-			int spriteHeight = 0;// = tile[tileNum].getSprite().getHeight();
-			if (tileNum >= 0 && tileNum < tile.length && tile[tileNum]!=null) {
-				//spriteWidth = tile[tileNum].getSprite().getWidth();
-				 //spriteHeight = tile[tileNum].getSprite().getHeight();
-				//g.drawImage(tile[tileNum].sprite, x, y, spriteWidth, spriteHeight, null);
-				g.drawImage(tile[tileNum].sprite, y, x, Game.TILES_DEFAULT_SIZE, Game.TILES_DEFAULT_SIZE, null);
-
-			}
-			col++;
-			x += Game.TILES_DEFAULT_SIZE;
-		//	x += spriteWidth;
-
-			if (col == Game.TILES_IN_WIDTH) {
-				col = 0;
-				x = 0;
-				row++;
-				y += Game.TILES_DEFAULT_SIZE;
-			//	y += spriteHeight;
-			}
-		}
-	}*/
-	/////////////////////////////////// PRINCIPAAALA
-//	public void render(Graphics g) {
-//		int col = 0, row = 0, x = 0, y = 0;
-//
-//		//	while (col < Game.TILES_IN_WIDTH && row < Game.TILES_IN_HEIGHT) {
-//		while (col < Game.TILES_IN_WIDTH && row < Game.TILES_IN_HEIGHT){
-//			int tileNum = mapTile[col][row];
-//			int spriteWidth = 0;// = tile[tileNum].getSprite().getWidth();
-//			int spriteHeight = 0;// = tile[tileNum].getSprite().getHeight();
-//			if (tileNum >= 0 && tileNum < tile.length && tile[tileNum]!=null) {
-//				//spriteWidth = tile[tileNum].getSprite().getWidth();
-//				//spriteHeight = tile[tileNum].getSprite().getHeight();
-//				//g.drawImage(tile[tileNum].sprite, x, y, spriteWidth, spriteHeight, null);
-//				g.drawImage(tile[tileNum].sprite, y, x, Game.TILES_DEFAULT_SIZE, Game.TILES_DEFAULT_SIZE, null);
-//
-//			}
-//			col++;
-//			x += Game.TILES_DEFAULT_SIZE;
-//			//	x += spriteWidth;
-//
-//			if (col == Game.TILES_IN_WIDTH) {
-//				col = 0;
-//				x = 0;
-//				row++;
-//				y += Game.TILES_DEFAULT_SIZE;
-//				//	y += spriteHeight;
-//			}
-//		}
-//	}
-//////////////	public void render(Graphics g) {
-//		int col = 0, row = 0, x = 0, y = 0;
-//
-//		//	while (col < Game.TILES_IN_WIDTH && row < Game.TILES_IN_HEIGHT) {
-//		while (col < Game.TILES_IN_HEIGHT && row < Game.TILES_IN_WIDTH){
-//			int tileNum = mapTile[col][row];
-//			int spriteWidth = 0;// = tile[tileNum].getSprite().getWidth();
-//			int spriteHeight = 0;// = tile[tileNum].getSprite().getHeight();
-//			if (tileNum >= 0 && tileNum < tile.length && tile[tileNum]!=null) {
-//				//spriteWidth = tile[tileNum].getSprite().getWidth();
-//				//spriteHeight = tile[tileNum].getSprite().getHeight();
-//				//g.drawImage(tile[tileNum].sprite, x, y, spriteWidth, spriteHeight, null);
-//				g.drawImage(tile[tileNum].sprite, y, x, Game.TILES_DEFAULT_SIZE, Game.TILES_DEFAULT_SIZE, null);
-//
-//			}
-//			col++;
-//			x += Game.TILES_DEFAULT_SIZE;
-//			//	x += spriteWidth;
-//
-//			if (col == Game.TILES_IN_HEIGHT) {
-//				col = 0;
-//				x = 0;
-//				row++;
-//				y += Game.TILES_DEFAULT_SIZE;
-//				//	y += spriteHeight;
-//			}
-//		}
-//	}
-//	public void render(Graphics g) {
-//		int col = 0, row = 0, x = 0, y = 0;
-//		int spaceBetweenSprites = 2; // Spațiul între sprite-uri
-//
-//		while (col < Game.TILES_IN_WIDTH && row < Game.TILES_IN_HEIGHT){
-//			int tileNum = mapTile[col][row];
-//
-//			if (tileNum >= 0 && tileNum < tile.length && tile[tileNum] != null) {
-//				// Ajustează coordonatele de desenare pentru fiecare sprite
-//				int spriteWidth = tile[tileNum].getSprite().getWidth();
-//				int spriteHeight = tile[tileNum].getSprite().getHeight();
-//				g.drawImage(tile[tileNum].sprite, x, y, spriteWidth, spriteHeight, null);
-//			}
-//
-//			col++;
-//			x += Game.TILES_DEFAULT_SIZE - spaceBetweenSprites; // Adaugă spațiul între sprite-uri
-//
-//			if (col == Game.TILES_IN_WIDTH) {
-//				col = 0;
-//				x = 0;
-//				row++;
-//				y += Game.TILES_DEFAULT_SIZE - spaceBetweenSprites; // Adaugă spațiul între sprite-uri
-//			}
-//		}
-//	}
 
 	public int[][] getMapTile()
 	{
 		return mapTile;
 	}
-//}
 
-	/*public void render(Graphics g) {
-		int x = 0 , y = 0;
-		for (int row = 0; row < mapTile.length; row++) {
-			for (int col = 0; col < mapTile[row].length; col++) {
-				int tileNum = mapTile[row][col];
-				// Verificăm dacă valoarea din matrice nu reprezintă spațiul liber
-				if (tileNum != -1 && tileNum >= 0 && tileNum < tile.length) {
-					// Desenăm sprite-ul corespunzător la poziția curentă
-					 x = x + Game.TILES_DEFAULT_SIZE;
-					if (col == Game.TILES_IN_WIDTH) {
-						x = 0;
-						y = y +  Game.TILES_DEFAULT_SIZE;
-					}
-					g.drawImage(tile[tileNum].sprite, x, y, Game.TILES_DEFAULT_SIZE, Game.TILES_DEFAULT_SIZE, null);
-				}
-			}
-		}
-	}*/
+
 	public void loadMap(String filePath) {
 		try {
 			InputStream is = getClass().getResourceAsStream(filePath);
@@ -264,13 +57,13 @@ public class TileManager {
 			int row = 0;
 
 
-			while (col < Game.TILES_IN_WIDTH && row < Game.TILES_IN_HEIGHT) {
+			while (col < Game.maxWorldCol && row < Game.maxWorldRow) {
 
 
 				String line = br.readLine();
 
 
-				while (col < Game.TILES_IN_WIDTH) {
+				while (col < Game.maxWorldCol) {
 
 
 					String numbers[] = line.split(" ");
@@ -282,7 +75,7 @@ public class TileManager {
 					mapTile[row][col] = num;
 					col++;
 				}
-				if (col == Game.TILES_IN_WIDTH) {
+				if (col == Game.maxWorldCol) {
 					col = 0;
 					row++;
 				}
@@ -293,25 +86,63 @@ public class TileManager {
 
 		}
 	}
+	/*
+		public void draw(Graphics g)
+		{
+			int col = 0, row = 0, x = 0, y = 0;
+			while ( col < Game.TILES_IN_WIDTH && row < Game.TILES_IN_HEIGHT)
+			{
+				int tileNum = mapTile[row][col];
 
+				if (tileNum != -1)
+				{g.drawImage(tile[tileNum].sprite, x, y, Game.TILES_DEFAULT_SIZE,Game.TILES_DEFAULT_SIZE,null);}
+				col++;
+				x += Game.TILES_DEFAULT_SIZE;
+
+				if (col == Game.TILES_IN_WIDTH)
+				{
+					col = 0;
+					x = 0;
+					row++;
+					y += Game.TILES_DEFAULT_SIZE;
+				}
+			}
+		}*/
 	public void draw(Graphics g)
 	{
-		int col = 0, row = 0, x = 0, y = 0;
-		while ( col < Game.TILES_IN_WIDTH && row < Game.TILES_IN_HEIGHT)
-		{
-			int tileNum = mapTile[row][col];
 
-			if (tileNum != -1)
-			{g.drawImage(tile[tileNum].sprite, x, y, Game.TILES_DEFAULT_SIZE,Game.TILES_DEFAULT_SIZE,null);}
-			col++;
-			x += Game.TILES_DEFAULT_SIZE;
+		int worldCol = 0;
+		int worldRow = 0;
 
-			if (col == Game.TILES_IN_WIDTH)
+
+		while (worldCol < game.maxWorldCol && worldRow < game.maxWorldRow) {
+
+
+			int tileNum = mapTile[worldRow][worldCol];
+
+
+			int worldX = worldCol * game.TILES_SIZE;
+			int worldY = worldRow * game.TILES_SIZE;
+			int screenX = worldX - (int)game.getPlayer().getHitboxX() + game.getPlayer().screenX;
+			int screenY = worldY - (int)game.getPlayer().getHitboxY() + game.getPlayer().screenY;
+
+
+			if(worldX + game.TILES_SIZE> game.getPlayer().getHitboxX() - game.getPlayer().screenX &&
+					   worldX - game.TILES_SIZE< game.getPlayer().getHitboxX() + game.getPlayer().screenX &&
+					   worldY + game.TILES_SIZE> game.getPlayer().getHitboxY() - game.getPlayer().screenY &&
+					   worldY - game.TILES_SIZE< game.getPlayer().getHitboxY() + game.getPlayer().screenY)
 			{
-				col = 0;
-				x = 0;
-				row++;
-				y += Game.TILES_DEFAULT_SIZE;
+				if (tileNum != -1)
+					g.drawImage(tile[tileNum].sprite, screenX, screenY, game.TILES_SIZE, game.TILES_SIZE, null);
+			}
+
+
+			worldCol++;
+
+
+			if(worldCol == game.maxWorldCol){
+				worldCol=0;
+				worldRow++;
 			}
 		}
 	}

@@ -9,7 +9,7 @@ public class GameLauncher
 	//	wnd.getFrame().addKeyListener(new KeyboardInput());
 	//	wnd.getFrame().addMouseListener(new MouseInput());
 	//	wnd.getFrame().addMouseMotionListener(new MouseInput());
-		Game game = new Game("Liridon",Game.TILES_IN_WIDTH,Game.TILES_IN_HEIGHT);
+		Game game = new Game("Liridon",Game.GAME_WIDTH,Game.GAME_HEIGHT);
 		game.StartGame();
 	}
 }

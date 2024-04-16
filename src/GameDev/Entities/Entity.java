@@ -32,6 +32,30 @@ public abstract class Entity
 //		hitbox.y = (int) y;
 //	}
 
+	public float getHitboxX()
+	{
+		return hitbox.x;
+	}
+	public float getHitboxY()
+	{
+		return hitbox.y;
+	}
+	public float getHitboxWidth()
+	{
+		return hitbox.width;
+	}
+	public float getHitboxHeight()
+	{
+		return hitbox.height;
+	}
+	public float getX() {
+		return x;
+	}
+
+	public float getY() {
+		return y;
+	}
+
 	public Rectangle2D.Float getHitbox()
 	{
 		return hitbox;

@@ -17,25 +17,26 @@ public class Game implements Runnable
 {
 
 	TileManager tileM;
+	// ------------------------------------ SCREEN SETTINGS
 	public final static int TILES_DEFAULT_SIZE = 48;
 	public final static float SCALE = 1f;
-	public final static int TILES_IN_WIDTH = 26; // col
-	public final static int TILES_IN_HEIGHT = 14;
+	public final static int TILES_IN_WIDTH = 20; // col 26
+	public final static int TILES_IN_HEIGHT = 14; // 14
 	public final static int TILES_SIZE = (int) (TILES_DEFAULT_SIZE * SCALE);
 	public final static int GAME_WIDTH = TILES_SIZE * TILES_IN_WIDTH;
 	public final static int GAME_HEIGHT = TILES_SIZE * TILES_IN_HEIGHT;
+	// -------------------------------------------- WORLD SETTINGS
+	public static final int maxWorldCol = 30;
+	public static final int maxWorldRow = 18;
+	public final int worldWidth = TILES_SIZE * maxWorldCol;
+	public final int worldHeight = TILES_SIZE * maxWorldRow;
+	// ------------------------------------------------------
 	private MouseInput mouseInput;
-	//private KeyboardInput keyboardInput;
 	private GameWindow      wnd;        /*!< Fereastra in care se va desena tabla jocului*/
 	private boolean         runState;   /*!< Flag ce starea firului de executie.*/
 	private Thread          gameThread; /*!< Referinta catre thread-ul de update si draw al ferestrei*/
 	private BufferStrategy  bs;         /*!< Referinta catre un mecanism cu care se organizeaza memoria complexa pentru un canvas.*/
-
-	private BufferedImage img;
 	private Graphics        g;     /*!< Referinta catre un context grafic.*/
-	private int coordX;
-	private int coordY;
-	private Animation anim;
 	public Player player;
 
 	public Player getPlayer() {
@@ -57,7 +58,6 @@ public class Game implements Runnable
 
 		Assets.init();
 		player = new Player(200,200, (int) (64 * SCALE), (int) (40 * SCALE));
-		anim = new Animation(player_idle,100);
 		tileM = new TileManager(this);
 		player.loadLvlData(tileM.getMapTile());
 		tileM.printMap();
@@ -71,7 +71,7 @@ public class Game implements Runnable
 		wnd.getCanvas().addMouseListener(mouseInput);
 		wnd.getCanvas().addMouseMotionListener(mouseInput);
 
-	//	Assets.Init();
+		//	Assets.Init();
 	}
 
 	@Override public void run()
@@ -171,26 +171,11 @@ public class Game implements Runnable
 		}
 	}
 */
-	public void changeCoordX(int val)
-	{
-		this.coordX += val;
-	}
-
-	public void changeCoordY(int val)
-	{
-		this.coordY += val;
-	}
 	private void Update()
 	{
 
 		player.tick();
 	}
-	public void setPos(int x,int y)
-	{
-		this.coordX = x;
-		this.coordY = y;
-	}
-
 
 	private void Draw()
 	{
@@ -215,43 +200,15 @@ public class Game implements Runnable
 		/// Se obtine contextul grafic curent in care se poate desena.
 		g = bs.getDrawGraphics();
 		/// Se sterge ce era
-		//img = LoadImage("/adventurer/adventurer-attack1-00-1.3.png");
-		img = player_idle[3];
-		//BufferedImage aa=LoadImage("/adventurer/adventurer-attack1-03-1.3.png");
 		g.clearRect(0, 0, wnd.getWidth(), wnd.getHeight());
-		//g.drawImage(land_grass[0],15,15,null);
-	//	g.drawImage(land_grass[9],125,125,null);
-
-		//g.drawImage(land_grass[15],225,225,null);
-
-		//g.drawImage(land_grass[19],335,335,null);
-
-		//g.drawImage(img,0,0,null);
-		//anim.tick();
-		//g.drawImage(anim.getCurrentFrame(),coordX,coordY,128,80,null);
-		//player.tick();
 		tileM.draw(g);
 		player.render(g);
 		player.tick();
-
-		/// operatie de desenare
-		// ...............
-		/*Tile.grassTile.Draw(g, 0 * Tile.TILE_WIDTH, 0);
-		Tile.soilTile.Draw(g, 1 * Tile.TILE_WIDTH, 0);
-		Tile.waterTile.Draw(g, 2 * Tile.TILE_WIDTH, 0);
-		Tile.mountainTile.Draw(g, 3 * Tile.TILE_WIDTH, 0);
-		Tile.treeTile.Draw(g, 4 * Tile.TILE_WIDTH, 0);
-
-		g.drawRect(1 * Tile.TILE_WIDTH, 1 * Tile.TILE_HEIGHT, Tile.TILE_WIDTH, Tile.TILE_HEIGHT);*/
-
-
 		// end operatie de desenare
 		/// Se afiseaza pe ecran
 		bs.show();
-
 		/// Elibereaza resursele de memorie aferente contextului grafic curent (zonele de memorie ocupate de
 		/// elementele grafice ce au fost desenate pe canvas).
 		g.dispose();
 	}
 }
-

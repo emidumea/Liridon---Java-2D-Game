@@ -15,17 +15,22 @@ public class Player extends Entity
 	private int[][] lvlData;
 	private float xDrawOffset = 20 * Game.SCALE;
 	private float yDrawOffset = 6 * Game.SCALE;
+	public final int screenX;
+	public final int screenY;
 
 	//// Jumping and Gravity
 	private float airSpeed = 0f;
 	private float gravity = 0.04f * Game.SCALE;
-	private float jumpSpeed = -2.25f * Game.SCALE;
+	private float jumpSpeed = -3.40f * Game.SCALE;
 	private float fallSpeedAfterCollision = 0.5f * Game.SCALE;
 	private boolean inAir = false;
 
 	public Player(float x, float y, int width, int height)
 	{
 		super(x,y,width,height);
+		screenX = Game.GAME_WIDTH/2; //- (gp.tileSize/2);
+		screenY = Game.GAME_HEIGHT/2; //- (gp.tileSize/2);
+
 		animIdle = new Animation(Assets.player_idle,100);
 		animUp = new Animation(Assets.player_up,100);
 		animLeft = new Animation(Assets.player_up,100);
@@ -105,18 +110,18 @@ public class Player extends Entity
 //		{
 //			System.out.println("coliziune.....");
 //		}
-		if(CanMoveHere(hitbox.x + dx, hitbox.y + dy, hitbox.width , hitbox.height ,lvlData))
-		{
-			hitbox.x += dx;
-			hitbox.y += dy;
-			moving = true;
-		}
-		else
-		{
-			System.out.println("coliziune.....");
-		}
-	//	x += dx;
-		//y += dy;
+//		if(CanMoveHere(hitbox.x + dx, hitbox.y + dy, hitbox.width , hitbox.height ,lvlData))
+//		{
+//			hitbox.x += dx;
+//			hitbox.y += dy;
+//			moving = true;
+//		}
+//		else
+//		{
+//			System.out.println("coliziune.....");
+//		}
+		x += dx;
+		y += dy;
 	}*/
 	private void updatePos()
 	{
@@ -172,6 +177,7 @@ public class Player extends Entity
 			updateXPos(dx);
 		}
 		moving = true;
+		//x += dx;
 	}
 
 	private void jump()
@@ -244,6 +250,52 @@ public class Player extends Entity
 		if (inAir)
 		{
 			if (airSpeed < 0)
+				g.drawImage(animJump.getCurrentFrame(), (int) (screenX - xDrawOffset),(int) (screenY - yDrawOffset), width, height, null);
+			else
+				g.drawImage(animFall.getCurrentFrame(),(int) (screenX - xDrawOffset),(int) (screenY - yDrawOffset), width, height, null);
+		}
+		else if (attacking)
+		{
+			g.drawImage(animAttack.getCurrentFrame(), (int) (screenX - xDrawOffset),(int) (screenY - yDrawOffset), width, height, null);
+		}
+		else if (moving)
+		{
+			if (left)
+			{
+				g.drawImage(animLeft.getCurrentFrame(), (int) (screenX - xDrawOffset),(int) (screenY - yDrawOffset), width, height, null);
+			}
+			else if (right)
+			{
+				g.drawImage(animRight.getCurrentFrame(),  (int) (screenX - xDrawOffset),(int) (screenY - yDrawOffset), width, height, null);
+			}
+			else if (up)
+			{
+				g.drawImage(animUp.getCurrentFrame(), (int) (screenX - xDrawOffset),(int) (screenY - yDrawOffset), width, height, null);
+			}
+			else if (down)
+			{
+				g.drawImage(animDown.getCurrentFrame(),  (int) (screenX - xDrawOffset),(int) (screenY - yDrawOffset), width, height, null);
+			}
+			else
+			{
+				// Dacă jucătorul nu se mișcă și nicio direcție nu este activă,
+				// se va afișa starea de repaus
+				g.drawImage(animIdle.getCurrentFrame(), (int) (screenX - xDrawOffset),(int) (screenY - yDrawOffset), width, height, null);
+			}
+		}
+		else
+		{
+			// Dacă jucătorul nu se mișcă, se va afișa starea de repaus
+			g.drawImage(animIdle.getCurrentFrame(), (int) (screenX - xDrawOffset),(int) (screenY - yDrawOffset), width, height, null);
+		}
+		drawHitbox(g);
+	}
+
+	/*public void render(Graphics g)
+	{
+		if (inAir)
+		{
+			if (airSpeed < 0)
 				g.drawImage(animJump.getCurrentFrame(),(int) (hitbox.x - xDrawOffset), (int) (hitbox.y - yDrawOffset), width, height, null);
 			else
 				g.drawImage(animFall.getCurrentFrame(),(int) (hitbox.x - xDrawOffset), (int) (hitbox.y - yDrawOffset), width, height, null);
@@ -283,7 +335,7 @@ public class Player extends Entity
 			g.drawImage(animIdle.getCurrentFrame(), (int) (hitbox.x - xDrawOffset), (int) (hitbox.y - yDrawOffset), width, height, null);
 		}
 
-	}
+	}*/
 	public void loadLvlData(int [][] lvlData)
 	{
 		this.lvlData = lvlData;
