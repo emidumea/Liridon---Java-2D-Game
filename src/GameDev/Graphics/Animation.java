@@ -32,4 +32,13 @@ public class Animation
 	}
 
 	public BufferedImage getCurrentFrame() {return frames[currentFrame];}
+	public boolean isAnimationFinished() {
+		return currentFrame >= frames.length - 1;
+	}
+
+	public void setCurrentFrame(int i)
+	{
+		if ( i >= 0 && i < frames.length)
+			currentFrame = i;
+	}
 }

@@ -30,7 +30,7 @@ public class Game implements Runnable
 	public final static int GAME_HEIGHT = TILES_SIZE * TILES_IN_HEIGHT;
 	// -------------------------------------------- WORLD SETTINGS
 	public static final int maxWorldCol = 60;
-	public static final int maxWorldRow = 18;
+	public static final int maxWorldRow = 23;
 	public final int worldWidth = TILES_SIZE * maxWorldCol;
 	public final int worldHeight = TILES_SIZE * maxWorldRow;
 	// ------------------------------------------------------
@@ -45,18 +45,9 @@ public class Game implements Runnable
 	private Playing playing;
 	private Menu menu;
 
-
-	//public Player getPlayer() {
-	//	return player;
-//	}
-
-	//private Tile
 	public Game(String title, int width, int height)
 	{
-		//width = GAME_WIDTH;
-		//height = GAME_HEIGHT;
 		wnd = new GameWindow(title, width, height);
-		//InitGame();
 		runState = false;
 	}
 
@@ -65,12 +56,6 @@ public class Game implements Runnable
 
 		menu = new Menu(this);
 		playing = new Playing(this);
-//		Assets.init();
-//		player = new Player(200,200, (int) (64 * SCALE), (int) (40 * SCALE));
-//		tileM = new TileManager(this);
-//		player.loadLvlData(tileM.getMapTile());
-//		tileM.printMap();
-//		mouseInput = new MouseInput(this);
 		wnd = new GameWindow("Liridon", GAME_WIDTH, GAME_HEIGHT);
 		wnd.BuildGameWindow();
 		wnd.getFrame().addKeyListener(new KeyboardInput(this));
@@ -79,8 +64,6 @@ public class Game implements Runnable
 
 		wnd.getCanvas().addMouseListener(mouseInput);
 		wnd.getCanvas().addMouseMotionListener(mouseInput);
-
-		//	Assets.Init();
 	}
 
 	@Override public void run()
@@ -244,12 +227,5 @@ public class Game implements Runnable
 	public Playing getPlaying()
 	{
 		return playing;
-	}
-	public void windowFocusLost()
-	{
-		if (Gamestate.state == Gamestate.PLAYING)
-		{
-			playing.getPlayer().resetDirBooleans();
-		}
 	}
 }

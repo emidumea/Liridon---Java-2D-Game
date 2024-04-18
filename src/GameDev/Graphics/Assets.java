@@ -1,5 +1,6 @@
 package GameDev.Graphics;
 
+import java.awt.*;
 import java.awt.image.BufferedImage;
 
 import static GameDev.Utils.Constants.EnemyConstants.SKELETON_HEIGHT_DEFAULT;
@@ -21,7 +22,11 @@ public class Assets
 	public static BufferedImage sky,clouds,sea,grounds;
 	public static BufferedImage[][] skeletonArr;
 
-	public static BufferedImage[] skeleton_walk;
+	public static BufferedImage[] hyena_walk;
+	public static BufferedImage[] hyena_attack;
+	public static BufferedImage[] hyena_hit;
+	public static BufferedImage[] hyena_die;
+	public static BufferedImage[] health_bar;
 	public static void init()
 	{
 		SpriteSheet environment1 = new SpriteSheet(ImageLoader.LoadImage("/lv1/environment.png"));
@@ -123,20 +128,37 @@ public class Assets
 		player_attack[3] = ImageLoader.LoadImage("/adventurer/adventurer-attack1-03-1.3.png");
 		player_attack[4] = ImageLoader.LoadImage("/adventurer/adventurer-attack1-04-1.3.png");
 
-		skeleton_walk = new BufferedImage[6];
-//		skeleton_walk[0] = ImageLoader.LoadImage("/lv1/skeleton1/walk-1.png");
-//		skeleton_walk[1] = ImageLoader.LoadImage("/lv1/skeleton1/walk-2.png");
-//		skeleton_walk[2] = ImageLoader.LoadImage("/lv1/skeleton1/walk-3.png");
-//		skeleton_walk[3] = ImageLoader.LoadImage("/lv1/skeleton1/walk-4.png");
-//		skeleton_walk[4] = ImageLoader.LoadImage("/lv1/skeleton1/walk-5.png");
-//		skeleton_walk[5] = ImageLoader.LoadImage("/lv1/skeleton1/walk-6.png");
-		skeleton_walk[0] = ImageLoader.LoadImage("/lv1/hyena/hyena_0.png");
-		skeleton_walk[1] = ImageLoader.LoadImage("/lv1/hyena/hyena_1.png");
-		skeleton_walk[2] = ImageLoader.LoadImage("/lv1/hyena/hyena_2.png");
-		skeleton_walk[3] = ImageLoader.LoadImage("/lv1/hyena/hyena_3.png");
-		skeleton_walk[4] = ImageLoader.LoadImage("/lv1/hyena/hyena_4.png");
-		skeleton_walk[5] = ImageLoader.LoadImage("/lv1/hyena/hyena_5.png");
+		hyena_walk = new BufferedImage[6];
+		hyena_walk[0] = ImageLoader.LoadImage("/lv1/hyena/hyena_0.png");
+		hyena_walk[1] = ImageLoader.LoadImage("/lv1/hyena/hyena_1.png");
+		hyena_walk[2] = ImageLoader.LoadImage("/lv1/hyena/hyena_2.png");
+		hyena_walk[3] = ImageLoader.LoadImage("/lv1/hyena/hyena_3.png");
+		hyena_walk[4] = ImageLoader.LoadImage("/lv1/hyena/hyena_4.png");
+		hyena_walk[5] = ImageLoader.LoadImage("/lv1/hyena/hyena_5.png");
 
+		hyena_attack = new BufferedImage[6];
+		hyena_attack[0] = ImageLoader.LoadImage("/lv1/hyena/hyena_attack_0.png");
+		hyena_attack[1] = ImageLoader.LoadImage("/lv1/hyena/hyena_attack_1.png");
+		hyena_attack[2] = ImageLoader.LoadImage("/lv1/hyena/hyena_attack_2.png");
+		hyena_attack[3] = ImageLoader.LoadImage("/lv1/hyena/hyena_attack_3.png");
+		hyena_attack[4] = ImageLoader.LoadImage("/lv1/hyena/hyena_attack_4.png");
+		hyena_attack[5] = ImageLoader.LoadImage("/lv1/hyena/hyena_attack_5.png");
+
+		hyena_hit = new BufferedImage[2];
+		hyena_hit[0] = ImageLoader.LoadImage("/lv1/hyena/hurt_1.png");
+		hyena_hit[1] = ImageLoader.LoadImage("/lv1/hyena/hurt_2.png");
+
+		hyena_die = new BufferedImage[6];
+		hyena_die[0] = ImageLoader.LoadImage("/lv1/hyena/die_1.png");
+		hyena_die[1] = ImageLoader.LoadImage("/lv1/hyena/die_2.png");
+		hyena_die[2] = ImageLoader.LoadImage("/lv1/hyena/die_3.png");
+		hyena_die[3] = ImageLoader.LoadImage("/lv1/hyena/die_4.png");
+		hyena_die[4] = ImageLoader.LoadImage("/lv1/hyena/die_5.png");
+		hyena_die[5] = ImageLoader.LoadImage("/lv1/hyena/die_6.png");
+
+		health_bar = new BufferedImage[2];
+		health_bar[0] = ImageLoader.LoadImage("/hp/lives_5.png");
+		health_bar[1] = ImageLoader.LoadImage("/hp/Pixel_heart2.png");
 
 		sky = ImageLoader.LoadImage("/lv1/Background/sky.png");
 		clouds = ImageLoader.LoadImage("/lv1/Background/clouds.png");

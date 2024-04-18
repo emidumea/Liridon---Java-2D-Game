@@ -1,6 +1,5 @@
 package GameDev.Tiles;
 
-import GameDev.Entities.Skeleton;
 import GameDev.Game;
 import GameDev.Graphics.Assets;
 
@@ -13,16 +12,10 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 
 public class TileManager {
-	public Tile grass1, grass2, grass3;
 	Game game;
 	Tile[] tile;
 	int[][] mapTile;
 
-
-//	private BufferedImage backgroundImg()
-//	{
-//		backgroundImg() =
-//	}
 	public TileManager(Game game) {
 		this.game = game;
 		tile = new Tile[48];
@@ -93,28 +86,6 @@ public class TileManager {
 
 		}
 	}
-	/*
-		public void draw(Graphics g)
-		{
-			int col = 0, row = 0, x = 0, y = 0;
-			while ( col < Game.TILES_IN_WIDTH && row < Game.TILES_IN_HEIGHT)
-			{
-				int tileNum = mapTile[row][col];
-
-				if (tileNum != -1)
-				{g.drawImage(tile[tileNum].sprite, x, y, Game.TILES_DEFAULT_SIZE,Game.TILES_DEFAULT_SIZE,null);}
-				col++;
-				x += Game.TILES_DEFAULT_SIZE;
-
-				if (col == Game.TILES_IN_WIDTH)
-				{
-					col = 0;
-					x = 0;
-					row++;
-					y += Game.TILES_DEFAULT_SIZE;
-				}
-			}
-		}*/
 	public void draw(Graphics g)
 	{
 

@@ -26,12 +26,6 @@ public abstract class Entity
 		hitbox = new Rectangle2D.Float( x, y, width, height);
 	}
 
-//	public void updateHitbox()
-//	{
-//		hitbox.x = (int) x;
-//		hitbox.y = (int) y;
-//	}
-
 	public float getHitboxX()
 	{
 		return hitbox.x;
@@ -51,12 +45,9 @@ public abstract class Entity
 	public float getX() {
 		return x;
 	}
-
-
 	public float getY() {
 		return y;
 	}
-
 	public Rectangle2D.Float getHitbox()
 	{
 		return hitbox;
