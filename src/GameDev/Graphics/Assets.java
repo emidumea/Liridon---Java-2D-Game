@@ -2,13 +2,11 @@ package GameDev.Graphics;
 
 import java.awt.image.BufferedImage;
 
+import static GameDev.Utils.Constants.EnemyConstants.SKELETON_HEIGHT_DEFAULT;
+import static GameDev.Utils.Constants.EnemyConstants.SKELETON_WIDTH_DEFAULT;
+
 public class Assets
 {
-	private static final int width128 = 128, height128 = 128;
-	private static final int width64 = 64, height64 = 64;
-	private static final int width = 32, height = 32;
-
-
 	public static BufferedImage[] player_idle;
 	public static BufferedImage[] player_up;
 	public static BufferedImage[] player_left;
@@ -17,18 +15,13 @@ public class Assets
 	public static BufferedImage[] player_jump;
 	public static BufferedImage[] player_fall;
 	// ------------------------------ lvl 1
-	public static BufferedImage[] level1_atlas;
 	public static BufferedImage[] land_lv1;
-	public static BufferedImage[] land_grass;
-	public static BufferedImage[] platforms_grass;
-	public static BufferedImage[] land_stone;
-	public static BufferedImage[] platforms_stone;
-	public static BufferedImage[] background_stone;
-	public static BufferedImage[] tree1;
-	public static BufferedImage[] bridge1;
 	// -----------
 	public static BufferedImage[] player_attack;
+	public static BufferedImage sky,clouds,sea,grounds;
+	public static BufferedImage[][] skeletonArr;
 
+	public static BufferedImage[] skeleton_walk;
 	public static void init()
 	{
 		SpriteSheet environment1 = new SpriteSheet(ImageLoader.LoadImage("/lv1/environment.png"));
@@ -130,6 +123,36 @@ public class Assets
 		player_attack[3] = ImageLoader.LoadImage("/adventurer/adventurer-attack1-03-1.3.png");
 		player_attack[4] = ImageLoader.LoadImage("/adventurer/adventurer-attack1-04-1.3.png");
 
+		skeleton_walk = new BufferedImage[6];
+//		skeleton_walk[0] = ImageLoader.LoadImage("/lv1/skeleton1/walk-1.png");
+//		skeleton_walk[1] = ImageLoader.LoadImage("/lv1/skeleton1/walk-2.png");
+//		skeleton_walk[2] = ImageLoader.LoadImage("/lv1/skeleton1/walk-3.png");
+//		skeleton_walk[3] = ImageLoader.LoadImage("/lv1/skeleton1/walk-4.png");
+//		skeleton_walk[4] = ImageLoader.LoadImage("/lv1/skeleton1/walk-5.png");
+//		skeleton_walk[5] = ImageLoader.LoadImage("/lv1/skeleton1/walk-6.png");
+		skeleton_walk[0] = ImageLoader.LoadImage("/lv1/hyena/hyena_0.png");
+		skeleton_walk[1] = ImageLoader.LoadImage("/lv1/hyena/hyena_1.png");
+		skeleton_walk[2] = ImageLoader.LoadImage("/lv1/hyena/hyena_2.png");
+		skeleton_walk[3] = ImageLoader.LoadImage("/lv1/hyena/hyena_3.png");
+		skeleton_walk[4] = ImageLoader.LoadImage("/lv1/hyena/hyena_4.png");
+		skeleton_walk[5] = ImageLoader.LoadImage("/lv1/hyena/hyena_5.png");
+
+
+		sky = ImageLoader.LoadImage("/lv1/Background/sky.png");
+		clouds = ImageLoader.LoadImage("/lv1/Background/clouds.png");
+		sea = ImageLoader.LoadImage("/lv1/Background/sea.png");
+		grounds = ImageLoader.LoadImage("/lv1/Background/far-grounds.png");
+
+
+		skeletonArr = new BufferedImage[5][8];
+		SpriteSheet temp = new SpriteSheet(ImageLoader.LoadImage("/lv1/skeleton1/skeletons2.png"));
+		for (int j = 0; j < skeletonArr.length; j++)
+		{
+			for (int i = 0; i < skeletonArr[j].length; i++)
+			{
+				skeletonArr[j][i] = temp.crop(i * SKELETON_WIDTH_DEFAULT, j * SKELETON_HEIGHT_DEFAULT, SKELETON_WIDTH_DEFAULT, SKELETON_HEIGHT_DEFAULT);
+			}
+		}
 	}
 
 }

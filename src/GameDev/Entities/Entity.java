@@ -52,6 +52,7 @@ public abstract class Entity
 		return x;
 	}
 
+
 	public float getY() {
 		return y;
 	}

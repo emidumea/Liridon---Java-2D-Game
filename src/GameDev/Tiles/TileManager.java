@@ -1,13 +1,16 @@
 package GameDev.Tiles;
 
+import GameDev.Entities.Skeleton;
 import GameDev.Game;
 import GameDev.Graphics.Assets;
 
 import java.awt.*;
 import java.awt.event.InputEvent;
+import java.awt.image.BufferedImage;
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
 
 public class TileManager {
 	public Tile grass1, grass2, grass3;
@@ -15,6 +18,11 @@ public class TileManager {
 	Tile[] tile;
 	int[][] mapTile;
 
+
+//	private BufferedImage backgroundImg()
+//	{
+//		backgroundImg() =
+//	}
 	public TileManager(Game game) {
 		this.game = game;
 		tile = new Tile[48];
@@ -45,7 +53,6 @@ public class TileManager {
 	{
 		return mapTile;
 	}
-
 
 	public void loadMap(String filePath) {
 		try {
@@ -123,14 +130,14 @@ public class TileManager {
 
 			int worldX = worldCol * game.TILES_SIZE;
 			int worldY = worldRow * game.TILES_SIZE;
-			int screenX = worldX - (int)game.getPlayer().getHitboxX() + game.getPlayer().screenX;
-			int screenY = worldY - (int)game.getPlayer().getHitboxY() + game.getPlayer().screenY;
+			int screenX = worldX - (int)game.getPlaying().getPlayer().getHitboxX() + game.getPlaying().getPlayer().screenX;
+			int screenY = worldY - (int)game.getPlaying().getPlayer().getHitboxY() + game.getPlaying().getPlayer().screenY;
 
 
-			if(worldX + game.TILES_SIZE> game.getPlayer().getHitboxX() - game.getPlayer().screenX &&
-					   worldX - game.TILES_SIZE< game.getPlayer().getHitboxX() + game.getPlayer().screenX &&
-					   worldY + game.TILES_SIZE> game.getPlayer().getHitboxY() - game.getPlayer().screenY &&
-					   worldY - game.TILES_SIZE< game.getPlayer().getHitboxY() + game.getPlayer().screenY)
+			if(worldX + game.TILES_SIZE> game.getPlaying().getPlayer().getHitboxX() - game.getPlaying().getPlayer().screenX &&
+					   worldX - game.TILES_SIZE< game.getPlaying().getPlayer().getHitboxX() + game.getPlaying().getPlayer().screenX &&
+					   worldY + game.TILES_SIZE> game.getPlaying().getPlayer().getHitboxY() - game.getPlaying().getPlayer().screenY &&
+					   worldY - game.TILES_SIZE< game.getPlaying().getPlayer().getHitboxY() + game.getPlaying().getPlayer().screenY)
 			{
 				if (tileNum != -1)
 					g.drawImage(tile[tileNum].sprite, screenX, screenY, game.TILES_SIZE, game.TILES_SIZE, null);

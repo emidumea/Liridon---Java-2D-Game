@@ -2,6 +2,7 @@ package GameDev.Input;
 
 
 import GameDev.Game;
+import GameDev.GameStates.Gamestate;
 
 import java.awt.event.InputEvent;
 import java.awt.event.MouseEvent;
@@ -36,7 +37,18 @@ public class MouseInput implements MouseListener, MouseMotionListener
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
-		System.out.println("mouse clic");
+		switch (Gamestate.state)
+		{
+			case MENU:
+				game.getMenu().mouseClicked(e);
+				break;
+			case PLAYING:
+				game.getPlaying().mouseClicked(e);
+				break;
+			default:
+				break;
+		}
+
 	}
 
 	@Override

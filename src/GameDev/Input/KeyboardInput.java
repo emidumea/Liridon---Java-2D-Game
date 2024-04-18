@@ -1,6 +1,7 @@
 package GameDev.Input;
 
 import GameDev.Game;
+import GameDev.GameStates.Gamestate;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
@@ -50,27 +51,15 @@ public class KeyboardInput implements KeyListener
 	@Override
 	public void keyPressed(KeyEvent e)
 	{
-		//System.out.println("apas o tasta");
-		keys[e.getKeyCode()] = true;
-		switch (e.getKeyCode())
+		switch (Gamestate.state)
 		{
-//			case KeyEvent.VK_W:
-//				game.getPlayer().setUp(true);
-//				break;
-			case KeyEvent.VK_A:
-				game.getPlayer().setLeft(true);
+			case MENU:
+				game.getMenu().keyPressed(e);
 				break;
-			case KeyEvent.VK_S:
-				game.getPlayer().setDown(true);
+			case PLAYING:
+				game.getPlaying().keyPressed(e);
 				break;
-			case KeyEvent.VK_D:
-				game.getPlayer().setRight(true);
-				break;
-			case KeyEvent.VK_R:
-				game.getPlayer().setAttacking(true);
-				break;
-			case KeyEvent.VK_W:
-				game.getPlayer().setJump(true);
+			default:
 				break;
 		}
 	}
@@ -78,27 +67,15 @@ public class KeyboardInput implements KeyListener
 	@Override
 	public void keyReleased(KeyEvent e)
 	{
-	//	System.out.println("apas o tasta");
-		keys[e.getKeyCode()] = false;
-		switch (e.getKeyCode())
+		switch (Gamestate.state)
 		{
-//			case KeyEvent.VK_W:
-//				game.getPlayer().setUp(false);
-//				break;
-			case KeyEvent.VK_A:
-				game.getPlayer().setLeft(false);
+			case MENU:
+				game.getMenu().keyReleased(e);
 				break;
-			case KeyEvent.VK_S:
-				game.getPlayer().setDown(false);
+			case PLAYING:
+				game.getPlaying().keyReleased(e);
 				break;
-			case KeyEvent.VK_D:
-				game.getPlayer().setRight(false);
-				break;
-			case KeyEvent.VK_R:
-				game.getPlayer().setAttacking(false);
-				break;
-			case KeyEvent.VK_W:
-				game.getPlayer().setJump(false);
+			default:
 				break;
 		}
 	}

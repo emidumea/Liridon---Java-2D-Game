@@ -1,6 +1,9 @@
 package GameDev;
 
 import GameDev.Entities.Player;
+import GameDev.GameStates.Gamestate;
+import GameDev.GameStates.Playing;
+import GameDev.GameStates.Menu;
 import GameDev.GameWindow.GameWindow;
 import GameDev.Graphics.Animation;
 import GameDev.Graphics.Assets;
@@ -26,7 +29,7 @@ public class Game implements Runnable
 	public final static int GAME_WIDTH = TILES_SIZE * TILES_IN_WIDTH;
 	public final static int GAME_HEIGHT = TILES_SIZE * TILES_IN_HEIGHT;
 	// -------------------------------------------- WORLD SETTINGS
-	public static final int maxWorldCol = 30;
+	public static final int maxWorldCol = 60;
 	public static final int maxWorldRow = 18;
 	public final int worldWidth = TILES_SIZE * maxWorldCol;
 	public final int worldHeight = TILES_SIZE * maxWorldRow;
@@ -38,10 +41,14 @@ public class Game implements Runnable
 	private BufferStrategy  bs;         /*!< Referinta catre un mecanism cu care se organizeaza memoria complexa pentru un canvas.*/
 	private Graphics        g;     /*!< Referinta catre un context grafic.*/
 	public Player player;
+	// -------------------------
+	private Playing playing;
+	private Menu menu;
 
-	public Player getPlayer() {
-		return player;
-	}
+
+	//public Player getPlayer() {
+	//	return player;
+//	}
 
 	//private Tile
 	public Game(String title, int width, int height)
@@ -56,12 +63,14 @@ public class Game implements Runnable
 	private void InitGame()
 	{
 
-		Assets.init();
-		player = new Player(200,200, (int) (64 * SCALE), (int) (40 * SCALE));
-		tileM = new TileManager(this);
-		player.loadLvlData(tileM.getMapTile());
-		tileM.printMap();
-		mouseInput = new MouseInput(this);
+		menu = new Menu(this);
+		playing = new Playing(this);
+//		Assets.init();
+//		player = new Player(200,200, (int) (64 * SCALE), (int) (40 * SCALE));
+//		tileM = new TileManager(this);
+//		player.loadLvlData(tileM.getMapTile());
+//		tileM.printMap();
+//		mouseInput = new MouseInput(this);
 		wnd = new GameWindow("Liridon", GAME_WIDTH, GAME_HEIGHT);
 		wnd.BuildGameWindow();
 		wnd.getFrame().addKeyListener(new KeyboardInput(this));
@@ -174,12 +183,22 @@ public class Game implements Runnable
 	private void Update()
 	{
 
-		player.tick();
+		//player.tick();
+		switch(Gamestate.state)
+		{
+			case MENU:
+				menu.update();
+				break;
+			case PLAYING:
+				playing.update();
+			default:
+				break;
+		}
 	}
 
 	private void Draw()
 	{
-		/// Returnez bufferStrategy pentru canvasul existent
+/// Returnez bufferStrategy pentru canvasul existent
 		bs = wnd.getCanvas().getBufferStrategy();
 		/// Verific daca buffer strategy a fost construit sau nu
 		if(bs == null)
@@ -201,14 +220,36 @@ public class Game implements Runnable
 		g = bs.getDrawGraphics();
 		/// Se sterge ce era
 		g.clearRect(0, 0, wnd.getWidth(), wnd.getHeight());
-		tileM.draw(g);
-		player.render(g);
-		player.tick();
-		// end operatie de desenare
-		/// Se afiseaza pe ecran
+		switch(Gamestate.state)
+		{
+			case MENU:
+				menu.draw(g);
+				break;
+			case PLAYING:
+				playing.draw(g);
+				break;
+			default:
+				break;
+		}
 		bs.show();
 		/// Elibereaza resursele de memorie aferente contextului grafic curent (zonele de memorie ocupate de
 		/// elementele grafice ce au fost desenate pe canvas).
 		g.dispose();
+	}
+	public Menu getMenu()
+	{
+		return menu;
+	}
+
+	public Playing getPlaying()
+	{
+		return playing;
+	}
+	public void windowFocusLost()
+	{
+		if (Gamestate.state == Gamestate.PLAYING)
+		{
+			playing.getPlayer().resetDirBooleans();
+		}
 	}
 }

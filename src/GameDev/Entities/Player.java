@@ -41,88 +41,15 @@ public class Player extends Entity
 		animFall = new Animation(Assets.player_fall,100);
 		initHitbox(x, y, 20 * Game.SCALE, 28 * Game.SCALE);
 	}
-
-	/*private void updatePos()
+	public void resetDirBooleans()
 	{
-		moving = false;
-		float dx = 0, dy = 0;
-		if (left && !right)
-		{
-			dx -= speed;
-			moving = true;
+		left = false;
+		right = false;
+		up = false;
+		down = false;
+		jump = false;
+	}
 
-		}
-		else if (right && !left)
-		{
-			dx += speed;
-			moving = true;
-		}
-		if (up && !down)
-		{
-			dy -= speed;
-			moving = true;
-		}
-		else if (down && !up)
-		{
-			dy += speed;
-			moving = true;
-		}
-		x += dx;
-		y += dy;
-	}*/
-
-	/*private void updatePos()
-	{
-		moving = false;
-		//if (!left && !right && !up && !down)
-			//return;
-
-		float dx = 0, dy = 0;
-		if (left && !right)
-		{
-			dx = -speed;
-			//moving = true;
-		}
-		else if (right && !left)
-		{
-			dx = speed;
-			//moving = true;
-		}
-
-		if (up && !down)
-		{
-			dy = -speed;
-			//moving = true;
-		}
-		else if (down && !up)
-		{
-			dy = speed;
-			//moving = true;
-		}
-
-//		if(CanMoveHere(x + dx, y + dy, width, height ,lvlData))
-//		{
-//			this.x += dx;
-//			this.y += dy;
-//			moving = true;
-//		}
-//		else
-//		{
-//			System.out.println("coliziune.....");
-//		}
-//		if(CanMoveHere(hitbox.x + dx, hitbox.y + dy, hitbox.width , hitbox.height ,lvlData))
-//		{
-//			hitbox.x += dx;
-//			hitbox.y += dy;
-//			moving = true;
-//		}
-//		else
-//		{
-//			System.out.println("coliziune.....");
-//		}
-		x += dx;
-		y += dy;
-	}*/
 	private void updatePos()
 	{
 		moving = false;
