@@ -33,6 +33,11 @@ public class EnemyManager
 		hyenas.add(new Hyena(600,200,playing));
 		hyenas.add(new Hyena(1200,100,playing));
 		hyenas.add(new Hyena(1950,100,playing));
+		hyenas.add(new Hyena(700,350,playing));
+		hyenas.add(new Hyena(2500,400,playing));
+		hyenas.add(new Hyena(2200,500,playing));
+		hyenas.add(new Hyena(2000,500,playing));
+		hyenas.add(new Hyena(900,150,playing));
 	}
 	public void draw(Graphics g)
 	{
@@ -46,7 +51,7 @@ public class EnemyManager
 			if (it.isActive())
 			{
 				it.render(g);
-				it.drawHitbox(g);
+				//it.drawHitbox(g);
 			}
 		}
 

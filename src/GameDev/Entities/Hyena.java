@@ -85,7 +85,7 @@ public class Hyena extends Enemy {
 					if (aniIndex == 0)
 						attackChecked = false;
 
-					if (aniIndex == 1 && !attackChecked)
+					if (aniIndex == 2 && !attackChecked)
 						checkEnemyHit(attackBox,player);
 					break;
 				case HIT:

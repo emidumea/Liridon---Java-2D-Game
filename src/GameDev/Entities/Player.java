@@ -54,6 +54,7 @@ public class Player extends Entity
 
 	private boolean attackChecked;
 	private Playing playing;
+
 	public Player(float x, float y, int width, int height, Playing playing)
 	{
 		super(x,y,width,height);
@@ -189,7 +190,7 @@ public class Player extends Entity
 	@Override
 	public void tick()
 	{
-		updateHealthBar();
+		//updateHealthBar();
 		if (currentHealth <= 0)
 		{
 			playing.setGameOver(true);

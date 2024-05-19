@@ -27,9 +27,19 @@ public class Assets
 	public static BufferedImage[] hyena_hit;
 	public static BufferedImage[] hyena_die;
 	public static BufferedImage[] health_bar;
+	public static BufferedImage[] menu_ui;
+
 	public static void init()
 	{
 		SpriteSheet environment1 = new SpriteSheet(ImageLoader.LoadImage("/lv1/environment.png"));
+
+		menu_ui = new BufferedImage[6];
+		menu_ui[0] = ImageLoader.LoadImage("/ui/Play Button.png");
+		menu_ui[1] = ImageLoader.LoadImage("/ui/Play col_Button.png");
+		menu_ui[2] = ImageLoader.LoadImage("/ui/Options Button.png");
+		menu_ui[3] = ImageLoader.LoadImage("/ui/Options  col_Button.png");
+		menu_ui[4] = ImageLoader.LoadImage("/ui/Quit Button.png");
+		menu_ui[5] = ImageLoader.LoadImage("/ui/Quit  col_Button.png");
 
 		land_lv1 = new BufferedImage[48];
 		land_lv1[0] = ImageLoader.LoadImage("/lv1/Textures/image_0.png");
@@ -121,12 +131,12 @@ public class Assets
 		player_right[4] = ImageLoader.LoadImage("/adventurer/adventurer-run-04-1.3.png");
 		player_right[5] = ImageLoader.LoadImage("/adventurer/adventurer-run-05-1.3.png");
 		*/
-		player_attack = new BufferedImage[5];
-		player_attack[0] = ImageLoader.LoadImage("/adventurer/adventurer-attack1-00-1.3.png");
-		player_attack[1] = ImageLoader.LoadImage("/adventurer/adventurer-attack1-01-1.3.png");
-		player_attack[2] = ImageLoader.LoadImage("/adventurer/adventurer-attack1-02-1.3.png");
-		player_attack[3] = ImageLoader.LoadImage("/adventurer/adventurer-attack1-03-1.3.png");
-		player_attack[4] = ImageLoader.LoadImage("/adventurer/adventurer-attack1-04-1.3.png");
+		player_attack = new BufferedImage[3];
+	//	player_attack[0] = ImageLoader.LoadImage("/adventurer/adventurer-attack1-00-1.3.png");
+		//player_attack[1] = ImageLoader.LoadImage("/adventurer/adventurer-attack1-01-1.3.png");
+		player_attack[0] = ImageLoader.LoadImage("/adventurer/adventurer-attack1-02-1.3.png");
+		player_attack[1] = ImageLoader.LoadImage("/adventurer/adventurer-attack1-03-1.3.png");
+		player_attack[2] = ImageLoader.LoadImage("/adventurer/adventurer-attack1-04-1.3.png");
 
 		hyena_walk = new BufferedImage[6];
 		hyena_walk[0] = ImageLoader.LoadImage("/lv1/hyena/hyena_0.png");

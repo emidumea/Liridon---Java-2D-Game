@@ -11,6 +11,10 @@ import GameDev.Input.KeyboardInput;
 import GameDev.Input.MouseInput;
 import GameDev.Tiles.TileManager;
 import java.awt.*;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
 import static GameDev.Graphics.Assets.*;
@@ -19,12 +23,13 @@ import static GameDev.Graphics.Assets.*;
 public class Game implements Runnable
 {
 
+	public static Game Instance;
 	TileManager tileM;
 	// ------------------------------------ SCREEN SETTINGS
 	public final static int TILES_DEFAULT_SIZE = 48;
 	public final static float SCALE = 1f;
-	public final static int TILES_IN_WIDTH = 20; // col 26
-	public final static int TILES_IN_HEIGHT = 14; // 14
+	public final static int TILES_IN_WIDTH = 30; // col 26
+	public final static int TILES_IN_HEIGHT = 18; // 14
 	public final static int TILES_SIZE = (int) (TILES_DEFAULT_SIZE * SCALE);
 	public final static int GAME_WIDTH = TILES_SIZE * TILES_IN_WIDTH;
 	public final static int GAME_HEIGHT = TILES_SIZE * TILES_IN_HEIGHT;
@@ -35,6 +40,7 @@ public class Game implements Runnable
 	public final int worldHeight = TILES_SIZE * maxWorldRow;
 	// ------------------------------------------------------
 	private MouseInput mouseInput;
+	private KeyboardInput keyboardInput;
 	private GameWindow      wnd;        /*!< Fereastra in care se va desena tabla jocului*/
 	private boolean         runState;   /*!< Flag ce starea firului de executie.*/
 	private Thread          gameThread; /*!< Referinta catre thread-ul de update si draw al ferestrei*/
@@ -45,25 +51,61 @@ public class Game implements Runnable
 	private Playing playing;
 	private Menu menu;
 
-	public Game(String title, int width, int height)
+	private Game(String title, int width, int height)
 	{
 		wnd = new GameWindow(title, width, height);
 		runState = false;
 	}
 
+	public static Game getInstance(String title, int width, int height)
+	{
+		if (Instance == null)
+		{
+			Instance = new Game(title, width, height);
+		}
+		return Instance;
+	}
 	private void InitGame()
 	{
 
 		menu = new Menu(this);
 		playing = new Playing(this);
+		mouseInput = new MouseInput(this);
 		wnd = new GameWindow("Liridon", GAME_WIDTH, GAME_HEIGHT);
 		wnd.BuildGameWindow();
-		wnd.getFrame().addKeyListener(new KeyboardInput(this));
+		keyboardInput = new KeyboardInput(this);
+
+		wnd.getFrame().addKeyListener(keyboardInput);
 		wnd.getFrame().addMouseListener(mouseInput);
 		wnd.getFrame().addMouseMotionListener(mouseInput);
 
 		wnd.getCanvas().addMouseListener(mouseInput);
 		wnd.getCanvas().addMouseMotionListener(mouseInput);
+		wnd.getCanvas().addKeyListener(keyboardInput);
+
+		wnd.getCanvas().setFocusable(true);
+		wnd.getCanvas().requestFocusInWindow();
+
+		// Add a FocusListener to ensure the canvas retains focus
+		wnd.getCanvas().addFocusListener(new FocusListener() {
+			@Override
+			public void focusGained(FocusEvent e) {
+				System.out.println("Canvas gained focus");
+			}
+
+			@Override
+			public void focusLost(FocusEvent e) {
+				System.out.println("Canvas lost focus");
+				wnd.getCanvas().requestFocusInWindow();
+			}
+		});
+
+		wnd.getFrame().addWindowFocusListener(new WindowAdapter() {
+			@Override
+			public void windowGainedFocus(WindowEvent e) {
+				wnd.getCanvas().requestFocusInWindow();
+			}
+		});
 	}
 
 	@Override public void run()
@@ -174,7 +216,11 @@ public class Game implements Runnable
 				break;
 			case PLAYING:
 				playing.update();
+				break;
+			case OPTIONS:
+			case QUIT:
 			default:
+				System.exit(0);
 				break;
 		}
 	}

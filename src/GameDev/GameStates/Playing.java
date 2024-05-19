@@ -181,7 +181,7 @@
 				g.drawImage(clouds, i * clouds.getWidth(), cloudY, clouds.getWidth(), clouds.getHeight(), null);
 			}
 			// ----------------------------------------------------------------------------------------------------------------------
-			int seaY = cloudY + clouds.getHeight(); // y pt mare va si sub nori
+			int seaY = cloudY + clouds.getHeight(); // y pt mare va fi sub nori
 			g.drawImage(sea, 0, seaY, Game.GAME_WIDTH, Game.GAME_HEIGHT - seaY, null);
 			// ----------------------------------------------------------------------------------------------------------------------
 			int farGroundsY = Game.GAME_HEIGHT - grounds.getHeight(); // Y-ul elementelor de pe fundal va fi josul ferestrei de joc
