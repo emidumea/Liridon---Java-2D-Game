@@ -73,12 +73,12 @@ public class Hyena extends Enemy {
 					newState(RUNNING);
 					break;
 				case RUNNING:
-					if (canSeePlayer(lvlData, player))
-					{
+					if (canSeePlayer(lvlData, player)) {
 						turnTowardsPlayer(player);
+
+						if (isPlayerCloseForAttack(player))
+							newState(ATTACK);
 					}
-					if (isPlayerCloseForAttack(player))
-						newState(ATTACK);
 					move(lvlData);
 					break;
 				case ATTACK:

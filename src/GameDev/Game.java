@@ -28,8 +28,8 @@ public class Game implements Runnable
 	// ------------------------------------ SCREEN SETTINGS
 	public final static int TILES_DEFAULT_SIZE = 48;
 	public final static float SCALE = 1f;
-	public final static int TILES_IN_WIDTH = 30; // col 26
-	public final static int TILES_IN_HEIGHT = 18; // 14
+	public final static int TILES_IN_WIDTH = 26; // col 26
+	public final static int TILES_IN_HEIGHT = 14; // 14
 	public final static int TILES_SIZE = (int) (TILES_DEFAULT_SIZE * SCALE);
 	public final static int GAME_WIDTH = TILES_SIZE * TILES_IN_WIDTH;
 	public final static int GAME_HEIGHT = TILES_SIZE * TILES_IN_HEIGHT;
@@ -87,7 +87,8 @@ public class Game implements Runnable
 		wnd.getCanvas().requestFocusInWindow();
 
 		// Add a FocusListener to ensure the canvas retains focus
-		wnd.getCanvas().addFocusListener(new FocusListener() {
+		wnd.getCanvas().addFocusListener(new FocusListener()
+		{
 			@Override
 			public void focusGained(FocusEvent e) {
 				System.out.println("Canvas gained focus");
@@ -100,7 +101,8 @@ public class Game implements Runnable
 			}
 		});
 
-		wnd.getFrame().addWindowFocusListener(new WindowAdapter() {
+		wnd.getFrame().addWindowFocusListener(new WindowAdapter()
+		{
 			@Override
 			public void windowGainedFocus(WindowEvent e) {
 				wnd.getCanvas().requestFocusInWindow();

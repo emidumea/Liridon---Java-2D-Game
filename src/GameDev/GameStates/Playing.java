@@ -10,6 +10,8 @@
 	import GameDev.Tiles.Tile;
 	import GameDev.Tiles.TileManager;
 	import GameDev.UI.GameOverOverlay;
+	import GameDev.UI.LevelCompletedOverlay;
+	import GameDev.UI.PauseOverlay;
 
 	import javax.swing.plaf.nimbus.State;
 	import java.awt.*;
@@ -27,12 +29,11 @@
 		private TileManager tileM;
 		private EnemyManager enemyManager;
 		private GameOverOverlay gameOverOverlay;
-		private MouseInput mouseInput;
-		private GameWindow      wnd;
-		private BufferStrategy bs;
-		private BufferedImage backgroundImg;
-		public int xLvlOffset = 500;
+		private LevelCompletedOverlay levelCompletedOverlay;
+		private PauseOverlay pauseOverlay;
 		private boolean gameOver;
+		private boolean lvlCompleted = true;
+		private boolean paused = false;
 
 		public Player getPlayer()
 		{
@@ -54,11 +55,23 @@
 			player.loadLvlData(tileM.getMapTile());
 			tileM.printMap();
 			gameOverOverlay = new GameOverOverlay(this);
+			pauseOverlay = new PauseOverlay(this);
+			levelCompletedOverlay = new LevelCompletedOverlay(this);
 		}
 
 		@Override
-		public void update() {
-			if (!gameOver) {
+		public void update()
+		{
+			if (paused)
+			{
+				pauseOverlay.update();
+			}
+			else if (lvlCompleted)
+			{
+				levelCompletedOverlay.update();
+			}
+			else if (!gameOver)
+			{
 				player.tick();
 				enemyManager.update(tileM.getMapTile(), player);
 			}
@@ -75,29 +88,71 @@
 			enemyManager.draw(g);
 			if (!gameOver)
 				enemyManager.update(tileM.getMapTile(), player);
-			if (gameOver)
+//			if (gameOver)
+//				gameOverOverlay.draw(g);
+
+			if (paused)
+			{
+				pauseOverlay.draw(g);
+			}
+			else if (gameOver)
+			{
 				gameOverOverlay.draw(g);
+			}
+			else if (lvlCompleted)
+			{
+				levelCompletedOverlay.draw(g);
+			}
+
 
 		}
 
+		public void mouseDragged(MouseEvent e)
+		{
+			if (paused)
+			{
+				pauseOverlay.mouseDragged(e);
+			}
+		}
 		@Override
 		public void mouseClicked(MouseEvent e) {
 			System.out.println("mouse clic");
 		}
 
 		@Override
-		public void mousePressed(MouseEvent e) {
-
+		public void mousePressed(MouseEvent e)
+		{
+			if (!gameOver)
+			{
+				if (paused)
+					pauseOverlay.mousePressed(e);
+				else if (lvlCompleted)
+					levelCompletedOverlay.mousePressed(e);
+			}
 		}
 
 		@Override
-		public void mouseReleased(MouseEvent e) {
-
+		public void mouseReleased(MouseEvent e)
+		{
+			if (!gameOver)
+			{
+				if (paused)
+					pauseOverlay.mouseReleased(e);
+				else if (lvlCompleted)
+					levelCompletedOverlay.mouseReleased(e);
+			}
 		}
 
 		@Override
-		public void mouseMoved(MouseEvent e) {
-
+		public void mouseMoved(MouseEvent e)
+		{
+			if (!gameOver)
+			{
+				if (paused)
+					pauseOverlay.mouseMoved(e);
+				else if (lvlCompleted)
+					levelCompletedOverlay.mouseMoved(e);
+			}
 		}
 
 		@Override
@@ -126,7 +181,7 @@
 						player.setJump(true);
 						break;
 					case KeyEvent.VK_ESCAPE:
-						Gamestate.state = Gamestate.MENU;
+						paused = !paused;
 						break;
 				}
 			}
@@ -189,5 +244,10 @@
 			{
 				g.drawImage(grounds, i * grounds.getWidth(), farGroundsY, grounds.getWidth(), grounds.getHeight(), null);
 			}
+		}
+
+		public void unpauseGame()
+		{
+			paused = false;
 		}
 	}
