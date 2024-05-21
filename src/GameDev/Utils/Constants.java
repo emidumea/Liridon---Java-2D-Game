@@ -4,6 +4,7 @@ import GameDev.Game;
 
 public class Constants
 {
+	public static final float GRAVITY = 0.04f * Game.SCALE;
 	public static class UI
 	{
 		public static class Buttons

@@ -35,16 +35,31 @@ public class EnemyManager
 		if (!isAnyActive)
 			playing.setLevelCompleted(true);
 	}
-	public void initArray(Level level)
-	{
-	//	hyenas.add(new Hyena(600,200,playing));
-		hyenas.add(new Hyena(1200,100,playing));
-//		hyenas.add(new Hyena(1950,100,playing));
-//		hyenas.add(new Hyena(700,350,playing));
-//		hyenas.add(new Hyena(2500,400,playing));
-//		hyenas.add(new Hyena(2200,500,playing));
-//		hyenas.add(new Hyena(2000,500,playing));
-//		hyenas.add(new Hyena(900,150,playing));
+//	public void initArray(Level level)
+//	{
+//	//	hyenas.add(new Hyena(600,200,playing));
+//		hyenas.add(new Hyena(1200,100,playing));
+////		hyenas.add(new Hyena(1950,100,playing));
+////		hyenas.add(new Hyena(700,350,playing));
+////		hyenas.add(new Hyena(2500,400,playing));
+////		hyenas.add(new Hyena(2200,500,playing));
+////		hyenas.add(new Hyena(2000,500,playing));
+////		hyenas.add(new Hyena(900,150,playing));
+//	}
+	public void initArray(Level level) {
+		hyenas.clear();  // Curăță lista existentă de inamici
+		// Adaugă inamici specifici acestui nivel
+		// Exemplu: Pentru simplitate, adăugăm poziții hardcoded
+		if (level.getPath().equals("/maps/map1.txt")) {
+			hyenas.add(new Hyena(600, 200, playing));
+			hyenas.add(new Hyena(1200, 100, playing));
+		} else if (level.getPath().equals("/maps/map2.txt")) {
+			hyenas.add(new Hyena(1300, 150, playing));
+			hyenas.add(new Hyena(1700, 300, playing));
+		} else if (level.getPath().equals("/maps/map3.txt")) {
+			hyenas.add(new Hyena(900, 250, playing));
+			hyenas.add(new Hyena(1500, 400, playing));
+		}
 	}
 	public void draw(Graphics g)
 	{

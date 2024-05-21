@@ -1,5 +1,6 @@
 package GameDev.Tiles;
 
+import GameDev.Entities.Hyena;
 import GameDev.Game;
 import GameDev.Graphics.Assets;
 
@@ -16,6 +17,7 @@ public class Level
 	private String path;
 	Tile[] tile;
 	int[][] mapTile;
+	//private ArrayList<Hyena> hyenas;
 
 	public Level(String path, BufferedImage[] sprites)
 	{
@@ -45,7 +47,10 @@ public class Level
 			System.out.print("\n");
 		}
 	}
-
+//	private void createEnemies()
+//	{
+//		hyenas.add()
+//	}
 	public int[][] getMapTile()
 	{
 		return mapTile;
@@ -92,4 +97,8 @@ public class Level
 		}
 	}
 
+	public String getPath()
+	{
+		return path;
+	}
 }

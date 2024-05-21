@@ -29,6 +29,8 @@ public class Assets
 	public static BufferedImage[] hyena_die;
 	public static BufferedImage[] health_bar;
 	public static BufferedImage[] menu_ui;
+	// ----------------------------- background lv 2
+	public static BufferedImage dunes1, dunes2, dunes3, dunes4, dunes5, dunes6, dunes7, dunes8, desert_sky, bg_ground, bg_sun;
 
 	public static void init()
 	{
@@ -42,7 +44,7 @@ public class Assets
 		menu_ui[4] = ImageLoader.LoadImage("/ui/Quit Button.png");
 		menu_ui[5] = ImageLoader.LoadImage("/ui/Quit  col_Button.png");
 
-		land_lv1 = new BufferedImage[70];
+		land_lv1 = new BufferedImage[81];
 		land_lv1[0] = ImageLoader.LoadImage("/lv1/Textures/image_0.png");
 		land_lv1[1] = ImageLoader.LoadImage("/lv1/Textures/image_1.png");
 		land_lv1[2] = ImageLoader.LoadImage("/lv1/Textures/image_2.png");
@@ -114,6 +116,18 @@ public class Assets
 		land_lv1[67] = ImageLoader.LoadImage("/lv2/Textures/water_A.png");
 		land_lv1[68] = ImageLoader.LoadImage("/lv2/Textures/water_B.png");
 		land_lv1[69] = ImageLoader.LoadImage("/lv2/Textures/water_fill.png");
+		land_lv1[70] = ImageLoader.LoadImage("/lv3/Textures/cornerleft.png");
+		land_lv1[71] = ImageLoader.LoadImage("/lv3/Textures/grasss.png");
+		land_lv1[72] = ImageLoader.LoadImage("/lv3/Textures/cornerright.png");
+		land_lv1[73] = ImageLoader.LoadImage("/lv3/Textures/cornerleft2.png");
+		land_lv1[74] = ImageLoader.LoadImage("/lv3/Textures/grass2.png");
+		land_lv1[75] = ImageLoader.LoadImage("/lv3/Textures/cornerright2.png");
+		land_lv1[76] = ImageLoader.LoadImage("/lv3/Textures/leftsidee.png");
+		land_lv1[77] = ImageLoader.LoadImage("/lv3/Textures/rightsidee.png");
+		land_lv1[78] = ImageLoader.LoadImage("/lv3/Textures/tile004.png");
+		land_lv1[79] = ImageLoader.LoadImage("/lv3/Textures/tile009.png");
+		land_lv1[80] = ImageLoader.LoadImage("/lv3/Textures/fill.png");
+
 
 
 		land_lv2 = new BufferedImage[19];
@@ -219,6 +233,22 @@ public class Assets
 		clouds = ImageLoader.LoadImage("/lv1/Background/clouds.png");
 		sea = ImageLoader.LoadImage("/lv1/Background/sea.png");
 		grounds = ImageLoader.LoadImage("/lv1/Background/far-grounds.png");
+
+		dunes1 = ImageLoader.LoadImage("/lv2/Background/bg_dunes_1.png");
+		dunes2 = ImageLoader.LoadImage("/lv2/Background/bg_dunes_2.png");
+		dunes3 = ImageLoader.LoadImage("/lv2/Background/bg_dunes_3.png");
+		dunes4 = ImageLoader.LoadImage("/lv2/Background/bg_dunes_4.png");
+		dunes5 = ImageLoader.LoadImage("/lv2/Background/bg_dunes_5.png");
+		dunes6 = ImageLoader.LoadImage("/lv2/Background/bg_dunes_6.png");
+		dunes7 = ImageLoader.LoadImage("/lv2/Background/bg_dunes_7.png");
+		dunes8 = ImageLoader.LoadImage("/lv2/Background/bg_dunes_8.png");
+		desert_sky = ImageLoader.LoadImage("/lv2/Background/bg_sky.png");
+		bg_ground = ImageLoader.LoadImage("/lv2/Background/bg_ground.png");
+		bg_sun = ImageLoader.LoadImage("/lv2/Background/frame0000.png");
+
+
+
+
 
 
 		skeletonArr = new BufferedImage[5][8];

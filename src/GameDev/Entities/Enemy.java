@@ -7,6 +7,7 @@ import GameDev.Graphics.Assets;
 
 import static GameDev.Utils.Constants.Directions.*;
 import static GameDev.Utils.Constants.EnemyConstants.*;
+import static GameDev.Utils.Constants.GRAVITY;
 import static GameDev.Utils.HelpMethods.*;
 
 import java.awt.*;
@@ -16,14 +17,13 @@ import static GameDev.Utils.HelpMethods.*;
 import static GameDev.Utils.HelpMethods.IsEntityOnFloor;
 
 public abstract class Enemy extends Entity {
-	protected int aniIndex, enemyState, enemyType;
+	protected int enemyState, enemyType;
 	protected Animation animIdle, animUp, animLeft, animRight, animDown, animAttack, animJump, animFall, animHit, animDie; // 20 29
-	protected int aniTick, aniSpeed = 25;
+	protected int aniSpeed = 25;
 	protected Playing playing;
 	protected boolean firstUpdate = true;
 	protected boolean inAir = false;
 	protected float fallSpeed;
-	protected float gravity = 0.04f * Game.SCALE;
 	protected float walkSpeed = 0.8f * Game.SCALE;
 	protected int walkDir = LEFT;
 	protected int tileY;
@@ -66,7 +66,7 @@ public abstract class Enemy extends Entity {
 			if (CanMoveHere(hitbox.x, hitbox.y + fallSpeed, hitbox.width, hitbox.height, lvlData))
 			{
 				hitbox.y += fallSpeed;
-				fallSpeed += gravity;
+				fallSpeed += GRAVITY;
 			} else
 			{
 				inAir = false;

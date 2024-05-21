@@ -189,4 +189,8 @@ public class TileManager {
 	{
 		return levels.size();
 	}
+	public int getLvlIndex()
+	{
+		return lvlIndex;
+	}
 }

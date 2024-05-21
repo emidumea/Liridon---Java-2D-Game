@@ -93,7 +93,7 @@
 		@Override
 		public void draw(Graphics g)
 		{
-			drawBackground(g);
+			drawBackground(g,tileM.getLvlIndex());
 			tileM.draw(g);
 			player.render(g);
 			player.tick();
@@ -241,7 +241,43 @@
 		{
 			enemyManager.checkEnemyHit(attackBox);
 		}
-		private void drawBackground(Graphics g)
+		private void drawBackground(Graphics g, int currentLevel)
+		{
+//			g.drawImage(sky, 0, 0, Game.GAME_WIDTH, Game.GAME_HEIGHT, null);
+//			// ----------------------------------------------------------------------------------------------------------------------
+//			int cloudY = (int) (200 * Game.SCALE); // inaltimea la care vor fi pusi norii
+//			for (int i = 0; i < 3; i++)
+//			{
+//				g.drawImage(clouds, i * clouds.getWidth(), cloudY, clouds.getWidth(), clouds.getHeight(), null);
+//			}
+//			// ----------------------------------------------------------------------------------------------------------------------
+//			int seaY = cloudY + clouds.getHeight(); // y pt mare va fi sub nori
+//			g.drawImage(sea, 0, seaY, Game.GAME_WIDTH, Game.GAME_HEIGHT - seaY, null);
+//			// ----------------------------------------------------------------------------------------------------------------------
+//			int farGroundsY = Game.GAME_HEIGHT - grounds.getHeight(); // Y-ul elementelor de pe fundal va fi josul ferestrei de joc
+//			for (int i = 0; i < 3; i++)
+//			{
+//				g.drawImage(grounds, i * grounds.getWidth(), farGroundsY, grounds.getWidth(), grounds.getHeight(), null);
+//			}
+
+			switch (currentLevel) {
+				case 0:
+					drawBackgroundLevel1(g);
+					break;
+				case 1:
+					drawBackgroundLevel2(g);
+					break;
+				case 2:
+					drawBackgroundLevel1(g);
+					break;
+				// Adaugă cazuri suplimentare pentru niveluri suplimentare
+				default:
+					// Dacă nivelul curent nu se potrivește cu niciunul dintre cazuri, nu se desenează niciun fundal
+					break;
+			}
+
+		}
+		private void drawBackgroundLevel1(Graphics g)
 		{
 			g.drawImage(sky, 0, 0, Game.GAME_WIDTH, Game.GAME_HEIGHT, null);
 			// ----------------------------------------------------------------------------------------------------------------------
@@ -260,7 +296,67 @@
 				g.drawImage(grounds, i * grounds.getWidth(), farGroundsY, grounds.getWidth(), grounds.getHeight(), null);
 			}
 		}
+		private void drawBackgroundLevel2(Graphics g)
+		{
+			// Desenează fundalul desert_sky
+			for (int i = 0; i < 10; i++)
+			{
+				g.drawImage(desert_sky, i * desert_sky.getWidth(), 0 ,desert_sky.getWidth(), Game.GAME_HEIGHT, null);
+			}
 
+			// Așază bg_sun la jumătatea de jos a ecranului
+			int sunHeight = bg_sun.getHeight();
+			int sunY = (int) (Game.GAME_HEIGHT * 0.4);
+			g.drawImage(bg_sun, (Game.GAME_WIDTH - bg_sun.getWidth()) / 2, sunY, bg_sun.getWidth(), bg_sun.getHeight(), null);
+			int duneY = sunY + (int)(bg_sun.getHeight() * 0.60);
+			for (int i = 0; i < 10; i++)
+			{
+				g.drawImage(bg_ground, i * bg_ground.getWidth(), duneY, bg_ground.getWidth(),(int)(Game.GAME_HEIGHT / 1.5),null );
+			}
+//			for (int i = 0; i < 2; i++)
+//			{
+//				g.drawImage(dunes8, i * dunes8.getWidth(), duneY, dunes8.getWidth(), dunes8.getHeight()*2 , null);
+//			}
+			duneY += dunes8.getHeight()* 2;
+			for (int i = 0; i < 2; i++)
+			{
+				g.drawImage(dunes7, i * dunes7.getWidth(), duneY, dunes7.getWidth(), dunes7.getHeight()*2, null);
+			}
+			duneY += dunes7.getHeight()*2;
+			for (int i = 0; i < 2; i++)
+			{
+				g.drawImage(dunes6, i * dunes6.getWidth(), duneY, dunes6.getWidth(), dunes6.getHeight()* 2, null);
+			}
+			duneY += dunes6.getHeight()*2;
+			for (int i = 0; i < 2; i++)
+			{
+				g.drawImage(dunes5, i * dunes5.getWidth(), duneY, dunes5.getWidth(), dunes5.getHeight()* 2, null);
+			}
+			duneY += (int)(dunes5.getHeight()* 1.5);
+
+			for (int i = 0; i < 2; i++)
+			{
+				g.drawImage(dunes4, i * dunes4.getWidth(), duneY, dunes4.getWidth(), dunes4.getHeight()*2, null);
+			}
+			duneY += dunes4.getHeight();
+			for (int i = 0; i < 2; i++)
+			{
+				g.drawImage(dunes3, i * dunes3.getWidth(), duneY, dunes3.getWidth(), dunes3.getHeight()*2, null);
+			}
+			duneY += dunes3.getHeight();
+			for (int i = 0; i < 2; i++)
+			{
+				g.drawImage(dunes2, i * dunes2.getWidth(), duneY, dunes2.getWidth(), dunes2.getHeight()*2, null);
+			}
+			duneY += dunes2.getHeight();
+			for (int i = 0; i < 2; i++)
+			{
+				g.drawImage(dunes1, i * dunes1.getWidth(), duneY, dunes1.getWidth(), dunes1.getHeight()*3, null);
+			}
+			duneY += dunes1.getHeight();
+
+
+		}
 		public void unpauseGame()
 		{
 			paused = false;

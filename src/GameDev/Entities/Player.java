@@ -12,6 +12,7 @@ import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferedImage;
 
 //import static GameDev.Utils.Constants.EnemyConstants.*;
+import static GameDev.Utils.Constants.GRAVITY;
 import static GameDev.Utils.Constants.PlayerConstants.*;
 import static GameDev.Utils.HelpMethods.*;
 
@@ -19,7 +20,7 @@ public class Player extends Entity
 {
 	private Animation animIdle, animUp, animLeft, animRight, animDown, animAttack, animJump, animFall; // 20 29
 	private boolean moving = false, attacking = false;
-	private int aniTick, aniIndex, aniSpeed = 25;
+	private int aniSpeed = 25;
 	private int playerAction = Constants.PlayerConstants.IDLE;
 	private boolean left, right, up, down, jump;
 	private float speed = 2.0f;
@@ -31,20 +32,26 @@ public class Player extends Entity
 
 	//// Jumping and Gravity
 	private float airSpeed = 0f;
-	private float gravity = 0.04f * Game.SCALE;
 	private float jumpSpeed = -3.40f * Game.SCALE;
 	private float fallSpeedAfterCollision = 0.5f * Game.SCALE;
 	private boolean inAir = false;
 
+	//status bar
+	private BufferedImage statusBarImg;
+	private int statusBarWidth = (int) (1.4 * 192 * Game.SCALE);
+	private int statusBarHeight = (int) ( 1.4 * 58 * Game.SCALE);
+	private int statusBarX = (int) (10 * Game.SCALE);
+	private int statusBarY = (int) (10 * Game.SCALE);
+
+	private int healthBarWidth = (int) (1.4 * 150 * Game.SCALE);
+	private int healthBarHeight = (int) (1.4 * 4 * Game.SCALE);
+	private int healthBarXStart = (int) (1.4 * 34 * Game.SCALE);
+	private int healthBarYStart = (int) (1.4 * 14 * Game.SCALE);
 	// health bar ui
 	private BufferedImage healthBar = Assets.health_bar[0];
-	private int healthBarWidth = (int) (240 * Game.SCALE);
-	private int healthBarHeight = (int) (48 * Game.SCALE);
-	private int healthBarXStart = (int) (34 * Game.SCALE);
-	private int healthBarYStart = (int) (14 * Game.SCALE);
 
 	private int maxHealth = 100;
-	private int currentHealth = maxHealth;
+	private int currentHealth = 100;
 	private int healthWidth = healthBarWidth;
 
 	// attack
@@ -70,6 +77,7 @@ public class Player extends Entity
 		animDown = new Animation(Assets.player_up,100);
 		animJump = new Animation(Assets.player_jump,100);
 		animFall = new Animation(Assets.player_fall,100);
+		statusBarImg = ImageLoader.LoadImage("/hp/health_power_bar.png");
 		initHitbox(x, y, 20 * Game.SCALE, 28 * Game.SCALE);
 		initAttackBox();
 	}
@@ -124,7 +132,7 @@ public class Player extends Entity
 			if (CanMoveHere(hitbox.x, hitbox.y + airSpeed, hitbox.width, hitbox.height, lvlData))
 			{
 				hitbox.y += airSpeed;
-				airSpeed += gravity;
+				airSpeed += GRAVITY;
 				updateXPos(dx);
 			}
 			else
@@ -190,7 +198,7 @@ public class Player extends Entity
 	@Override
 	public void tick()
 	{
-		//updateHealthBar();
+		updateHealthBar();
 		if (currentHealth <= 0)
 		{
 			playing.setGameOver(true);
@@ -278,8 +286,15 @@ public class Player extends Entity
 		healthWidth = (int)((currentHealth / (float)maxHealth) * healthBarWidth);
 	}
 
+	private void drawUI(Graphics g)
+	{
+		g.drawImage(statusBarImg, statusBarX, statusBarY, statusBarWidth, statusBarHeight, null);
+		g.setColor(Color.red);
+		g.fillRect(healthBarXStart + statusBarX, healthBarYStart + statusBarY, healthWidth, healthBarHeight);
+	}
 	public void render(Graphics g)
 	{
+
 		if (inAir)
 		{
 			if (airSpeed < 0)
@@ -332,11 +347,11 @@ public class Player extends Entity
 		g.drawRect((int)attackBox.x, (int)attackBox.y, (int)attackBox.width, (int)attackBox.height);
 	}
 
-	private void drawUI(Graphics g)
-	{
-		g.drawImage(healthBar, healthBarXStart,healthBarYStart,healthBarWidth,healthBarHeight,null);
-		g.setColor(Color.red);
-	}
+//	private void drawUI(Graphics g)
+//	{
+//		g.drawImage(healthBar, healthBarXStart,healthBarYStart,healthBarWidth,healthBarHeight,null);
+//		g.setColor(Color.red);
+//	}
 	public void loadLvlData(int [][] lvlData)
 	{
 		this.lvlData = lvlData;
