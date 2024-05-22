@@ -5,6 +5,39 @@ import GameDev.Game;
 public class Constants
 {
 	public static final float GRAVITY = 0.04f * Game.SCALE;
+
+	public static class ObjectConstants {
+
+		public static final int SLIVER_COIN = 0;
+		public static final int GOLD_COIN = 1;
+		public static final int HEART = 2;
+		public static final int BOX = 3;
+
+		public static final int HEART_VALUE = 15;
+		public static final int BLUE_POTION_VALUE = 10;
+
+		public static final int HEART_WIDTH_DEFAULT = 32;
+		public static final int HEART_HEIGHT_DEFAULT = 32;
+		public static final int HEART_WIDTH = (int) (Game.SCALE * HEART_WIDTH_DEFAULT);
+		public static final int HEART_HEIGHT = (int) (Game.SCALE * HEART_HEIGHT_DEFAULT);
+
+		public static final int COIN_WIDTH_DEFAULT = 16;
+		public static final int COIN_HEIGHT_DEFAULT = 16;
+		public static final int COIN_WIDTH = (int) (Game.SCALE * COIN_WIDTH_DEFAULT);
+		public static final int COIN_HEIGHT = (int) (Game.SCALE * COIN_HEIGHT_DEFAULT);
+
+		public static int GetSpriteAmount(int object_type)
+		{
+			switch (object_type) {
+				case SLIVER_COIN, GOLD_COIN:
+					return 5;
+				case HEART:
+					return 2;
+			}
+			return 1;
+		}
+	}
+
 	public static class UI
 	{
 		public static class Buttons

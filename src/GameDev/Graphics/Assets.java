@@ -31,6 +31,8 @@ public class Assets
 	public static BufferedImage[] menu_ui;
 	// ----------------------------- background lv 2
 	public static BufferedImage dunes1, dunes2, dunes3, dunes4, dunes5, dunes6, dunes7, dunes8, desert_sky, bg_ground, bg_sun;
+	// ------------------------------ background lv 3
+	public static BufferedImage bg1, bg2, bg3;
 
 	public static void init()
 	{
@@ -245,6 +247,11 @@ public class Assets
 		desert_sky = ImageLoader.LoadImage("/lv2/Background/bg_sky.png");
 		bg_ground = ImageLoader.LoadImage("/lv2/Background/bg_ground.png");
 		bg_sun = ImageLoader.LoadImage("/lv2/Background/frame0000.png");
+
+		bg1 = ImageLoader.LoadImage("/lv3/Background/BG_1.png");
+		bg2 = ImageLoader.LoadImage("/lv3/Background/BG_2.png");
+		bg3 = ImageLoader.LoadImage("/lv3/Background/BG_3.png");
+
 
 
 

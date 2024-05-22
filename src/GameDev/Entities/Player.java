@@ -51,7 +51,7 @@ public class Player extends Entity
 	private BufferedImage healthBar = Assets.health_bar[0];
 
 	private int maxHealth = 100;
-	private int currentHealth = 100;
+	private int currentHealth = 35;
 	private int healthWidth = healthBarWidth;
 
 	// attack
@@ -208,6 +208,10 @@ public class Player extends Entity
 		updateAttackBox();
 
 		updatePos();
+		if (moving)
+		{
+			checkHeartTouched();
+		}
 		if (attacking)
 			checkAttack();
 
@@ -246,6 +250,12 @@ public class Player extends Entity
 		updateAnimationTick();
 
 	}
+
+	private void checkHeartTouched()
+	{
+		playing.checkObjTouched(hitbox);
+	}
+
 	private void updateAnimationTick() {
 		aniTick++;
 		if (aniTick >= aniSpeed) {

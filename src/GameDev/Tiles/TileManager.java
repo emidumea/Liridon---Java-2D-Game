@@ -46,6 +46,7 @@ public class TileManager {
 
 		Level newLevel = levels.get(lvlIndex);
 		game.getPlaying().getEnemyManager().initArray(newLevel);
+		game.getPlaying().getObjectManager().initObjects(newLevel);
 		game.getPlaying().getPlayer().loadLvlData(newLevel.getMapTile());
 
 	}
@@ -56,31 +57,6 @@ public class TileManager {
 		levels.add(new Level("/maps/map3.txt", Assets.land_lv1));
 	}
 
-//	private void loadTiles()
-//	{
-//		// Încarcă tile-urile pentru fiecare nivel
-//		lvlSprites[0] = loadLevelTiles(Assets.land_lv1);
-//		lvlSprites[1] = loadLevelTiles(Assets.land_lv1); // Presupunem că ai Assets.land_lv2
-//		lvlSprites[2] = loadLevelTiles(Assets.land_lv1); // Presupunem că ai Assets.land_lv3
-//	}
-//
-//	private Tile[] loadLevelTiles(BufferedImage[] tileImages)
-//	{
-//		Tile[] levelTiles = new Tile[tileImages.length];
-//
-//		for (int i = 0; i < tileImages.length; i++)
-//		{
-//			levelTiles[i] = new Tile(tileImages[i]);
-//		}
-//		return levelTiles;
-//	}
-//	private void loadMaps()
-//	{
-//		maps.add(loadMap("/maps/map1.txt"));
-//		maps.add(loadMap("/maps/map2.txt"));
-//		maps.add(loadMap("/maps/map2.txt"));
-//
-//	}
 	public void printMap()
 	{
 		for (int i = 0; i < levels.get(lvlIndex).mapTile.length; i++)

@@ -7,6 +7,7 @@
 	import GameDev.Graphics.Assets;
 	import GameDev.Input.KeyboardInput;
 	import GameDev.Input.MouseInput;
+	import GameDev.Objects.ObjectManager;
 	import GameDev.Tiles.Tile;
 	import GameDev.Tiles.TileManager;
 	import GameDev.UI.GameOverOverlay;
@@ -28,12 +29,15 @@
 		private Player player;
 		private TileManager tileM;
 		private EnemyManager enemyManager;
+		private ObjectManager objectManager;
 		private GameOverOverlay gameOverOverlay;
 		private LevelCompletedOverlay levelCompletedOverlay;
 		private PauseOverlay pauseOverlay;
 		private boolean gameOver;
 		private boolean lvlCompleted = false;
 		private boolean paused = false;
+		private int score;
+
 
 		public Player getPlayer()
 		{
@@ -52,6 +56,7 @@
 			player = new Player(200,200, (int) (64 * Game.SCALE), (int) (40 * Game.SCALE), this);
 			tileM = new TileManager(game);
 			enemyManager = new EnemyManager(this);
+			objectManager = new ObjectManager(this);
 			player.loadLvlData(tileM.getMapTile());
 			tileM.printMap();
 			gameOverOverlay = new GameOverOverlay(this);
@@ -64,11 +69,14 @@
 		{
 			resetAll();
 			tileM.loadNextLevel();
+			//objectManager.resetAllObjects();
 		}
 
 		private void loadStartLevel()
 		{
+			resetScore();
 			enemyManager.initArray(tileM.getCurrentLevel());
+			objectManager.initObjects(tileM.getCurrentLevel());
 		}
 
 		@Override
@@ -84,6 +92,7 @@
 			}
 			else if (!gameOver)
 			{
+				objectManager.update();
 				player.tick();
 				enemyManager.update(tileM.getMapTile(), player);
 			}
@@ -98,6 +107,9 @@
 			player.render(g);
 			player.tick();
 			enemyManager.draw(g);
+			objectManager.draw(g);
+			drawScore(g);
+
 			if (!gameOver)
 				enemyManager.update(tileM.getMapTile(), player);
 //			if (gameOver)
@@ -117,6 +129,13 @@
 			}
 
 
+		}
+
+		private void drawScore(Graphics g)
+		{
+			g.setColor(Color.WHITE);
+			g.setFont(new Font("Arial", Font.PLAIN, 32));
+			g.drawString("Score: " + score, Game.GAME_WIDTH - 150, 30);
 		}
 
 		public void mouseDragged(MouseEvent e)
@@ -230,8 +249,10 @@
 			gameOver = false;
 			paused = false;
 			lvlCompleted = false;
+			resetScore();
 			player.resetAll();
 			enemyManager.resetAllEnemies();
+			objectManager.resetAllObjects();
 		}
 		public void setGameOver(boolean gameOver)
 		{
@@ -241,24 +262,13 @@
 		{
 			enemyManager.checkEnemyHit(attackBox);
 		}
+		public void checkObjTouched(Rectangle2D.Float hitbox)
+		{
+			objectManager.checkObjectTouched(hitbox);
+			objectManager.checkCoinTouched(hitbox);
+		}
 		private void drawBackground(Graphics g, int currentLevel)
 		{
-//			g.drawImage(sky, 0, 0, Game.GAME_WIDTH, Game.GAME_HEIGHT, null);
-//			// ----------------------------------------------------------------------------------------------------------------------
-//			int cloudY = (int) (200 * Game.SCALE); // inaltimea la care vor fi pusi norii
-//			for (int i = 0; i < 3; i++)
-//			{
-//				g.drawImage(clouds, i * clouds.getWidth(), cloudY, clouds.getWidth(), clouds.getHeight(), null);
-//			}
-//			// ----------------------------------------------------------------------------------------------------------------------
-//			int seaY = cloudY + clouds.getHeight(); // y pt mare va fi sub nori
-//			g.drawImage(sea, 0, seaY, Game.GAME_WIDTH, Game.GAME_HEIGHT - seaY, null);
-//			// ----------------------------------------------------------------------------------------------------------------------
-//			int farGroundsY = Game.GAME_HEIGHT - grounds.getHeight(); // Y-ul elementelor de pe fundal va fi josul ferestrei de joc
-//			for (int i = 0; i < 3; i++)
-//			{
-//				g.drawImage(grounds, i * grounds.getWidth(), farGroundsY, grounds.getWidth(), grounds.getHeight(), null);
-//			}
 
 			switch (currentLevel) {
 				case 0:
@@ -268,11 +278,9 @@
 					drawBackgroundLevel2(g);
 					break;
 				case 2:
-					drawBackgroundLevel1(g);
+					drawBackgroundLevel3(g);
 					break;
-				// Adaugă cazuri suplimentare pentru niveluri suplimentare
 				default:
-					// Dacă nivelul curent nu se potrivește cu niciunul dintre cazuri, nu se desenează niciun fundal
 					break;
 			}
 
@@ -357,6 +365,14 @@
 
 
 		}
+
+		private void drawBackgroundLevel3(Graphics g)
+		{
+			g.drawImage(bg3, 0,0, bg3.getWidth(), Game.GAME_HEIGHT,null);
+			g.drawImage(bg2, 0,0, bg2.getWidth(), Game.GAME_HEIGHT,null);
+			g.drawImage(bg1, 0,0,(int) (bg2.getWidth() * 1.2), Game.GAME_HEIGHT, null);
+
+		}
 		public void unpauseGame()
 		{
 			paused = false;
@@ -370,5 +386,18 @@
 		public void setLevelCompleted(boolean levelCompleted)
 		{
 			this.lvlCompleted = levelCompleted;
+		}
+
+		public ObjectManager getObjectManager()
+		{
+			return objectManager;
+		}
+
+		public void increaseScore(int amount) {
+			score += amount;
+		}
+
+		public void resetScore() {
+			score = 0;
 		}
 	}
