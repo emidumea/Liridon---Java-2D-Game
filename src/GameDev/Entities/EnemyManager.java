@@ -52,7 +52,9 @@ public class EnemyManager
 		// Exemplu: Pentru simplitate, adăugăm poziții hardcoded
 		if (level.getPath().equals("/maps/map1.txt")) {
 			hyenas.add(new Hyena(600, 200, playing));
-			hyenas.add(new Hyena(1200, 100, playing));
+			hyenas.add(new Hyena(700, 300, playing));
+			hyenas.add(new Hyena(750, 300, playing));
+			hyenas.add(new Hyena(800, 400, playing));
 		} else if (level.getPath().equals("/maps/map2.txt")) {
 			hyenas.add(new Hyena(1300, 150, playing));
 			hyenas.add(new Hyena(1700, 300, playing));

@@ -56,6 +56,9 @@ public class Hyena extends Enemy {
 
 	private void updateBehavior(int[][] lvlData, Player player)
 	{
+		if (enemyState == DEAD)
+			return;
+
 		if (firstUpdate)
 		{
 			firstUpdateCheck(lvlData);
@@ -98,6 +101,7 @@ public class Hyena extends Enemy {
 
 	@Override
 	public void tick() {
+
 		animIdle.tick();
 		if (enemyState == ATTACK)
 		{
@@ -132,6 +136,9 @@ public class Hyena extends Enemy {
 		this.screenX = screenX;
 		this.screenY = screenY;
 		switch (enemyState) {
+			case DEAD:
+				g.drawImage(animDie.getCurrentFrame(), screenX - HYENA_DRAWOFFSET_X + flipX(), screenY - HYENA_DRAWOFFSET_Y, HYENA_WIDTH_DEFAULT * flipW(), HYENA_HEIGHT_DEFAULT, null);
+				break;
 			case IDLE:
 				g.drawImage(animIdle.getCurrentFrame(), screenX - HYENA_DRAWOFFSET_X + flipX(), screenY - HYENA_DRAWOFFSET_Y, HYENA_WIDTH_DEFAULT * flipW(), HYENA_HEIGHT_DEFAULT, null);
 				break;
@@ -149,8 +156,6 @@ public class Hyena extends Enemy {
 			case HIT:
 				g.drawImage(animHit.getCurrentFrame(), screenX - HYENA_DRAWOFFSET_X + flipX(), screenY - HYENA_DRAWOFFSET_Y, HYENA_WIDTH_DEFAULT * flipW(), HYENA_HEIGHT_DEFAULT, null);
 				break;
-			case DEAD:
-				g.drawImage(animDie.getCurrentFrame(), screenX - HYENA_DRAWOFFSET_X + flipX(), screenY - HYENA_DRAWOFFSET_Y, HYENA_WIDTH_DEFAULT * flipW(), HYENA_HEIGHT_DEFAULT, null);
 			default:
 				g.drawImage(animIdle.getCurrentFrame(), screenX - HYENA_DRAWOFFSET_X + flipX(), screenY - HYENA_DRAWOFFSET_Y, HYENA_WIDTH_DEFAULT * flipW(), HYENA_HEIGHT_DEFAULT, null);
 				break;

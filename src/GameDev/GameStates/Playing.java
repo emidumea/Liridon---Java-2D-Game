@@ -228,6 +228,9 @@
 					case KeyEvent.VK_W:
 						player.setJump(true);
 						break;
+					case KeyEvent.VK_Q:
+						player.powerAttack();
+						break;
 					case KeyEvent.VK_ESCAPE:
 						paused = !paused;
 						break;

@@ -42,6 +42,7 @@ public abstract class Enemy extends Entity {
 		maxHealth = GetMaxHealth(enemyType);
 		currentHealth = maxHealth;
 
+
 	}
 	public Playing getPlaying()
 	{

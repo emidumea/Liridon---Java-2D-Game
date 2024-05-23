@@ -230,7 +230,7 @@ public class Game implements Runnable
 					i++;
 				}
 //				playing.getTileM().setLvlIndex(2);
-				playing.update();
+				//playing.update();
 				Gamestate.state = Gamestate.PLAYING;
 				break;
 			case OPTIONS:

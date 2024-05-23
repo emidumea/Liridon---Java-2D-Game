@@ -15,6 +15,7 @@ public class Assets
 	public static BufferedImage[] player_down;
 	public static BufferedImage[] player_jump;
 	public static BufferedImage[] player_fall;
+	public static BufferedImage[] player_powerAttack;
 	// ------------------------------ lvl 1
 	public static BufferedImage[] land_lv1;
 	public static BufferedImage[] land_lv2;
@@ -198,6 +199,10 @@ public class Assets
 		player_attack[0] = ImageLoader.LoadImage("/adventurer/adventurer-attack1-02-1.3.png");
 		player_attack[1] = ImageLoader.LoadImage("/adventurer/adventurer-attack1-03-1.3.png");
 		player_attack[2] = ImageLoader.LoadImage("/adventurer/adventurer-attack1-04-1.3.png");
+
+		player_powerAttack = new BufferedImage[2];
+		player_powerAttack[0] = ImageLoader.LoadImage("/adventurer/adventurer-attack2-03-1.3.png");
+		player_powerAttack[1] = ImageLoader.LoadImage("/adventurer/adventurer-attack2-03-1.3.png");
 
 		hyena_walk = new BufferedImage[6];
 		hyena_walk[0] = ImageLoader.LoadImage("/lv1/hyena/hyena_0.png");
