@@ -45,6 +45,9 @@ public class MenuButton
 				imgs[0] = ImageLoader.LoadImage("/ui/Quit Button.png");
 				imgs[1] = ImageLoader.LoadImage("/ui/Quit  col_Button.png");
 				break;
+			case 3:
+				imgs[0] = ImageLoader.LoadImage("/ui/Load Button.png");
+				imgs[1] = ImageLoader.LoadImage("/ui/Load  col_Button.png");
 		}
 	}
 

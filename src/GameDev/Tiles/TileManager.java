@@ -169,4 +169,8 @@ public class TileManager {
 	{
 		return lvlIndex;
 	}
+
+	public void setLvlIndex(int lvlIndex) {
+		this.lvlIndex = lvlIndex;
+	}
 }

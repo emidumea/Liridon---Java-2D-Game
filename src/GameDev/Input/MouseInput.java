@@ -37,9 +37,11 @@ public class MouseInput implements MouseListener, MouseMotionListener
 			case MENU:
 				game.getMenu().mousePressed(e);
 				break;
+			case LOAD:
 			case PLAYING:
 				game.getPlaying().mousePressed(e);
 				break;
+
 			default:
 				break;
 

@@ -61,6 +61,10 @@ public class Player extends Entity
 
 	private boolean attackChecked;
 	private Playing playing;
+	private boolean powerAttackActive;
+	private int powerAttackTick;
+	private int powerGrowSpeed = 15;
+	private int powerGrowTick;
 
 	public Player(float x, float y, int width, int height, Playing playing)
 	{
@@ -199,7 +203,7 @@ public class Player extends Entity
 	public void tick()
 	{
 		updateHealthBar();
-		if (currentHealth <= 0)
+		if (currentHealth <= 0 || hitbox.y >= 630)
 		{
 			playing.setGameOver(true);
 			return;
@@ -221,6 +225,7 @@ public class Player extends Entity
 			if (left)
 			{
 				animLeft.tick();
+
 			}
 			else if (right)
 			{
@@ -305,6 +310,7 @@ public class Player extends Entity
 	public void render(Graphics g)
 	{
 
+
 		if (inAir)
 		{
 			if (airSpeed < 0)
@@ -368,31 +374,7 @@ public class Player extends Entity
 		if (!IsEntityOnFloor(hitbox, lvlData))
 			inAir = true;
 	}
-	public void moveLeft() {
-		x = -speed;
-		moving = true;
-	}
 
-	public void moveRight() {
-		x = speed;
-		moving = true;
-	}
-
-	public void moveUp() {
-		y = -speed;
-		moving = true;
-	}
-
-	public void moveDown() {
-		y = speed;
-		moving = true;
-	}
-
-	public void stopMoving() {
-		x = 0;
-		y = 0;
-		moving = false;
-	}
 	public boolean isLeft()
 	{
 		return left;
@@ -460,5 +442,9 @@ public class Player extends Entity
 
 		if (!IsEntityOnFloor(hitbox,lvlData))
 			inAir = true;
+	}
+
+	public int getCurrentHealth() {
+		return currentHealth;
 	}
 }

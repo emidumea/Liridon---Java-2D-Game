@@ -129,7 +129,8 @@ public class Hyena extends Enemy {
 	public void render(Graphics g) {
 		int screenX = (int) (getHitbox().x - getPlaying().getPlayer().getHitboxX() + getPlaying().getPlayer().screenX);
 		int screenY = (int) (getHitbox().y - getPlaying().getPlayer().getHitboxY() + getPlaying().getPlayer().screenY);
-
+		this.screenX = screenX;
+		this.screenY = screenY;
 		switch (enemyState) {
 			case IDLE:
 				g.drawImage(animIdle.getCurrentFrame(), screenX - HYENA_DRAWOFFSET_X + flipX(), screenY - HYENA_DRAWOFFSET_Y, HYENA_WIDTH_DEFAULT * flipW(), HYENA_HEIGHT_DEFAULT, null);

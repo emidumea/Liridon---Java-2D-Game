@@ -214,4 +214,8 @@ public abstract class Enemy extends Entity {
 		active = true;
 		fallSpeed = 0;
 	}
+
+	public int getEnemyType() {
+		return enemyType;
+	}
 }

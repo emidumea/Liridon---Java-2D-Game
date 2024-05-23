@@ -99,4 +99,8 @@ public class EnemyManager
 		for (Hyena it : hyenas)
 			it.resetEnemy();
 	}
+
+	public ArrayList<Hyena> getHyenas() {
+		return hyenas;
+	}
 }

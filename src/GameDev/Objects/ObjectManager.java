@@ -107,13 +107,7 @@ public class ObjectManager
 		SpriteSheet goldCoinSprites = new SpriteSheet(ImageLoader.LoadImage("/Objects/MonedaD.png"));
 		SpriteSheet silverCoinSprites = new SpriteSheet(ImageLoader.LoadImage("/Objects/MonedaP.png"));
 		coinImgs = new BufferedImage[2][5];
-//		for (int j = 0; j < coinImgs.length; j++)
-//		{
-//			for (int i = 0; i < coinImgs[j].length; i++)
-//			{
-//				coinImgs[i][j] =
-//			}
-//		}
+
 		for (int i = 0; i < coinImgs[0].length; i++)
 		{
 			coinImgs[0][i] = goldCoinSprites.crop(16 * i, 0, 16, 16);
@@ -192,5 +186,25 @@ public class ObjectManager
 		{
 			h.reset();
 		}
+	}
+	public ArrayList<GameObject> getObjects() {
+		ArrayList<GameObject> objects = new ArrayList<>();
+
+		objects.addAll(coins);
+		objects.addAll(hearts);
+
+		return objects;
+	}
+	public int getRemainingObjects()
+	{
+		int i = 0;
+		for (Coin c : coins)
+		{
+			if (c.isActive())
+			{
+				i++;
+			}
+		}
+		return i;
 	}
 }

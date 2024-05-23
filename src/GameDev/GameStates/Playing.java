@@ -1,5 +1,6 @@
 	package GameDev.GameStates;
 
+	import GameDev.Database.DatabaseManager;
 	import GameDev.Entities.EnemyManager;
 	import GameDev.Entities.Player;
 	import GameDev.Game;
@@ -15,6 +16,7 @@
 	import GameDev.UI.PauseOverlay;
 
 	import javax.swing.plaf.nimbus.State;
+	import javax.xml.crypto.Data;
 	import java.awt.*;
 	import java.awt.event.KeyEvent;
 	import java.awt.event.MouseEvent;
@@ -30,12 +32,14 @@
 		private TileManager tileM;
 		private EnemyManager enemyManager;
 		private ObjectManager objectManager;
+	//	private DatabaseManager databaseManager;
 		private GameOverOverlay gameOverOverlay;
 		private LevelCompletedOverlay levelCompletedOverlay;
 		private PauseOverlay pauseOverlay;
 		private boolean gameOver;
 		private boolean lvlCompleted = false;
 		private boolean paused = false;
+		private boolean dataSaved = false;
 		private int score;
 
 
@@ -57,8 +61,10 @@
 			tileM = new TileManager(game);
 			enemyManager = new EnemyManager(this);
 			objectManager = new ObjectManager(this);
+//			databaseManager = new DatabaseManager();
+//			databaseManager.createDatabase();
 			player.loadLvlData(tileM.getMapTile());
-			tileM.printMap();
+			//tileM.printMap();
 			gameOverOverlay = new GameOverOverlay(this);
 			pauseOverlay = new PauseOverlay(this);
 			levelCompletedOverlay = new LevelCompletedOverlay(this);
@@ -69,6 +75,7 @@
 		{
 			resetAll();
 			tileM.loadNextLevel();
+			dataSaved = false;
 			//objectManager.resetAllObjects();
 		}
 
@@ -82,12 +89,21 @@
 		@Override
 		public void update()
 		{
+//			if (player.getHitboxY() >= 500)
+//			{
+//				gameOver = true;
+//			}
 			if (paused)
 			{
 				pauseOverlay.update();
 			}
 			else if (lvlCompleted)
 			{
+				if (!dataSaved)
+				{
+					DatabaseManager.saveCompletedLevelData(tileM.getLvlIndex(), score, player.getCurrentHealth(), objectManager.getRemainingObjects());
+					dataSaved = true;
+				}
 				levelCompletedOverlay.update();
 			}
 			else if (!gameOver)
@@ -215,6 +231,13 @@
 					case KeyEvent.VK_ESCAPE:
 						paused = !paused;
 						break;
+					case KeyEvent.VK_O:
+						DatabaseManager.clearTables();
+						DatabaseManager.savePlayerData(player,score);
+						DatabaseManager.saveEnemiesData(enemyManager);
+						DatabaseManager.saveObjectsData(objectManager);
+						DatabaseManager.saveLevelData(tileM.getLvlIndex());
+
 				}
 			}
 		}
@@ -249,6 +272,7 @@
 			gameOver = false;
 			paused = false;
 			lvlCompleted = false;
+			dataSaved = false;
 			resetScore();
 			player.resetAll();
 			enemyManager.resetAllEnemies();
@@ -399,5 +423,9 @@
 
 		public void resetScore() {
 			score = 0;
+		}
+
+		public TileManager getTileM() {
+			return tileM;
 		}
 	}

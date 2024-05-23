@@ -6,6 +6,7 @@ import java.awt.geom.Rectangle2D;
 public abstract class Entity
 {
 	protected float x,y;
+	protected int screenX, screenY;
 	protected int width, height;
 	protected int aniTick, aniIndex;
 	protected Rectangle2D.Float hitbox;
@@ -49,6 +50,17 @@ public abstract class Entity
 	public float getY() {
 		return y;
 	}
+
+	public int getScreenX()
+	{
+		return screenX;
+	}
+
+	public int getScreenY()
+	{
+		return screenY;
+	}
+
 	public Rectangle2D.Float getHitbox()
 	{
 		return hitbox;

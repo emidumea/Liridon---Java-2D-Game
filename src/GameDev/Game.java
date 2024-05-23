@@ -1,5 +1,6 @@
 package GameDev;
 
+import GameDev.Database.DatabaseManager;
 import GameDev.Entities.Player;
 import GameDev.GameStates.Gamestate;
 import GameDev.GameStates.Playing;
@@ -47,6 +48,7 @@ public class Game implements Runnable
 	private BufferStrategy  bs;         /*!< Referinta catre un mecanism cu care se organizeaza memoria complexa pentru un canvas.*/
 	private Graphics        g;     /*!< Referinta catre un context grafic.*/
 	public Player player;
+	public DatabaseManager databaseManager;
 	// -------------------------
 	private Playing playing;
 	private Menu menu;
@@ -67,7 +69,8 @@ public class Game implements Runnable
 	}
 	private void InitGame()
 	{
-
+		databaseManager = new DatabaseManager();
+		databaseManager.createDatabase();
 		menu = new Menu(this);
 		playing = new Playing(this);
 		mouseInput = new MouseInput(this);
@@ -218,6 +221,17 @@ public class Game implements Runnable
 				break;
 			case PLAYING:
 				playing.update();
+				break;
+			case LOAD:
+				int x = DatabaseManager.getLevelValue(), i = 0;
+				while (i < x)
+				{
+					playing.loadNextLevel();
+					i++;
+				}
+//				playing.getTileM().setLvlIndex(2);
+				playing.update();
+				Gamestate.state = Gamestate.PLAYING;
 				break;
 			case OPTIONS:
 			case QUIT:

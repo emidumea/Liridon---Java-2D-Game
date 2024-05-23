@@ -85,4 +85,12 @@ public class GameObject
 		return aniIndex;
 	}
 
+	public int getX() {
+		return x;
+	}
+
+	public int getY() {
+		return y;
+	}
+
 }
