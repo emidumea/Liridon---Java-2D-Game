@@ -100,8 +100,8 @@ public class DatabaseManager {
 
 			for (Hyena enemy : enemyManager.getHyenas()) {
 				if (enemy.isActive()) {
-					pstmt.setInt(1, (int) enemy.getScreenX());
-					pstmt.setInt(2, (int) enemy.getScreenY());
+					pstmt.setInt(1, (int) enemy.getHitboxX());
+					pstmt.setInt(2, (int) enemy.getHitboxY());
 					pstmt.setInt(3, enemy.getEnemyType());
 					pstmt.addBatch();
 				}

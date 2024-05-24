@@ -151,7 +151,7 @@
 		{
 			g.setColor(Color.WHITE);
 			g.setFont(new Font("Arial", Font.PLAIN, 32));
-			g.drawString("Score: " + score, Game.GAME_WIDTH - 150, 30);
+			g.drawString("Score: " + score, Game.GAME_WIDTH - 180, 30);
 		}
 
 		public void mouseDragged(MouseEvent e)
@@ -341,7 +341,7 @@
 
 			// Așază bg_sun la jumătatea de jos a ecranului
 			int sunHeight = bg_sun.getHeight();
-			int sunY = (int) (Game.GAME_HEIGHT * 0.4);
+			int sunY = (int) (Game.GAME_HEIGHT * 0.45);
 			g.drawImage(bg_sun, (Game.GAME_WIDTH - bg_sun.getWidth()) / 2, sunY, bg_sun.getWidth(), bg_sun.getHeight(), null);
 			int duneY = sunY + (int)(bg_sun.getHeight() * 0.60);
 			for (int i = 0; i < 10; i++)

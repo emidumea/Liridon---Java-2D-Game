@@ -41,4 +41,5 @@ public class Animation
 		if ( i >= 0 && i < frames.length)
 			currentFrame = i;
 	}
+
 }

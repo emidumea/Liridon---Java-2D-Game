@@ -73,21 +73,23 @@ public class Constants
 	}
 	public static class EnemyConstants
 	{
-		public static final int SKELETON1 = 0;
-		public static final int SKELETON_WIDTH_DEFAULT = 128;
-		public static final int SKELETON_HEIGHT_DEFAULT = 96;
-		public static final int SKELETON_WIDTH = (int) (SKELETON_WIDTH_DEFAULT * Game.SCALE);
-		public static final int SKELETON_HEIGHT = (int) (SKELETON_HEIGHT_DEFAULT * Game.SCALE);
-
 		public static final int IDLE = 0;
 		public static final int RUNNING = 1;
 		public static final int ATTACK = 2;
 		public static final int HIT = 3;
 		public static final int DEAD = 4;
-		public static final int HURT = 5;
 
-//		public static final int SKELETON_DRAWOFFSET_X = (int) (75 * Game.SCALE);
-//		public static final int SKELETON_DRAWOFFSET_Y = (int) (36 * Game.SCALE);
+		// ----------------------------------- skeleton
+		public static final int SKELETON = 1;
+		public static final int SKELETON_WIDTH_DEFAULT = 48;
+		public static final int SKELETON_HEIGHT_DEFAULT = 48;
+		public static final int SKELETON_WIDTH = (int) (SKELETON_WIDTH_DEFAULT * Game.SCALE);
+		public static final int SKELETON_HEIGHT = (int) (SKELETON_HEIGHT_DEFAULT * Game.SCALE);
+
+		public static final int SKELETON_DRAWOFFSET_X = (int) (5 * Game.SCALE);
+		public static final int SKELETON_DRAWOFFSET_Y = (int) (18 * Game.SCALE);
+
+		// --------------------------------------------- hyena
 		public static final int HYENA = 0;
 		public static final int HYENA_WIDTH_DEFAULT = 48;
 		public static final int HYENA_HEIGHT_DEFAULT = 48;
@@ -95,24 +97,61 @@ public class Constants
 		public static final int HYENA_HEIGHT = (int) (HYENA_HEIGHT_DEFAULT * Game.SCALE);
 		public static final int HYENA_DRAWOFFSET_X = (int) (5 * Game.SCALE);
 		public static final int HYENA_DRAWOFFSET_Y = (int) (21 * Game.SCALE);
+
+		// ------------------------------------------------- mummy
+		public static final int MUMMY = 2;
+		public static final int MUMMY_WIDTH_DEFAULT = 48;
+		public static final int MUMMY_HEIGHT_DEFAULT = 48;
+		public static final int MUMMY_WIDTH = (int) (MUMMY_WIDTH_DEFAULT * Game.SCALE);
+		public static final int MUMMY_HEIGHT = (int) (MUMMY_HEIGHT_DEFAULT * Game.SCALE);
+		public static final int MUMMY_DRAWOFFSET_X = (int) (17 * Game.SCALE);
+		public static final int MUMMY_DRAWOFFSET_Y = (int) (14 * Game.SCALE);
+
+		// ----------------------------------------------------- undead
+		public static final int UNDEAD = 2;
+		public static final int UNDEAD_WIDTH_DEFAULT = 48;
+		public static final int UNDEAD_HEIGHT_DEFAULT = 48;
+		public static final int UNDEAD_WIDTH = (int) (UNDEAD_WIDTH_DEFAULT * Game.SCALE);
+		public static final int UNDEAD_HEIGHT = (int) (UNDEAD_HEIGHT_DEFAULT * Game.SCALE);
+		public static final int UNDEAD_DRAWOFFSET_X = (int) (17 * Game.SCALE);
+		public static final int UNDEAD_DRAWOFFSET_Y = (int) (14 * Game.SCALE);
+
+		// ------------------------------------------------------------ centipede
+		public static final int CENTIPEDE = 3;
+		public static final int CENTIPEDE_WIDTH_DEFAULT = 72;
+		public static final int CENTIPEDE_HEIGHT_DEFAULT = 48;
+		public static final int CENTIPEDE_WIDTH = (int) (CENTIPEDE_WIDTH_DEFAULT * Game.SCALE);
+		public static final int CENTIPEDE_HEIGHT = (int) (CENTIPEDE_HEIGHT_DEFAULT * Game.SCALE);
+		public static final int CENTIPEDE_DRAWOFFSET_X = (int) (26 * Game.SCALE);
+		public static final int CENTIPEDE_DRAWOFFSET_Y = (int) (12 * Game.SCALE);
+		// ----------------------------------------------------------------- bloated
+		public static final int BLOATED = 4;
+		public static final int BLOATED_WIDTH_DEFAULT = 72;
+		public static final int BLOATED_HEIGHT_DEFAULT = 48;
+		public static final int BLOATED_WIDTH = (int) (BLOATED_WIDTH_DEFAULT * Game.SCALE);
+		public static final int BLOATED_HEIGHT = (int) (BLOATED_HEIGHT_DEFAULT * Game.SCALE);
+		public static final int BLOATED_DRAWOFFSET_X = (int) (26 * Game.SCALE);
+		public static final int BLOATED_DRAWOFFSET_Y = (int) (12 * Game.SCALE);
+
 		public static int GetSpriteAmount(int enemy_type, int enemy_state) {
 
 			switch (enemy_type)
 			{
-//				case SKELETON1:
-//					switch (enemy_state)
-//					{
-//						case IDLE:
-//							return 9;
-//						case RUNNING:
-//							return 6;
-//						case ATTACK:
-//							return 7;
-//						case HIT:
-//							return 4;
-//						case DEAD:
-//							return 5;
-//					}
+				case SKELETON:
+					switch (enemy_state)
+					{
+
+						case IDLE:
+							return 4;
+						case RUNNING:
+							return 4;
+						case ATTACK:
+							return 8;
+						case HIT:
+							return 4;
+						case DEAD:
+							return 3;
+					}
 				case HYENA:
 					switch (enemy_state)
 					{
@@ -123,9 +162,51 @@ public class Constants
 						case ATTACK:
 							return 6;
 						case HIT:
+							return 4;
+						case DEAD:
+							return 6;
+					}
+				case MUMMY:
+					switch(enemy_state)
+					{
+						case IDLE:
+							return 5;
+						case RUNNING:
+							return 5;
+						case ATTACK:
+							return 6;
+						case HIT:
 							return 2;
 						case DEAD:
 							return 6;
+					}
+				case CENTIPEDE:
+					switch(enemy_state)
+					{
+						case IDLE:
+							return 4;
+						case RUNNING:
+							return 4;
+						case ATTACK:
+							return 6;
+						case HIT:
+							return 2;
+						case DEAD:
+							return 4;
+					}
+				case BLOATED:
+					switch(enemy_state)
+					{
+						case IDLE:
+							return 6;
+						case RUNNING:
+							return 6;
+						case ATTACK:
+							return 6;
+						case HIT:
+							return 2;
+						case DEAD:
+							return 4;
 					}
 			}
 
@@ -137,6 +218,14 @@ public class Constants
 			switch(enemy_type) {
 				case HYENA:
 					return 10;
+				case SKELETON:
+					return 30;
+				case MUMMY:
+					return 30;
+				case CENTIPEDE:
+					return 30;
+				case BLOATED:
+					return 30;
 				default:
 					return 0;
 			}
@@ -146,6 +235,14 @@ public class Constants
 		{
 			switch(enemy_type) {
 				case HYENA:
+					return 15;
+				case SKELETON:
+					return 15;
+				case MUMMY:
+					return 15;
+				case CENTIPEDE:
+					return 15;
+				case BLOATED:
 					return 15;
 				default:
 					return 0;

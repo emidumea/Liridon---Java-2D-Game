@@ -3,8 +3,7 @@ package GameDev.Graphics;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
-import static GameDev.Utils.Constants.EnemyConstants.SKELETON_HEIGHT_DEFAULT;
-import static GameDev.Utils.Constants.EnemyConstants.SKELETON_WIDTH_DEFAULT;
+import static GameDev.Utils.Constants.EnemyConstants.*;
 
 public class Assets
 {
@@ -23,13 +22,40 @@ public class Assets
 	public static BufferedImage[] player_attack;
 	public static BufferedImage sky,clouds,sea,grounds;
 	public static BufferedImage[][] skeletonArr;
-
+	// -------------------------------------
 	public static BufferedImage[] hyena_walk;
 	public static BufferedImage[] hyena_attack;
 	public static BufferedImage[] hyena_hit;
 	public static BufferedImage[] hyena_die;
+	// --------------------------------------
+	public static BufferedImage[] mummy_walk;
+	public static BufferedImage[] mummy_attack;
+	public static BufferedImage[] mummy_hit;
+	public static BufferedImage[] mummy_die;
+	// --------------------------------------
+	public static BufferedImage[] undead_walk;
+	public static BufferedImage[] undead_attack;
+	public static BufferedImage[] undead_hit;
+	public static BufferedImage[] undead_die;
+	// --------------------------------------
+	public static BufferedImage[] centipede_walk;
+	public static BufferedImage[] centipede_attack;
+	public static BufferedImage[] centipede_hit;
+	public static BufferedImage[] centipede_die;
+	// ---------------------------------------
+	public static BufferedImage[] bloated_walk;
+	public static BufferedImage[] bloated_attack;
+	public static BufferedImage[] bloated_hit;
+	public static BufferedImage[] bloated_die;
+	// ---------------------------------------
 	public static BufferedImage[] health_bar;
 	public static BufferedImage[] menu_ui;
+	//----------------------------------------
+	public static BufferedImage[] skeleton_walk;
+	public static BufferedImage[] skeleton_attack;
+	public static BufferedImage[] skeleton_hit;
+	public static BufferedImage[] skeleton_dead;
+
 	// ----------------------------- background lv 2
 	public static BufferedImage dunes1, dunes2, dunes3, dunes4, dunes5, dunes6, dunes7, dunes8, desert_sky, bg_ground, bg_sun;
 	// ------------------------------ background lv 3
@@ -47,7 +73,7 @@ public class Assets
 		menu_ui[4] = ImageLoader.LoadImage("/ui/Quit Button.png");
 		menu_ui[5] = ImageLoader.LoadImage("/ui/Quit  col_Button.png");
 
-		land_lv1 = new BufferedImage[81];
+		land_lv1 = new BufferedImage[84];
 		land_lv1[0] = ImageLoader.LoadImage("/lv1/Textures/image_0.png");
 		land_lv1[1] = ImageLoader.LoadImage("/lv1/Textures/image_1.png");
 		land_lv1[2] = ImageLoader.LoadImage("/lv1/Textures/image_2.png");
@@ -108,7 +134,7 @@ public class Assets
 		land_lv1[56] = ImageLoader.LoadImage("/lv2/Textures/palm_tree_low_l.png");
 		land_lv1[57] = ImageLoader.LoadImage("/lv2/Textures/palm_tree_low_r.png");
 		land_lv1[58] = ImageLoader.LoadImage("/lv2/Textures/palm_tree_mid_l.png");
-		land_lv1[59] = ImageLoader.LoadImage("/lv2/Textures/palm_tree_mid_l.png");
+		land_lv1[59] = ImageLoader.LoadImage("/lv2/Textures/palm_tree_mid_r.png");
 		land_lv1[60] = ImageLoader.LoadImage("/lv2/Textures/palm_tree_up_l.png");
 		land_lv1[61] = ImageLoader.LoadImage("/lv2/Textures/palm_tree_up_r.png");
 		land_lv1[62] = ImageLoader.LoadImage("/lv2/Textures/shrubs_fg_left.png");
@@ -119,6 +145,7 @@ public class Assets
 		land_lv1[67] = ImageLoader.LoadImage("/lv2/Textures/water_A.png");
 		land_lv1[68] = ImageLoader.LoadImage("/lv2/Textures/water_B.png");
 		land_lv1[69] = ImageLoader.LoadImage("/lv2/Textures/water_fill.png");
+
 		land_lv1[70] = ImageLoader.LoadImage("/lv3/Textures/cornerleft.png");
 		land_lv1[71] = ImageLoader.LoadImage("/lv3/Textures/grasss.png");
 		land_lv1[72] = ImageLoader.LoadImage("/lv3/Textures/cornerright.png");
@@ -130,6 +157,9 @@ public class Assets
 		land_lv1[78] = ImageLoader.LoadImage("/lv3/Textures/tile004.png");
 		land_lv1[79] = ImageLoader.LoadImage("/lv3/Textures/tile009.png");
 		land_lv1[80] = ImageLoader.LoadImage("/lv3/Textures/fill.png");
+		land_lv1[81] = ImageLoader.LoadImage("/lv3/Textures/cornerleftlower.png");
+		land_lv1[82] = ImageLoader.LoadImage("/lv3/Textures/midlower.png");
+		land_lv1[83] = ImageLoader.LoadImage("/lv3/Textures/cornerrightlower.png");
 
 
 
@@ -259,19 +289,163 @@ public class Assets
 
 
 
+		skeleton_walk = new BufferedImage[4];
+		skeleton_attack = new BufferedImage[8];
+		skeleton_hit = new BufferedImage[4];
+		skeleton_dead = new BufferedImage[3];
+
+		skeleton_walk[0] = ImageLoader.LoadImage("/lv1/skeleton2/walk_0.png");
+		skeleton_walk[1] = ImageLoader.LoadImage("/lv1/skeleton2/walk_1.png");
+		skeleton_walk[2] = ImageLoader.LoadImage("/lv1/skeleton2/walk_2.png");
+		skeleton_walk[3] = ImageLoader.LoadImage("/lv1/skeleton2/walk_3.png");
+
+		skeleton_attack[0] = ImageLoader.LoadImage("/lv1/skeleton2/attack_0.png");
+		skeleton_attack[1] = ImageLoader.LoadImage("/lv1/skeleton2/attack_1.png");
+		skeleton_attack[2] = ImageLoader.LoadImage("/lv1/skeleton2/attack_2.png");
+		skeleton_attack[3] = ImageLoader.LoadImage("/lv1/skeleton2/attack_3.png");
+		skeleton_attack[4] = ImageLoader.LoadImage("/lv1/skeleton2/attack_4.png");
+		skeleton_attack[5] = ImageLoader.LoadImage("/lv1/skeleton2/attack_5.png");
+		skeleton_attack[6] = ImageLoader.LoadImage("/lv1/skeleton2/attack_6.png");
+		skeleton_attack[7] = ImageLoader.LoadImage("/lv1/skeleton2/attack_7.png");
+
+		skeleton_dead[0] = ImageLoader.LoadImage("/lv1/skeleton2/die_0.png");
+		skeleton_dead[1] = ImageLoader.LoadImage("/lv1/skeleton2/die_1.png");
+		skeleton_dead[2] = ImageLoader.LoadImage("/lv1/skeleton2/die_2.png");
+
+		skeleton_hit[0] = ImageLoader.LoadImage("/lv1/skeleton2/hit_0.png");
+		skeleton_hit[1] = ImageLoader.LoadImage("/lv1/skeleton2/hit_1.png");
+		skeleton_hit[2] = ImageLoader.LoadImage("/lv1/skeleton2/hit_2.png");
+		skeleton_hit[3] = ImageLoader.LoadImage("/lv1/skeleton2/hit_3.png");
 
 
 
 
 		skeletonArr = new BufferedImage[5][8];
-		SpriteSheet temp = new SpriteSheet(ImageLoader.LoadImage("/lv1/skeleton1/skeletons2.png"));
-		for (int j = 0; j < skeletonArr.length; j++)
+
+		// -------------------------------------------------------------------------------------------------------------------------------------
+
+		mummy_walk = new BufferedImage[6];
+		SpriteSheet temp = new SpriteSheet(ImageLoader.LoadImage("/lv2/Mummy/Mummy_walk.png"));
+		for (int i = 0; i < 6; i++)
 		{
-			for (int i = 0; i < skeletonArr[j].length; i++)
-			{
-				skeletonArr[j][i] = temp.crop(i * SKELETON_WIDTH_DEFAULT, j * SKELETON_HEIGHT_DEFAULT, SKELETON_WIDTH_DEFAULT, SKELETON_HEIGHT_DEFAULT);
-			}
+			mummy_walk[i] = temp.crop(i * MUMMY_WIDTH_DEFAULT,0, MUMMY_WIDTH_DEFAULT,MUMMY_HEIGHT_DEFAULT);
 		}
+
+
+		mummy_attack = new BufferedImage[4];
+		temp = new SpriteSheet(ImageLoader.LoadImage("/lv2/Mummy/Mummy_attack.png"));
+		for (int i = 0; i < 4; i++)
+		{
+			mummy_attack[i] = temp.crop(i * MUMMY_WIDTH_DEFAULT,0, MUMMY_WIDTH_DEFAULT,MUMMY_HEIGHT_DEFAULT);
+		}
+
+		mummy_hit = new BufferedImage[2];
+		temp = new SpriteSheet(ImageLoader.LoadImage("/lv2/Mummy/Mummy_hurt.png"));
+		for (int i = 0; i < 2; i++)
+		{
+			mummy_hit[i] = temp.crop(i * MUMMY_WIDTH_DEFAULT,0, MUMMY_WIDTH_DEFAULT,MUMMY_HEIGHT_DEFAULT);
+		}
+
+		mummy_die = new BufferedImage[6];
+		temp = new SpriteSheet(ImageLoader.LoadImage("/lv2/Mummy/Mummy_death.png"));
+		for (int i = 0; i < 6; i++)
+		{
+			mummy_die[i] = temp.crop(i * MUMMY_WIDTH_DEFAULT,0, MUMMY_WIDTH_DEFAULT,MUMMY_HEIGHT_DEFAULT);
+		}
+
+		 // -------------------------------------------------------------------------------------------------------------------------------------
+
+
+		undead_walk = new BufferedImage[6];
+		temp = new SpriteSheet(ImageLoader.LoadImage("/lv2/Undead/Deceased_walk.png"));
+		for (int i = 0; i < 6; i++)
+		{
+			undead_walk[i] = temp.crop(i * UNDEAD_WIDTH_DEFAULT,0, UNDEAD_WIDTH_DEFAULT,UNDEAD_HEIGHT_DEFAULT);
+		}
+
+
+		undead_attack = new BufferedImage[4];
+		temp = new SpriteSheet(ImageLoader.LoadImage("/lv2/Undead/Deceased_attack.png"));
+		for (int i = 0; i < 4; i++)
+		{
+			undead_attack[i] = temp.crop(i * UNDEAD_WIDTH_DEFAULT,0, UNDEAD_WIDTH_DEFAULT,UNDEAD_HEIGHT_DEFAULT);
+		}
+
+		undead_hit = new BufferedImage[2];
+		temp = new SpriteSheet(ImageLoader.LoadImage("/lv2/Undead/Deceased_hurt.png"));
+		for (int i = 0; i < 2; i++)
+		{
+			undead_hit[i] = temp.crop(i * UNDEAD_WIDTH_DEFAULT,0, UNDEAD_WIDTH_DEFAULT,UNDEAD_HEIGHT_DEFAULT);
+		}
+
+		undead_die = new BufferedImage[6];
+		temp = new SpriteSheet(ImageLoader.LoadImage("/lv2/Undead/Deceased_death.png"));
+		for (int i = 0; i < 6; i++)
+		{
+			undead_die[i] = temp.crop(i * UNDEAD_WIDTH_DEFAULT,0, UNDEAD_WIDTH_DEFAULT,UNDEAD_HEIGHT_DEFAULT);
+		}
+
+		// -------------------------------------------------------------------------------------------------------------------------------------
+
+		centipede_walk = new BufferedImage[4];
+		temp = new SpriteSheet(ImageLoader.LoadImage("/lv3/Centipede/Centipede_walk.png"));
+		for (int i = 0; i < 4; i++)
+		{
+			centipede_walk[i] = temp.crop(i * CENTIPEDE_WIDTH_DEFAULT,0, CENTIPEDE_WIDTH_DEFAULT,CENTIPEDE_HEIGHT_DEFAULT);
+		}
+
+
+		centipede_attack = new BufferedImage[6];
+		temp = new SpriteSheet(ImageLoader.LoadImage("/lv3/Centipede/Centipede_attack2.png"));
+		for (int i = 0; i < 6; i++)
+		{
+			centipede_attack[i] = temp.crop(i * CENTIPEDE_WIDTH_DEFAULT,0, CENTIPEDE_WIDTH_DEFAULT,CENTIPEDE_HEIGHT_DEFAULT);
+		}
+
+		centipede_hit = new BufferedImage[2];
+		temp = new SpriteSheet(ImageLoader.LoadImage("/lv3/Centipede/Centipede_hurt.png"));
+		for (int i = 0; i < 2; i++)
+		{
+			centipede_hit[i] = temp.crop(i * CENTIPEDE_WIDTH_DEFAULT,0, CENTIPEDE_WIDTH_DEFAULT,CENTIPEDE_HEIGHT_DEFAULT);
+		}
+
+		centipede_die = new BufferedImage[4];
+		temp = new SpriteSheet(ImageLoader.LoadImage("/lv3/Centipede/Centipede_death.png"));
+		for (int i = 0; i < 4; i++)
+		{
+			centipede_die[i] = temp.crop(i * CENTIPEDE_WIDTH_DEFAULT,0, CENTIPEDE_WIDTH_DEFAULT,CENTIPEDE_HEIGHT_DEFAULT);
+		}
+
+		// -------------------------------------------------------------------------------------------------------------------------------------
+
+		bloated_walk = new BufferedImage[6];
+		temp = new SpriteSheet(ImageLoader.LoadImage("/lv3/BigBloated/Big_bloated_walk.png"));
+		for (int i = 0; i < 6; i++)
+		{
+			bloated_walk[i] = temp.crop(i * BLOATED_WIDTH_DEFAULT,0, BLOATED_WIDTH_DEFAULT,BLOATED_HEIGHT_DEFAULT);
+		}
+
+		bloated_attack = new BufferedImage[6];
+		temp = new SpriteSheet(ImageLoader.LoadImage("/lv3/BigBloated/Big_bloated_attack4.png"));
+		for (int i = 0; i < 6; i++)
+		{
+			bloated_attack[i] = temp.crop(i * BLOATED_WIDTH_DEFAULT,0, BLOATED_WIDTH_DEFAULT,BLOATED_HEIGHT_DEFAULT);
+		}
+
+		bloated_hit = new BufferedImage[2];
+		temp = new SpriteSheet(ImageLoader.LoadImage("/lv3/BigBloated/Big_bloated_hurt.png"));
+		for (int i = 0; i < 2; i++)
+		{
+			bloated_hit[i] = temp.crop(i * BLOATED_WIDTH_DEFAULT,0, BLOATED_WIDTH_DEFAULT,BLOATED_HEIGHT_DEFAULT);
+		}
+
+		bloated_die = new BufferedImage[4];
+		temp = new SpriteSheet(ImageLoader.LoadImage("/lv3/BigBloated/Big_bloated_death.png"));
+		for (int i = 0; i < 4; i++)
+		{
+			bloated_die[i] = temp.crop(i * BLOATED_WIDTH_DEFAULT,0, BLOATED_WIDTH_DEFAULT,BLOATED_HEIGHT_DEFAULT);
+		}
+
 	}
 
 }

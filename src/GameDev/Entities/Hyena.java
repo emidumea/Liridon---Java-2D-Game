@@ -16,8 +16,7 @@ import static GameDev.Utils.Constants.EnemyConstants.*;
 import static GameDev.Utils.HelpMethods.*;
 
 public class Hyena extends Enemy {
-	private Rectangle2D.Float attackBox;
-	private int attackBoxOffsetX;
+
 	private void initAnimations() {
 		BufferedImage[] idle, up, left, right, attack, down, jump, fall;
 		int i;
@@ -32,7 +31,7 @@ public class Hyena extends Enemy {
 	public Hyena(float x, float y, Playing playing) {
 		super(x, y, HYENA_WIDTH, HYENA_HEIGHT, HYENA, playing);
 		initAnimations();
-		initHitbox(x, y, (int) (40 * Game.SCALE), (int) (24 * Game.SCALE));
+		initHitbox(x, y, (int) (29 * Game.SCALE), (int) (24 * Game.SCALE));
 		initAttackBox();
 	}
 
@@ -45,6 +44,7 @@ public class Hyena extends Enemy {
 	public void update(int[][] lvlData, Player player) {
 		updateBehavior(lvlData, player);
 		updateAnimationTick();
+	//	System.out.println(aniIndex);
 		animLeft.tick();
 		updateAttackBox();
 	}
@@ -88,7 +88,7 @@ public class Hyena extends Enemy {
 					if (aniIndex == 0)
 						attackChecked = false;
 
-					if (aniIndex == 2 && !attackChecked)
+					if (aniIndex == 4 && !attackChecked)
 						checkEnemyHit(attackBox,player);
 					break;
 				case HIT:
@@ -106,11 +106,15 @@ public class Hyena extends Enemy {
 		if (enemyState == ATTACK)
 		{
 			animAttack.tick();
-			if (animAttack.isAnimationFinished())
+//			if (animAttack.isAnimationFinished())
+//			{
+//				enemyState = IDLE; // reset la starea IDLE dupa atac
+//				// Resetarea animației la starea idle
+//				animIdle.setCurrentFrame(0); // reset la primul frame idle
+//			}
+			if (aniIndex == 5)
 			{
-				enemyState = IDLE; // reset la starea IDLE dupa atac
-				// Resetarea animației la starea idle
-				animIdle.setCurrentFrame(0); // reset la primul frame idle
+				enemyState = IDLE;
 			}
 		}
 		else if (enemyState == HIT)

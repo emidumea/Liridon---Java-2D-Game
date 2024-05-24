@@ -244,6 +244,7 @@ public class Player extends Entity
 		updatePowerBar();
 		if (currentHealth <= 0 || hitbox.y >= 630)
 		{
+
 			playing.setGameOver(true);
 			return;
 		}
@@ -468,7 +469,7 @@ public class Player extends Entity
 		}
 
 		drawUI(g);
-		//drawHitbox(g);
+		drawHitbox(g);
 		//drawAttackBox(g);
 	}
 

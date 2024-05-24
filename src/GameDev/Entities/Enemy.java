@@ -33,6 +33,8 @@ public abstract class Enemy extends Entity {
 	protected int currentHealth;
 	protected boolean active = true;
 	protected boolean attackChecked;
+	protected Rectangle2D.Float attackBox;
+	protected int attackBoxOffsetX;
 
 	public Enemy(float x, float y, int width, int height, int enemyType, Playing playing) {
 		super(x, y, width, height);
