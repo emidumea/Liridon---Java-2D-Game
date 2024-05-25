@@ -221,7 +221,7 @@ public class Constants
 				case SKELETON:
 					return 30;
 				case MUMMY:
-					return 30;
+					return 20;
 				case CENTIPEDE:
 					return 30;
 				case BLOATED:

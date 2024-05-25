@@ -32,7 +32,7 @@ public class Undead extends Enemy
 		//	super(x, y, HYENA_WIDTH, HYENA_HEIGHT, SKELETON, playing);
 		initAnimations();
 		//	initHitbox(x, y, (45 * Game.SCALE),(45 * Game.SCALE));
-		initHitbox(x, y, (int) (25 * Game.SCALE), (int) (30 * Game.SCALE));
+		initHitbox(x, y, (int) (30 * Game.SCALE), (int) (30 * Game.SCALE));
 		initAttackBox();
 	}
 
@@ -167,7 +167,7 @@ public class Undead extends Enemy
 				g.drawImage(animIdle.getCurrentFrame(), screenX - UNDEAD_DRAWOFFSET_X + flipX(), screenY - UNDEAD_DRAWOFFSET_Y, UNDEAD_WIDTH_DEFAULT * flipW(), UNDEAD_HEIGHT_DEFAULT, null);
 				break;
 		}
-		//drawHitbox(g);
+		drawHitbox(g);
 		//drawAttackBox(g);
 	}
 

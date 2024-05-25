@@ -154,8 +154,17 @@ public class EnemyManager
 		}
 		else if (level.getPath().equals("/maps/map3.txt"))
 		{
-			hyenas.add(new Hyena(900, 250, playing));
-			hyenas.add(new Hyena(1500, 400, playing));
+			bloateds.add(new Bloated(900,250,playing));
+			bloateds.add(new Bloated(1500,50,playing));
+			bloateds.add(new Bloated(2200,530,playing));
+			bloateds.add(new Bloated(2750,50,playing));
+			bloateds.add(new Bloated(2750,50,playing));
+
+			centipedes.add(new Centipede(1300,530,playing));
+			centipedes.add(new Centipede(1100,530,playing));
+			centipedes.add(new Centipede(1800,530,playing));
+			centipedes.add(new Centipede(2750,430,playing));
+			centipedes.add(new Centipede(350,150,playing));
 		}
 	}
 	public void draw(Graphics g)

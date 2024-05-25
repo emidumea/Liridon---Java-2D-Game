@@ -191,12 +191,91 @@ public class ObjectManager
 			hearts.add(new Heart(1200, 150, HEART));
 			hearts.add(new Heart(2500, 150, HEART));
 		}
-		else if (level.getPath().equals("/maps/map3.txt")) {
-			coins.add(new Coin(300, 200, 0));
-			coins.add(new Coin(300, 300, 1));
+		else if (level.getPath().equals("/maps/map3.txt"))
+		{
+			coins.add(new Coin(5, 100, 0));
+			coins.add(new Coin(5, 60, 1));
+			coins.add(new Coin(100, 100, 0));
+			coins.add(new Coin(100, 60, 1));
 
-			hearts.add(new Heart(300, 400, HEART));
-			hearts.add(new Heart(300, 500, HEART));
+
+
+			coins.add(new Coin(400, 210, 1));
+			coins.add(new Coin(450, 210, 1));
+			coins.add(new Coin(500, 210, 1));
+			coins.add(new Coin(550, 210, 1));
+
+			coins.add(new Coin(870, 545, 0));
+			coins.add(new Coin(940, 545, 0));
+			coins.add(new Coin(1010, 545, 0));
+			coins.add(new Coin(1080, 545, 0));
+			coins.add(new Coin(1150, 545, 1));
+			coins.add(new Coin(1220, 545, 0));
+			coins.add(new Coin(1290, 545, 0));
+			coins.add(new Coin(1360, 545, 0));
+			coins.add(new Coin(1430, 545, 1));
+
+
+			coins.add(new Coin(940, 245, 0));
+			coins.add(new Coin(1010, 245, 0));
+			coins.add(new Coin(1080, 245, 0));
+			coins.add(new Coin(1150, 245, 0));
+
+			coins.add(new Coin(1500, 25, 0));
+			coins.add(new Coin(1570, 10, 0));
+			coins.add(new Coin(1640, 10, 0));
+			coins.add(new Coin(1710, 25, 0));
+
+
+			coins.add(new Coin(1240, 320, 1));
+			coins.add(new Coin(1240, 350, 1));
+			coins.add(new Coin(1340, 320, 1));
+			coins.add(new Coin(1340, 350, 1));
+
+			coins.add(new Coin(1850, 545, 1));
+			coins.add(new Coin(1950, 545, 1));
+
+			coins.add(new Coin(2250, 545, 1));
+			coins.add(new Coin(2350, 545, 1));
+
+			coins.add(new Coin(2450, 5, 1));
+			coins.add(new Coin(2500, 5, 1));
+			coins.add(new Coin(2550, 5, 1));
+			coins.add(new Coin(2600, 5, 1));
+
+			coins.add(new Coin(2000, 280, 0));
+			coins.add(new Coin(2050, 280, 0));
+			coins.add(new Coin(2100, 280, 0));
+
+			coins.add(new Coin(2650, 445, 0));
+			coins.add(new Coin(2700, 445, 0));
+			coins.add(new Coin(2750, 445, 0));
+			coins.add(new Coin(2800, 445, 0));
+
+
+			coins.add(new Coin(2030, 100, 0));
+			coins.add(new Coin(2090, 100, 0));
+			coins.add(new Coin(2150, 100, 0));
+			coins.add(new Coin(2210, 100, 0));
+
+			coins.add(new Coin(1275, 170, 0));
+			coins.add(new Coin(1275, 130, 0));
+			coins.add(new Coin(1275, 90, 0));
+			coins.add(new Coin(1275, 50, 0));
+
+
+
+			hearts.add(new Heart(45, 100, HEART));
+			//hearts.add(new Heart(500, 450, HEART));
+
+			hearts.add(new Heart(1270, 200, HEART));
+			hearts.add(new Heart(1290, 350, HEART));
+
+			hearts.add(new Heart(2270, 60, HEART));
+
+			hearts.add(new Heart(2160, 340, HEART));
+
+			hearts.add(new Heart(2460, 280, HEART));
 		}
 	}
 
