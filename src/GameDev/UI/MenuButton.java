@@ -2,6 +2,7 @@ package GameDev.UI;
 
 import GameDev.GameStates.Gamestate;
 import GameDev.Graphics.ImageLoader;
+import GameDev.LoadImageException;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -18,8 +19,7 @@ public class MenuButton
 	private Rectangle bounds;
 	private BufferedImage[] imgs;
 
-	public MenuButton(int xPos, int yPos, int btnIndex,Gamestate state)
-	{
+	public MenuButton(int xPos, int yPos, int btnIndex,Gamestate state) throws LoadImageException {
 		this.xPos = xPos;
 		this.yPos = yPos;
 		this.state = state;
@@ -28,8 +28,7 @@ public class MenuButton
 		initBounds();
 	}
 
-	private void loadImgs()
-	{
+	private void loadImgs() throws LoadImageException {
 		imgs = new BufferedImage[2];
 		switch (btnIndex)
 		{

@@ -5,6 +5,7 @@ import GameDev.GameStates.Playing;
 import GameDev.Graphics.Animation;
 import GameDev.Graphics.Assets;
 import GameDev.Graphics.ImageLoader;
+import GameDev.LoadImageException;
 import GameDev.Utils.Constants;
 
 import java.awt.*;
@@ -75,8 +76,7 @@ public class Player extends Entity
 	private int powerGrowSpeed = 15;
 	private int powerGrowTick;
 
-	public Player(float x, float y, int width, int height, Playing playing)
-	{
+	public Player(float x, float y, int width, int height, Playing playing) throws LoadImageException {
 		super(x,y,width,height);
 		this.playing = playing;
 		screenX = Game.GAME_WIDTH/2; //- (gp.tileSize/2);

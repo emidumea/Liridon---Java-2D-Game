@@ -17,10 +17,8 @@ import static GameDev.Utils.Constants.EnemyConstants.MUMMY_HEIGHT_DEFAULT;
 public class Mummy extends Enemy
 {
 
-	private void initAnimations() {
-		BufferedImage[] idle, up, left, right, attack, down, jump, fall;
-		int i;
-
+	private void initAnimations()
+	{
 		animIdle = new Animation(Assets.mummy_walk, 100);
 		animLeft = new Animation(Assets.mummy_walk, 100);
 		animRight = new Animation(Assets.mummy_walk, 100);
@@ -30,11 +28,10 @@ public class Mummy extends Enemy
 
 	}
 
-	public Mummy(float x, float y, Playing playing) {
+	public Mummy(float x, float y, Playing playing)
+	{
 		super(x, y, MUMMY_WIDTH, MUMMY_HEIGHT, MUMMY, playing);
-		//	super(x, y, HYENA_WIDTH, HYENA_HEIGHT, SKELETON, playing);
 		initAnimations();
-	//	initHitbox(x, y, (45 * Game.SCALE),(45 * Game.SCALE));
 		initHitbox(x, y, (int) (25 * Game.SCALE), (int) (30 * Game.SCALE));
 		initAttackBox();
 	}
@@ -110,12 +107,6 @@ public class Mummy extends Enemy
 		if (enemyState == ATTACK)
 		{
 			animAttack.tick();
-//			if (animAttack.isAnimationFinished())
-//			{
-//				enemyState = IDLE; // reset la starea IDLE dupa atac
-//				// Resetarea animației la starea idle
-//				animIdle.setCurrentFrame(0); // reset la primul frame idle
-//			}
 			if (aniIndex == 3)
 			{
 				enemyState = IDLE;
@@ -173,40 +164,7 @@ public class Mummy extends Enemy
 		//drawHitbox(g);
 		//drawAttackBox(g);
 	}
-	//	@Override
-//	public void render(Graphics g) {
-//		int screenX = (int) (getHitbox().x - getPlaying().getPlayer().getHitboxX() + getPlaying().getPlayer().screenX);
-//		int screenY = (int) (getHitbox().y - getPlaying().getPlayer().getHitboxY() + getPlaying().getPlayer().screenY);
-//		this.screenX = screenX;
-//		this.screenY = screenY;
-//		switch (enemyState) {
-//			case DEAD:
-//				g.drawImage(animDie.getCurrentFrame(), screenX - HYENA_DRAWOFFSET_X + flipX(), screenY - HYENA_DRAWOFFSET_Y, HYENA_WIDTH_DEFAULT * flipW(), HYENA_HEIGHT_DEFAULT, null);
-//				break;
-//			case IDLE:
-//				g.drawImage(animIdle.getCurrentFrame(), screenX - HYENA_DRAWOFFSET_X + flipX(), screenY - HYENA_DRAWOFFSET_Y, HYENA_WIDTH_DEFAULT * flipW(), HYENA_HEIGHT_DEFAULT, null);
-//				break;
-//			case RUNNING:
-//				if (walkDir == LEFT) {
-//					g.drawImage(animLeft.getCurrentFrame(), screenX - HYENA_DRAWOFFSET_X + flipX(), screenY - HYENA_DRAWOFFSET_Y, HYENA_WIDTH_DEFAULT * flipW(), HYENA_HEIGHT_DEFAULT, null);
-//				} else {
-//					g.drawImage(animLeft.getCurrentFrame(), screenX - HYENA_DRAWOFFSET_X + flipX(), screenY - HYENA_DRAWOFFSET_Y, HYENA_WIDTH_DEFAULT * flipW(), HYENA_HEIGHT_DEFAULT, null);
-//				}
-//				break;
-//			case ATTACK:
-//
-//				g.drawImage(animAttack.getCurrentFrame(), screenX - HYENA_DRAWOFFSET_X + flipX(), screenY - HYENA_DRAWOFFSET_Y, HYENA_WIDTH_DEFAULT * flipW(), HYENA_HEIGHT_DEFAULT, null);
-//				break;
-//			case HIT:
-//				g.drawImage(animHit.getCurrentFrame(), screenX - HYENA_DRAWOFFSET_X + flipX(), screenY - HYENA_DRAWOFFSET_Y, HYENA_WIDTH_DEFAULT * flipW(), HYENA_HEIGHT_DEFAULT, null);
-//				break;
-//			default:
-//				g.drawImage(animIdle.getCurrentFrame(), screenX - HYENA_DRAWOFFSET_X + flipX(), screenY - HYENA_DRAWOFFSET_Y, HYENA_WIDTH_DEFAULT * flipW(), HYENA_HEIGHT_DEFAULT, null);
-//				break;
-//		}
-//		//drawHitbox(g);
-//		//drawAttackBox(g);
-//	}
+
 	public void drawAttackBox(Graphics g)
 	{
 		g.setColor(Color.red);

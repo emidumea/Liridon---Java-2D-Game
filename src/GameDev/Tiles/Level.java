@@ -24,15 +24,11 @@ public class Level
 		this.path = path;
 		tile = new Tile[sprites.length + 1];
 		mapTile = new int[Game.maxWorldRow][Game.maxWorldCol];
-		//mapTile = new int[Game.TILES_IN_HEIGHT][Game.TILES_IN_WIDTH];
-
 
 		for (int i = 0; i <sprites.length; i++)
 		{
 			tile[i] = new Tile(sprites[i]);
-
 		}
-
 		loadMap(path);
 	}
 
@@ -47,10 +43,6 @@ public class Level
 			System.out.print("\n");
 		}
 	}
-//	private void createEnemies()
-//	{
-//		hyenas.add()
-//	}
 	public int[][] getMapTile()
 	{
 		return mapTile;

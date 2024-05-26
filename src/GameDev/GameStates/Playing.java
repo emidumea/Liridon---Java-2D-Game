@@ -8,6 +8,7 @@
 	import GameDev.Graphics.Assets;
 	import GameDev.Input.KeyboardInput;
 	import GameDev.Input.MouseInput;
+	import GameDev.LoadImageException;
 	import GameDev.Objects.ObjectManager;
 	import GameDev.Tiles.Tile;
 	import GameDev.Tiles.TileManager;
@@ -48,13 +49,11 @@
 			return player;
 		}
 
-		public Playing(Game game)
-		{
+		public Playing(Game game) throws LoadImageException {
 			super(game);
 			InitGame();
 		}
-		private void InitGame()
-		{
+		private void InitGame() throws LoadImageException {
 
 			Assets.init();
 			player = new Player(200,200, (int) (64 * Game.SCALE), (int) (40 * Game.SCALE), this);
@@ -89,10 +88,7 @@
 		@Override
 		public void update()
 		{
-//			if (player.getHitboxY() >= 500)
-//			{
-//				gameOver = true;
-//			}
+
 			if (paused)
 			{
 				pauseOverlay.update();
@@ -132,8 +128,6 @@
 
 			if (!gameOver)
 				enemyManager.update(tileM.getMapTile(), player);
-//			if (gameOver)
-//				gameOverOverlay.draw(g);
 
 			if (paused)
 			{

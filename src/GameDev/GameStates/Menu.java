@@ -2,6 +2,7 @@
 
 	import GameDev.Game;
 	import GameDev.Graphics.ImageLoader;
+	import GameDev.LoadImageException;
 	import GameDev.UI.MenuButton;
 
 	import java.awt.*;
@@ -15,8 +16,7 @@
 		private MenuButton[] buttons = new MenuButton[3];
 		private BufferedImage backgroundImg = ImageLoader.LoadImage("/ui/backgroundMenu.png");
 		private int menuX, menuY, menuWidth, menuHeight;
-		public Menu(Game game)
-		{
+		public Menu(Game game) throws LoadImageException {
 			super(game);
 			loadButtons();
 			loadBackground();
@@ -30,8 +30,7 @@
 			menuY = (int) ( 45 * Game.SCALE);
 		}
 
-		private void loadButtons()
-		{
+		private void loadButtons() throws LoadImageException {
 			buttons[0] = new MenuButton(Game.GAME_WIDTH / 2, (int) (100 * Game.SCALE), 0, Gamestate.PLAYING);
 			//buttons[1] = new MenuButton(Game.GAME_WIDTH / 2, (int) (380 * Game.SCALE), 1 ,Gamestate.OPTIONS);
 			buttons[1] = new MenuButton(Game.GAME_WIDTH / 2, (int) (380 * Game.SCALE), 2 ,Gamestate.QUIT);

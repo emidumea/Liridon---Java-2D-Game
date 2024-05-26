@@ -2,6 +2,7 @@ package GameDev.UI;
 
 import GameDev.Graphics.ImageLoader;
 import GameDev.Graphics.SpriteSheet;
+import GameDev.LoadImageException;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -13,15 +14,13 @@ public class UrmButton extends PauseButton
 	private int rowIndex, index;
 	private boolean mouseOver, mousePressed;
 
-	public UrmButton(int x, int y, int width, int height, int rowIndex)
-	{
+	public UrmButton(int x, int y, int width, int height, int rowIndex) throws LoadImageException {
 		super(x, y, width, height);
 		this.rowIndex = rowIndex;
 		loadImgs();
 	}
 
-	private void loadImgs()
-	{
+	private void loadImgs() throws LoadImageException {
 		SpriteSheet temp = new SpriteSheet(ImageLoader.LoadImage("/ui/urm_buttons.png"));
 		imgs = new BufferedImage[3];
 

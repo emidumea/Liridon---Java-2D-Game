@@ -17,9 +17,8 @@ import static GameDev.Utils.HelpMethods.*;
 
 public class Hyena extends Enemy {
 
-	private void initAnimations() {
-		BufferedImage[] idle, up, left, right, attack, down, jump, fall;
-		int i;
+	private void initAnimations()
+	{
 		animIdle = new Animation(Assets.hyena_walk, 100);
 		animLeft = new Animation(Assets.hyena_walk, 100);
 		animRight = new Animation(Assets.hyena_walk, 100);
@@ -106,12 +105,6 @@ public class Hyena extends Enemy {
 		if (enemyState == ATTACK)
 		{
 			animAttack.tick();
-//			if (animAttack.isAnimationFinished())
-//			{
-//				enemyState = IDLE; // reset la starea IDLE dupa atac
-//				// Resetarea animației la starea idle
-//				animIdle.setCurrentFrame(0); // reset la primul frame idle
-//			}
 			if (aniIndex == 5)
 			{
 				enemyState = IDLE;
@@ -134,7 +127,8 @@ public class Hyena extends Enemy {
 	}
 
 	@Override
-	public void render(Graphics g) {
+	public void render(Graphics g)
+	{
 		int screenX = (int) (getHitbox().x - getPlaying().getPlayer().getHitboxX() + getPlaying().getPlayer().screenX);
 		int screenY = (int) (getHitbox().y - getPlaying().getPlayer().getHitboxY() + getPlaying().getPlayer().screenY);
 		this.screenX = screenX;

@@ -27,11 +27,10 @@ public class Undead extends Enemy
 
 	}
 
-	public Undead(float x, float y, Playing playing) {
+	public Undead(float x, float y, Playing playing)
+	{
 		super(x, y, UNDEAD_WIDTH, UNDEAD_HEIGHT, UNDEAD, playing);
-		//	super(x, y, HYENA_WIDTH, HYENA_HEIGHT, SKELETON, playing);
 		initAnimations();
-		//	initHitbox(x, y, (45 * Game.SCALE),(45 * Game.SCALE));
 		initHitbox(x, y, (int) (30 * Game.SCALE), (int) (30 * Game.SCALE));
 		initAttackBox();
 	}
@@ -107,12 +106,6 @@ public class Undead extends Enemy
 		if (enemyState == ATTACK)
 		{
 			animAttack.tick();
-//			if (animAttack.isAnimationFinished())
-//			{
-//				enemyState = IDLE; // reset la starea IDLE dupa atac
-//				// Resetarea animației la starea idle
-//				animIdle.setCurrentFrame(0); // reset la primul frame idle
-//			}
 			if (aniIndex == 3)
 			{
 				enemyState = IDLE;

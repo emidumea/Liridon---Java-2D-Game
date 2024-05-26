@@ -4,6 +4,7 @@ import GameDev.Game;
 import GameDev.GameStates.Gamestate;
 import GameDev.GameStates.Playing;
 import GameDev.Graphics.ImageLoader;
+import GameDev.LoadImageException;
 import GameDev.Utils.Constants;
 
 import java.awt.*;
@@ -24,8 +25,7 @@ public class PauseOverlay
 	private UrmButton menuB, replayB, unpauseB;
 	private VolumeButton volumeButton;
 
-	public PauseOverlay(Playing playing)
-	{
+	public PauseOverlay(Playing playing) throws LoadImageException {
 		this.playing = playing;
 		loadBackground();
 		createSoundButtons();
@@ -33,15 +33,13 @@ public class PauseOverlay
 		createVolumeButton();
 	}
 
-	private void createVolumeButton()
-	{
+	private void createVolumeButton() throws LoadImageException {
 		int vX = (int) (515 * Game.SCALE);
 		int vY = (int) (303 * Game.SCALE);
 		volumeButton = new VolumeButton(vX, vY, SLIDER_WIDTH, VOLUME_HEIGHT);
 	}
 
-	private void createUrmButtons()
-	{
+	private void createUrmButtons() throws LoadImageException {
 		int menuX = (int) (520 * Game.SCALE);
 		int replayX = (int) (594 * Game.SCALE);
 		int unpauseX = (int) (668 * Game.SCALE);
@@ -53,8 +51,7 @@ public class PauseOverlay
 
 	}
 
-	private void createSoundButtons()
-	{
+	private void createSoundButtons() throws LoadImageException {
 		int soundX = (int) (660 * Game.SCALE);
 		int musicY = (int) (165 * Game.SCALE);
 		int sfxY = (int) (210 * Game.SCALE);
@@ -62,8 +59,7 @@ public class PauseOverlay
 		sfxButton = new SoundButton(soundX, sfxY, SOUND_SIZE, SOUND_SIZE);
 	}
 
-	private void loadBackground()
-	{
+	private void loadBackground() throws LoadImageException {
 		backgroundImg = ImageLoader.LoadImage("/ui/pause_menu.png");
 		bgW = (int) (backgroundImg.getWidth() * Game.SCALE);
 		bgH = (int) (backgroundImg.getHeight() * Game.SCALE);

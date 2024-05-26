@@ -4,6 +4,7 @@ import GameDev.Game;
 import GameDev.GameStates.Gamestate;
 import GameDev.GameStates.Playing;
 import GameDev.Graphics.ImageLoader;
+import GameDev.LoadImageException;
 
 import java.awt.*;
 import java.awt.event.MouseEvent;
@@ -17,15 +18,13 @@ public class LevelCompletedOverlay
 	private UrmButton menu,next;
 	private BufferedImage img;
 	private int bgX, bgY, bgW, bgH;
-	public LevelCompletedOverlay(Playing playing)
-	{
+	public LevelCompletedOverlay(Playing playing) throws LoadImageException {
 		this.playing = playing;
 		initImg();
 		initButtons();
 	}
 
-	private void initButtons()
-	{
+	private void initButtons() throws LoadImageException {
 		int menuX = (int) (550 * Game.SCALE);
 		int nextX = (int) (640 * Game.SCALE);
 		int y = (int) (195 * Game.SCALE);
@@ -33,7 +32,7 @@ public class LevelCompletedOverlay
 		menu = new UrmButton(menuX, y, URM_SIZE, URM_SIZE, 2);
 	}
 
-	private void initImg() {
+	private void initImg() throws LoadImageException {
 		img = ImageLoader.LoadImage("/ui/level_completed.png");
 		bgW = (int) (img.getWidth() * Game.SCALE);
 		bgH = (int) (img.getHeight() * Game.SCALE);

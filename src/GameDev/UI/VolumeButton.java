@@ -2,6 +2,7 @@ package GameDev.UI;
 
 import GameDev.Graphics.ImageLoader;
 import GameDev.Graphics.SpriteSheet;
+import GameDev.LoadImageException;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -16,8 +17,7 @@ public class VolumeButton extends PauseButton
 	private boolean mouseOver, mousePressed;
 	private int buttonX, minX, maxX;
 
-	public VolumeButton(int x, int y, int width, int height)
-	{
+	public VolumeButton(int x, int y, int width, int height) throws LoadImageException {
 		super(x + width / 2, y, VOLUME_WIDTH, height);
 		bounds.x -= VOLUME_WIDTH / 2;
 		buttonX = x + width / 2;
@@ -30,8 +30,7 @@ public class VolumeButton extends PauseButton
 	}
 
 
-	private void loadImgs()
-	{
+	private void loadImgs() throws LoadImageException {
 		SpriteSheet temp = new SpriteSheet(ImageLoader.LoadImage("/ui/volume_buttons.png"));
 		imgs = new BufferedImage[3];
 

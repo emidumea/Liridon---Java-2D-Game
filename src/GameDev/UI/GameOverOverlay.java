@@ -4,6 +4,7 @@ import GameDev.Game;
 import GameDev.GameStates.Gamestate;
 import GameDev.GameStates.Playing;
 import GameDev.Graphics.ImageLoader;
+import GameDev.LoadImageException;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
@@ -18,15 +19,13 @@ public class GameOverOverlay {
 	private int imgX, imgY, imgW, imgH;
 	private UrmButton menu, play;
 
-	public GameOverOverlay(Playing playing)
-	{
+	public GameOverOverlay(Playing playing) throws LoadImageException {
 		this.playing = playing;
 		createImg();
 		createButtons();
 	}
 
-	private void createButtons()
-	{
+	private void createButtons() throws LoadImageException {
 		int menuX = (int) (550 * Game.SCALE);
 		int playX = (int) (640 * Game.SCALE);
 		int y = (int) (195 * Game.SCALE);
@@ -34,8 +33,7 @@ public class GameOverOverlay {
 		menu = new UrmButton(menuX, y, URM_SIZE, URM_SIZE, 2);
 	}
 
-	private void createImg()
-	{
+	private void createImg() throws LoadImageException {
 		img = ImageLoader.LoadImage("/ui/death_screen.png");
 		imgW = (int) (img.getWidth() * Game.SCALE);
 		imgH = (int) (img.getHeight() * Game.SCALE);

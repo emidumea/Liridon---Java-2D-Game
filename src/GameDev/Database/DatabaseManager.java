@@ -167,19 +167,19 @@ public class DatabaseManager {
 		try (Connection conn = DriverManager.getConnection(URL);
 		     Statement stmt = conn.createStatement()) {
 
-			// Golește tabela Player
+			// Goleste tabela Player
 			String clearPlayerTable = "DELETE FROM Player";
 			stmt.executeUpdate(clearPlayerTable);
 
-			// Golește tabela Enemies
+			// Goleste tabela Enemies
 			String clearEnemiesTable = "DELETE FROM Enemies";
 			stmt.executeUpdate(clearEnemiesTable);
 
-			// Golește tabela Objects
+			// Goleste tabela Objects
 			String clearObjectsTable = "DELETE FROM Objects";
 			stmt.executeUpdate(clearObjectsTable);
 
-			// Golește tabela Level
+			// Goleste tabela Level
 			String clearLevelTable = "DELETE FROM Level";
 			stmt.executeUpdate(clearLevelTable);
 
@@ -192,7 +192,7 @@ public class DatabaseManager {
 	public static int getLevelValue() {
 		loadDriver();
 		String sql = "SELECT lvlIndex FROM Level";
-		int levelValue = -1; // Valoare implicită în caz de eroare sau dacă nu există nivel
+		int levelValue = -1;
 
 		try (Connection conn = DriverManager.getConnection(URL);
 		     PreparedStatement pstmt = conn.prepareStatement(sql);

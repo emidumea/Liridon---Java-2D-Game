@@ -67,8 +67,7 @@ public class Game implements Runnable
 		}
 		return Instance;
 	}
-	private void InitGame()
-	{
+	private void InitGame() throws LoadImageException {
 		databaseManager = new DatabaseManager();
 		databaseManager.createDatabase();
 		menu = new Menu(this);
@@ -116,7 +115,11 @@ public class Game implements Runnable
 	@Override public void run()
 	{
 
-		InitGame();
+		try {
+			InitGame();
+		} catch (LoadImageException e) {
+			throw new RuntimeException(e);
+		}
 		long oldTime = System.nanoTime();
 		long currentTime;
 

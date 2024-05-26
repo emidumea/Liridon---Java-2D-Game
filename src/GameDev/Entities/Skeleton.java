@@ -32,7 +32,6 @@ public class Skeleton extends Enemy
 		super(x, y, SKELETON_WIDTH, SKELETON_HEIGHT, SKELETON, playing);
 		walkSpeed = 0.6f * Game.SCALE;
 		initAnimations();
-		initHitbox(x, y, (45 * Game.SCALE),(45 * Game.SCALE));
 		initHitbox(x, y, (int) (29 * Game.SCALE), (int) (24 * Game.SCALE));
 		initAttackBox();
 	}
@@ -108,12 +107,6 @@ public class Skeleton extends Enemy
 		if (enemyState == ATTACK)
 		{
 			animAttack.tick();
-//			if (animAttack.isAnimationFinished())
-//			{
-//				enemyState = IDLE; // reset la starea IDLE dupa atac
-//				// Resetarea animației la starea idle
-//				animIdle.setCurrentFrame(0); // reset la primul frame idle
-//			}
 			if (aniIndex == 3)
 			{
 				enemyState = IDLE;

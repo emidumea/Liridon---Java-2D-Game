@@ -2,6 +2,7 @@ package GameDev.UI;
 
 import GameDev.Graphics.ImageLoader;
 import GameDev.Graphics.SpriteSheet;
+import GameDev.LoadImageException;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -14,14 +15,13 @@ public class SoundButton extends PauseButton
 	private boolean muted;
 	private int rowIndex, colIndex;
 
-	public SoundButton(int x, int y, int width, int height) {
+	public SoundButton(int x, int y, int width, int height) throws LoadImageException {
 		super(x, y, width, height);
 
 		loadSoundImgs();
 	}
 
-	private void loadSoundImgs()
-	{
+	private void loadSoundImgs() throws LoadImageException {
 		SpriteSheet temp = new SpriteSheet(ImageLoader.LoadImage("/ui/sound_button.png"));
 		soundImgs = new BufferedImage[2][3];
 

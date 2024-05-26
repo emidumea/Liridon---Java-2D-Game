@@ -33,7 +33,6 @@ public class Centipede extends Enemy
 		walkSpeed = 0.6f * Game.SCALE;
 		initAnimations();
 		initHitbox(x, y, (43 * Game.SCALE),(34 * Game.SCALE));
-		//initHitbox(x, y, (int) (29 * Game.SCALE), (int) (24 * Game.SCALE));
 		initAttackBox();
 	}
 
@@ -108,12 +107,6 @@ public class Centipede extends Enemy
 		if (enemyState == ATTACK)
 		{
 			animAttack.tick();
-//			if (animAttack.isAnimationFinished())
-//			{
-//				enemyState = IDLE; // reset la starea IDLE dupa atac
-//				// Resetarea animației la starea idle
-//				animIdle.setCurrentFrame(0); // reset la primul frame idle
-//			}
 			if (aniIndex == 3)
 			{
 				enemyState = IDLE;

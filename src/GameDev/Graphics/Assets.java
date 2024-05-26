@@ -1,5 +1,7 @@
 package GameDev.Graphics;
 
+import GameDev.LoadImageException;
+
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
@@ -62,8 +64,7 @@ public class Assets
 	// ------------------------------ background lv 3
 	public static BufferedImage bg1, bg2, bg3;
 
-	public static void init()
-	{
+	public static void init() throws LoadImageException {
 		SpriteSheet environment1 = new SpriteSheet(ImageLoader.LoadImage("/lv1/environment.png"));
 
 		menu_ui = new BufferedImage[6];

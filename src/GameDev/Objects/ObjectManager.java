@@ -3,6 +3,7 @@ package GameDev.Objects;
 import GameDev.GameStates.Playing;
 import GameDev.Graphics.ImageLoader;
 import GameDev.Graphics.SpriteSheet;
+import GameDev.LoadImageException;
 import GameDev.Tiles.Level;
 import GameDev.Utils.Constants;
 
@@ -18,11 +19,9 @@ public class ObjectManager
 	private Playing playing;
 	private BufferedImage[][] coinImgs;
 	private BufferedImage[] heartImgs;
-	private BufferedImage[] LiridonImgs;
 	private ArrayList<Coin> coins;
 	private ArrayList <Heart> hearts;
-	public ObjectManager(Playing playing)
-	{
+	public ObjectManager(Playing playing) throws LoadImageException {
 		this.playing = playing;
 		loadImgs();
 		coins = new ArrayList<>();
@@ -275,8 +274,7 @@ public class ObjectManager
 		}
 	}
 
-	private void loadImgs()
-	{
+	private void loadImgs() throws LoadImageException {
 		SpriteSheet goldCoinSprites = new SpriteSheet(ImageLoader.LoadImage("/Objects/MonedaD.png"));
 		SpriteSheet silverCoinSprites = new SpriteSheet(ImageLoader.LoadImage("/Objects/MonedaP.png"));
 		SpriteSheet LiridonSprites = new SpriteSheet(ImageLoader.LoadImage("/Objects/Liridon.png"));
@@ -292,11 +290,6 @@ public class ObjectManager
 		heartImgs[0] = ImageLoader.LoadImage("/Objects/Heart1.png");
 		heartImgs[1] = ImageLoader.LoadImage("/Objects/Heart2.png");
 
-		LiridonImgs = new BufferedImage[4];
-		for (int i = 0; i < 4; i++)
-		{
-			LiridonImgs[i] = LiridonSprites.crop(32 * i, 0, 32, 32);
-		}
 
 	}
 	public void update()
