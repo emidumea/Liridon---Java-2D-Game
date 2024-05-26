@@ -224,16 +224,16 @@ public class Game implements Runnable
 				break;
 			case LOAD:
 				int x = DatabaseManager.getLevelValue(), i = 0;
-				while (i < x)
+				while (x != playing.getTileM().getLvlIndex())
 				{
 					playing.loadNextLevel();
-					i++;
 				}
+				//playing.getEnemyManager().resetAllEnemies();
+				//playing.getEnemyManager().loadEnemiesFromDatabase();
 //				playing.getTileM().setLvlIndex(2);
 				//playing.update();
 				Gamestate.state = Gamestate.PLAYING;
 				break;
-			case OPTIONS:
 			case QUIT:
 			default:
 				System.exit(0);

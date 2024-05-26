@@ -106,6 +106,10 @@
 				}
 				levelCompletedOverlay.update();
 			}
+			else if (gameOver)
+			{
+				gameOverOverlay.update();
+			}
 			else if (!gameOver)
 			{
 				objectManager.update();
@@ -176,6 +180,10 @@
 				else if (lvlCompleted)
 					levelCompletedOverlay.mousePressed(e);
 			}
+			else
+			{
+				gameOverOverlay.mousePressed(e);
+			}
 		}
 
 		@Override
@@ -188,6 +196,10 @@
 				else if (lvlCompleted)
 					levelCompletedOverlay.mouseReleased(e);
 			}
+			else
+			{
+				gameOverOverlay.mouseReleased(e);
+			}
 		}
 
 		@Override
@@ -199,6 +211,10 @@
 					pauseOverlay.mouseMoved(e);
 				else if (lvlCompleted)
 					levelCompletedOverlay.mouseMoved(e);
+			}
+			else
+			{
+				gameOverOverlay.mouseMoved(e);
 			}
 		}
 
@@ -291,7 +307,7 @@
 		}
 		public void checkObjTouched(Rectangle2D.Float hitbox)
 		{
-			objectManager.checkObjectTouched(hitbox);
+			objectManager.checkHeartTouched(hitbox);
 			objectManager.checkCoinTouched(hitbox);
 		}
 		private void drawBackground(Graphics g, int currentLevel)

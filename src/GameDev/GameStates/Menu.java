@@ -12,7 +12,7 @@
 	public class Menu extends States implements Statemethods
 	{
 
-		private MenuButton[] buttons = new MenuButton[4];
+		private MenuButton[] buttons = new MenuButton[3];
 		private BufferedImage backgroundImg = ImageLoader.LoadImage("/ui/backgroundMenu.png");
 		private int menuX, menuY, menuWidth, menuHeight;
 		public Menu(Game game)
@@ -33,9 +33,9 @@
 		private void loadButtons()
 		{
 			buttons[0] = new MenuButton(Game.GAME_WIDTH / 2, (int) (100 * Game.SCALE), 0, Gamestate.PLAYING);
-			buttons[1] = new MenuButton(Game.GAME_WIDTH / 2, (int) (380 * Game.SCALE), 1 ,Gamestate.OPTIONS);
-			buttons[2] = new MenuButton(Game.GAME_WIDTH / 2, (int) (520 * Game.SCALE), 2 ,Gamestate.QUIT);
-			buttons[3] = new MenuButton(Game.GAME_WIDTH / 2,  (int) (240 * Game.SCALE), 3 ,Gamestate.LOAD);
+			//buttons[1] = new MenuButton(Game.GAME_WIDTH / 2, (int) (380 * Game.SCALE), 1 ,Gamestate.OPTIONS);
+			buttons[1] = new MenuButton(Game.GAME_WIDTH / 2, (int) (380 * Game.SCALE), 2 ,Gamestate.QUIT);
+			buttons[2] = new MenuButton(Game.GAME_WIDTH / 2,  (int) (240 * Game.SCALE), 3 ,Gamestate.LOAD);
 		}
 
 		@Override

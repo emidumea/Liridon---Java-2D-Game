@@ -32,6 +32,7 @@ public class Animation
 	}
 
 	public BufferedImage getCurrentFrame() {return frames[currentFrame];}
+	public BufferedImage getLastFrame() {return frames[frames.length - 1];}
 	public boolean isAnimationFinished() {
 		return currentFrame >= frames.length - 1;
 	}

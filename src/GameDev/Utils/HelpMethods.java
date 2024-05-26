@@ -9,13 +9,15 @@ public class HelpMethods {
 
 	public static boolean CanMoveHere(float x, float y, float width, float height, int[][] lvlData)
 	{
-		if (!IsSolid(x,y,lvlData))
+		// verifica daca colturile nu sunt solide
+
+		if (!IsSolid(x,y,lvlData)) // stanga sus
 		{
-			if (!IsSolid(x + width, y + height, lvlData))
+			if (!IsSolid(x + width, y + height, lvlData)) // dreapta jos
 			{
-				if (!IsSolid(x + width, y, lvlData))
+				if (!IsSolid(x + width, y, lvlData)) // dreapta sus
 				{
-					if (!IsSolid(x, y + height, lvlData))
+					if (!IsSolid(x, y + height, lvlData)) // stanga jos
 						return true;
 				}
 			}
@@ -39,7 +41,7 @@ public class HelpMethods {
 
 	public static float GetEntityXPosNextToWall(Rectangle2D.Float hitbox, float dx)
 	{
-		int currentTile = (int)(hitbox.x / Game.TILES_SIZE);
+		int currentTile = (int)(hitbox.x / Game.TILES_SIZE);// determina tile-ul curent
 		if ( dx > 0) // dreapta
 		{
 			int tileXPos = currentTile * Game.TILES_SIZE;
@@ -55,7 +57,7 @@ public class HelpMethods {
 	public static float GetEntityYPosUnderRoofOrAboveFloor(Rectangle2D.Float hitbox, float airSpeed)
 	{
 		int currentTile = (int)(hitbox.y / Game.TILES_SIZE);
-		if (airSpeed > 0) // fallling / touching floor
+		if (airSpeed > 0) // falling / touching floor
 		{
 			int tileYPos = currentTile * Game.TILES_SIZE;
 			int yOffset = (int) (Game.TILES_SIZE - hitbox.height);

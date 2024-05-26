@@ -18,7 +18,7 @@ import static GameDev.Utils.HelpMethods.*;
 
 public class Player extends Entity
 {
-	private Animation animIdle, animUp, animLeft, animRight, animDown, animAttack, animJump, animFall, animPowerAttack; // 20 29
+	private Animation animIdle, animUp, animLeft, animRight, animDown, animAttack, animJump, animFall, animPowerAttack, animDie; // 20 29
 	private boolean moving = false, attacking = false;
 	private int aniSpeed = 25;
 	private int playerAction = Constants.PlayerConstants.IDLE;
@@ -27,7 +27,9 @@ public class Player extends Entity
 	private int[][] lvlData;
 	private float xDrawOffset = 20 * Game.SCALE;
 	private float yDrawOffset = 6 * Game.SCALE;
+
 	public final int screenX;
+
 	public final int screenY;
 
 	//// Jumping and Gravity
@@ -48,7 +50,7 @@ public class Player extends Entity
 	private int healthBarXStart = (int) (1.4 * 34 * Game.SCALE);
 	private int healthBarYStart = (int) (1.4 * 14 * Game.SCALE);
 	private int maxHealth = 100;
-	private int currentHealth = 35;
+	private int currentHealth = 100;
 	private int healthWidth = healthBarWidth;
 
 
@@ -88,6 +90,7 @@ public class Player extends Entity
 		animDown = new Animation(Assets.player_up,100);
 		animJump = new Animation(Assets.player_jump,100);
 		animFall = new Animation(Assets.player_fall,100);
+		animDie = new Animation(Assets.player_die,200);
 		animPowerAttack = new Animation(Assets.player_powerAttack, 100);
 		statusBarImg = ImageLoader.LoadImage("/hp/health_power_bar.png");
 		initHitbox(x, y, 20 * Game.SCALE, 28 * Game.SCALE);
@@ -244,7 +247,6 @@ public class Player extends Entity
 		updatePowerBar();
 		if (currentHealth <= 0 || hitbox.y >= 630)
 		{
-
 			playing.setGameOver(true);
 			return;
 		}
@@ -416,60 +418,39 @@ public class Player extends Entity
 	public void render(Graphics g)
 	{
 
+			if (inAir) {
+				if (powerAttackActive) {
+					g.drawImage(animPowerAttack.getCurrentFrame(), (int) (screenX - xDrawOffset) + flipX, (int) (screenY - yDrawOffset), width * flipW, height, null);
 
-		if (inAir)
-		{
-			if (powerAttackActive)
-			{
-				g.drawImage(animPowerAttack.getCurrentFrame(),  (int) (screenX - xDrawOffset) + flipX ,(int) (screenY - yDrawOffset), width * flipW, height, null);
+				} else if (airSpeed < 0)
+					g.drawImage(animJump.getCurrentFrame(), (int) (screenX - xDrawOffset) + flipX, (int) (screenY - yDrawOffset), width * flipW, height, null);
+				else
+					g.drawImage(animFall.getCurrentFrame(), (int) (screenX - xDrawOffset) + flipX, (int) (screenY - yDrawOffset), width * flipW, height, null);
+			} else if (powerAttackActive) {
+				g.drawImage(animPowerAttack.getCurrentFrame(), (int) (screenX - xDrawOffset) + flipX, (int) (screenY - yDrawOffset), width * flipW, height, null);
 
+			} else if (attacking) {
+				g.drawImage(animAttack.getCurrentFrame(), (int) (screenX - xDrawOffset) + flipX, (int) (screenY - yDrawOffset), width * flipW, height, null);
+			} else if (moving) {
+				if (left) {
+					g.drawImage(animLeft.getCurrentFrame(), (int) (screenX - xDrawOffset) + flipX, (int) (screenY - yDrawOffset), width * flipW, height, null);
+				} else if (right) {
+					g.drawImage(animRight.getCurrentFrame(), (int) (screenX - xDrawOffset) + flipX, (int) (screenY - yDrawOffset), width * flipW, height, null);
+				} else if (up) {
+					g.drawImage(animUp.getCurrentFrame(), (int) (screenX - xDrawOffset) + flipX, (int) (screenY - yDrawOffset), width * flipW, height, null);
+				} else if (down) {
+					g.drawImage(animDown.getCurrentFrame(), (int) (screenX - xDrawOffset) + flipX, (int) (screenY - yDrawOffset), width * flipW, height, null);
+				} else {
+					// daca nu se misca sau nu face altceva, afisam animatia de idle
+					g.drawImage(animIdle.getCurrentFrame(), (int) (screenX - xDrawOffset) + flipX, (int) (screenY - yDrawOffset), width * flipW, height, null);
+				}
+			} else {
+				// daca nu se misca, afisam animatia de idle
+				g.drawImage(animIdle.getCurrentFrame(), (int) (screenX - xDrawOffset) + flipX, (int) (screenY - yDrawOffset), width * flipW, height, null);
 			}
-			else if (airSpeed < 0)
-				g.drawImage(animJump.getCurrentFrame(), (int) (screenX - xDrawOffset) + flipX ,(int) (screenY - yDrawOffset), width * flipW, height, null);
-			else
-				g.drawImage(animFall.getCurrentFrame(), (int) (screenX - xDrawOffset) + flipX ,(int) (screenY - yDrawOffset), width * flipW, height, null);
-		}
-		else if (powerAttackActive)
-		{
-			g.drawImage(animPowerAttack.getCurrentFrame(),  (int) (screenX - xDrawOffset) + flipX ,(int) (screenY - yDrawOffset), width * flipW, height, null);
-
-		}
-		else if (attacking)
-		{
-			g.drawImage(animAttack.getCurrentFrame(),  (int) (screenX - xDrawOffset) + flipX ,(int) (screenY - yDrawOffset), width * flipW, height, null);
-		}
-		else if (moving)
-		{
-			if (left)
-			{
-				g.drawImage(animLeft.getCurrentFrame(),  (int) (screenX - xDrawOffset) + flipX ,(int) (screenY - yDrawOffset), width * flipW, height, null);
-			}
-			else if (right)
-			{
-				g.drawImage(animRight.getCurrentFrame(),   (int) (screenX - xDrawOffset) + flipX ,(int) (screenY - yDrawOffset), width * flipW, height, null);
-			}
-			else if (up)
-			{
-				g.drawImage(animUp.getCurrentFrame(),  (int) (screenX - xDrawOffset) + flipX ,(int) (screenY - yDrawOffset), width * flipW, height, null);
-			}
-			else if (down)
-			{
-				g.drawImage(animDown.getCurrentFrame(),  (int) (screenX - xDrawOffset) + flipX ,(int) (screenY - yDrawOffset), width * flipW, height, null);
-			}
-			else
-			{
-				// daca nu se misca sau nu face altceva, afisam animatia de idle
-				g.drawImage(animIdle.getCurrentFrame(),  (int) (screenX - xDrawOffset) + flipX ,(int) (screenY - yDrawOffset), width * flipW, height, null);
-			}
-		}
-		else
-		{
-			// daca nu se misca, afisam animatia de idle
-			g.drawImage(animIdle.getCurrentFrame(),  (int) (screenX - xDrawOffset) + flipX ,(int) (screenY - yDrawOffset), width * flipW, height, null);
-		}
 
 		drawUI(g);
-		drawHitbox(g);
+		//drawHitbox(g);
 		//drawAttackBox(g);
 	}
 

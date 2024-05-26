@@ -1,5 +1,6 @@
 package GameDev.Database;
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 import GameDev.Entities.Enemy;
@@ -98,7 +99,8 @@ public class DatabaseManager {
 		try (Connection conn = DriverManager.getConnection(URL);
 		     PreparedStatement pstmt = conn.prepareStatement(sql)) {
 
-			for (Hyena enemy : enemyManager.getHyenas()) {
+			for (Enemy enemy : enemyManager.getEnemies())
+			{
 				if (enemy.isActive()) {
 					pstmt.setInt(1, (int) enemy.getHitboxX());
 					pstmt.setInt(2, (int) enemy.getHitboxY());
@@ -205,5 +207,25 @@ public class DatabaseManager {
 		}
 
 		return levelValue;
+	}
+
+	public static ArrayList<EnemyData> getEnemiesData()
+	{
+		loadDriver();
+		ArrayList<EnemyData> enemiesData = new ArrayList<>();
+		try (Connection conn = DriverManager.getConnection(URL);
+		     Statement stmt = conn.createStatement();
+		     ResultSet rs = stmt.executeQuery("SELECT * FROM Enemies")) {
+
+			while (rs.next()) {
+				int x = rs.getInt("x");
+				int y = rs.getInt("y");
+				int type = rs.getInt("type");
+				enemiesData.add(new EnemyData(x, y, type));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return enemiesData;
 	}
 }

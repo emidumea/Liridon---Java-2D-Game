@@ -4,7 +4,6 @@ public enum Gamestate
 {
 	PLAYING,
 	MENU,
-	OPTIONS,
 	QUIT,
 	LOAD;
 

@@ -15,6 +15,7 @@ public class Assets
 	public static BufferedImage[] player_jump;
 	public static BufferedImage[] player_fall;
 	public static BufferedImage[] player_powerAttack;
+	public static BufferedImage[] player_die;
 	// ------------------------------ lvl 1
 	public static BufferedImage[] land_lv1;
 	public static BufferedImage[] land_lv2;
@@ -207,25 +208,8 @@ public class Assets
 		player_fall = new BufferedImage[2];
 		player_fall[0] = ImageLoader.LoadImage("/adventurer/adventurer-fall-00-1.3.png");
 		player_fall[1] = ImageLoader.LoadImage("/adventurer/adventurer-fall-01-1.3.png");
-		/*player_left = new BufferedImage[6];
-		player_left[0] = ImageLoader.LoadImage("/adventurer/adventurer-run-00-1.3.png");
-		player_left[1] = ImageLoader.LoadImage("/adventurer/adventurer-run-01-1.3.png");
-		player_left[2] = ImageLoader.LoadImage("/adventurer/adventurer-run-02-1.3.png");
-		player_left[3] = ImageLoader.LoadImage("/adventurer/adventurer-run-03-1.3.png");
-		player_left[4] = ImageLoader.LoadImage("/adventurer/adventurer-run-04-1.3.png");
-		player_left[5] = ImageLoader.LoadImage("/adventurer/adventurer-run-05-1.3.png");
 
-		player_right = new BufferedImage[6];
-		player_right[0] = ImageLoader.LoadImage("/adventurer/adventurer-run-00-1.3.png");
-		player_right[1] = ImageLoader.LoadImage("/adventurer/adventurer-run-01-1.3.png");
-		player_right[2] = ImageLoader.LoadImage("/adventurer/adventurer-run-02-1.3.png");
-		player_right[3] = ImageLoader.LoadImage("/adventurer/adventurer-run-03-1.3.png");
-		player_right[4] = ImageLoader.LoadImage("/adventurer/adventurer-run-04-1.3.png");
-		player_right[5] = ImageLoader.LoadImage("/adventurer/adventurer-run-05-1.3.png");
-		*/
 		player_attack = new BufferedImage[3];
-	//	player_attack[0] = ImageLoader.LoadImage("/adventurer/adventurer-attack1-00-1.3.png");
-		//player_attack[1] = ImageLoader.LoadImage("/adventurer/adventurer-attack1-01-1.3.png");
 		player_attack[0] = ImageLoader.LoadImage("/adventurer/adventurer-attack1-02-1.3.png");
 		player_attack[1] = ImageLoader.LoadImage("/adventurer/adventurer-attack1-03-1.3.png");
 		player_attack[2] = ImageLoader.LoadImage("/adventurer/adventurer-attack1-04-1.3.png");
@@ -233,6 +217,14 @@ public class Assets
 		player_powerAttack = new BufferedImage[2];
 		player_powerAttack[0] = ImageLoader.LoadImage("/adventurer/adventurer-attack2-03-1.3.png");
 		player_powerAttack[1] = ImageLoader.LoadImage("/adventurer/adventurer-attack2-03-1.3.png");
+		player_die = new BufferedImage[7];
+		player_die[0] = ImageLoader.LoadImage("/adventurer/adventurer-die-00-1.3.png");
+		player_die[1] = ImageLoader.LoadImage("/adventurer/adventurer-die-01-1.3.png");
+		player_die[2] = ImageLoader.LoadImage("/adventurer/adventurer-die-02-1.3.png");
+		player_die[3] = ImageLoader.LoadImage("/adventurer/adventurer-die-03-1.3.png");
+		player_die[4] = ImageLoader.LoadImage("/adventurer/adventurer-die-04-1.3.png");
+		player_die[5] = ImageLoader.LoadImage("/adventurer/adventurer-die-05-1.3.png");
+		player_die[6] = ImageLoader.LoadImage("/adventurer/adventurer-die-06-1.3.png");
 
 		hyena_walk = new BufferedImage[6];
 		hyena_walk[0] = ImageLoader.LoadImage("/lv1/hyena/hyena_0.png");

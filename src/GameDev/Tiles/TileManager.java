@@ -74,50 +74,6 @@ public class TileManager {
 		return levels.get(lvlIndex).mapTile;
 	}
 
-	public int[][] loadMap(String filePath)
-	{
-
-		int [][] map = new int[Game.maxWorldRow][Game.maxWorldCol];
-		try
-		{
-			InputStream is = getClass().getResourceAsStream(filePath);
-			BufferedReader br = new BufferedReader(new InputStreamReader(is));
-
-
-			int col = 0;
-			int row = 0;
-
-
-			while (col < Game.maxWorldCol && row < Game.maxWorldRow) {
-
-
-				String line = br.readLine();
-
-
-				while (col < Game.maxWorldCol) {
-
-
-					String numbers[] = line.split(" ");
-
-
-					int num = Integer.parseInt(numbers[col]);
-
-
-					map[row][col] = num;
-					col++;
-				}
-				if (col == Game.maxWorldCol) {
-					col = 0;
-					row++;
-				}
-			}
-			br.close();
-		} catch (Exception e) {
-
-		}
-
-		return map;
-	}
 	public void draw(Graphics g)
 	{
 

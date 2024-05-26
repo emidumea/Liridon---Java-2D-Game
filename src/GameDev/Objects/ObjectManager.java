@@ -18,6 +18,7 @@ public class ObjectManager
 	private Playing playing;
 	private BufferedImage[][] coinImgs;
 	private BufferedImage[] heartImgs;
+	private BufferedImage[] LiridonImgs;
 	private ArrayList<Coin> coins;
 	private ArrayList <Heart> hearts;
 	public ObjectManager(Playing playing)
@@ -27,13 +28,8 @@ public class ObjectManager
 		coins = new ArrayList<>();
 		hearts = new ArrayList<>();
 
-		coins.add(new Coin(300,300,0));
-		coins.add(new Coin(400,400,1));
-
-		hearts.add(new Heart(200,200,HEART));
-
 	}
-	public void checkObjectTouched(Rectangle2D.Float hitbox)
+	public void checkHeartTouched(Rectangle2D.Float hitbox)
 	{
 		for (Heart h : hearts)
 		{
@@ -283,6 +279,7 @@ public class ObjectManager
 	{
 		SpriteSheet goldCoinSprites = new SpriteSheet(ImageLoader.LoadImage("/Objects/MonedaD.png"));
 		SpriteSheet silverCoinSprites = new SpriteSheet(ImageLoader.LoadImage("/Objects/MonedaP.png"));
+		SpriteSheet LiridonSprites = new SpriteSheet(ImageLoader.LoadImage("/Objects/Liridon.png"));
 		coinImgs = new BufferedImage[2][5];
 
 		for (int i = 0; i < coinImgs[0].length; i++)
@@ -294,6 +291,12 @@ public class ObjectManager
 		heartImgs = new BufferedImage[2];
 		heartImgs[0] = ImageLoader.LoadImage("/Objects/Heart1.png");
 		heartImgs[1] = ImageLoader.LoadImage("/Objects/Heart2.png");
+
+		LiridonImgs = new BufferedImage[4];
+		for (int i = 0; i < 4; i++)
+		{
+			LiridonImgs[i] = LiridonSprites.crop(32 * i, 0, 32, 32);
+		}
 
 	}
 	public void update()
@@ -352,6 +355,8 @@ public class ObjectManager
 			}
 		}
 	}
+
+
 
 	public void resetAllObjects()
 	{

@@ -28,7 +28,6 @@ public abstract class Enemy extends Entity {
 	protected int walkDir = LEFT;
 	protected int tileY;
 	protected float attackDistance = Game.TILES_SIZE / 3;
-	protected int[][] lvlData;
 	protected int maxHealth;
 	protected int currentHealth;
 	protected boolean active = true;
@@ -66,14 +65,14 @@ public abstract class Enemy extends Entity {
 	{
 		if (inAir)
 		{
-			if (CanMoveHere(hitbox.x, hitbox.y + fallSpeed, hitbox.width, hitbox.height, lvlData))
+			if (CanMoveHere(hitbox.x, hitbox.y + fallSpeed, hitbox.width, hitbox.height, lvlData)) // verifica daca inamicul poate sa se mute in jos fara sa loveasca vreun obstacol
 			{
 				hitbox.y += fallSpeed;
-				fallSpeed += GRAVITY;
+				fallSpeed += GRAVITY; // creste viteza de cadere
 			} else
 			{
 				inAir = false;
-				hitbox.y = GetEntityYPosUnderRoofOrAboveFloor(hitbox, fallSpeed);
+				hitbox.y = GetEntityYPosUnderRoofOrAboveFloor(hitbox, fallSpeed); // ajustam y pt a fi la nivelul podelei
 				tileY = (int) (hitbox.y / Game.TILES_SIZE); // pt a afla tile-ul Y pt inamic
 			}
 		}
@@ -88,9 +87,9 @@ public abstract class Enemy extends Entity {
 		else
 			xSpeed = walkSpeed;
 
-		if (CanMoveHere(hitbox.x + xSpeed, hitbox.y, hitbox.width, hitbox.height, lvlData))
+		if (CanMoveHere(hitbox.x + xSpeed, hitbox.y, hitbox.width, hitbox.height, lvlData)) // verificam daca ne putem muta in directia dorita
 		{
-			if (IsFloor(hitbox, xSpeed, lvlData))
+			if (IsFloor(hitbox, xSpeed, lvlData)) // verificam daca este podea in acea directie
 			{
 				hitbox.x += xSpeed;
 				return;
@@ -103,6 +102,8 @@ public abstract class Enemy extends Entity {
 
 	protected void turnTowardsPlayer(Player player)
 	{
+		// compara pozitiile pe axa x ale jucatorului si inamicului
+		// seteaza directia de mers a inamicului in functie de pozitia jucatorului
 		if (player.hitbox.x > hitbox.x)
 			walkDir = RIGHT;
 		else
@@ -111,10 +112,11 @@ public abstract class Enemy extends Entity {
 
 	protected boolean canSeePlayer(int[][] lvlData, Player player)
 	{
+		// calculeaza tile-ul pe axa y pe care sa afla jucatorul
 		int playerTileY = (int) (player.getHitbox().y / Game.TILES_SIZE);
-		if (playerTileY == tileY)
+		if (playerTileY == tileY) // daca e egal cu cel al inamicului, inseamna ca sunt la aceeasi inaltime
 		{
-			if (isPlayerInRange(player))
+			if (isPlayerInRange(player)) // daca playerul e in apropierea inamicului
 			{
 				if (IsSightClear(lvlData, hitbox, player.hitbox, tileY)) //fara prapastii, obiecte in cale
 				{
@@ -125,13 +127,14 @@ public abstract class Enemy extends Entity {
 		return false;
 	}
 
-	private boolean isPlayerInRange(Player player)
+	private boolean isPlayerInRange(Player player) // verifica daca jucatorul e in raza de atac a inamicului
 	{
+		// calculam distanta intre pozitiile pe axa x ale jucatorului si inamicului
 		int absVal = (int) Math.abs(player.hitbox.x - hitbox.x);
 		return absVal <= attackDistance * 20;
 	}
 
-	protected boolean isPlayerCloseForAttack(Player player)
+	protected boolean isPlayerCloseForAttack(Player player) // verifica daca jucatorul e suficient de aproape pt a fi atacat
 	{
 		int absVal = (int) Math.abs(player.hitbox.x - hitbox.x);
 		int absVal2 = (int) Math.abs(player.hitbox.y - hitbox.y);
@@ -139,14 +142,14 @@ public abstract class Enemy extends Entity {
 		//return absVal <= attackDistance;
 	}
 
-	protected void newState(int enemyState)
+	protected void newState(int enemyState) // schimba starea si reseteaza animatia
 	{
 		this.enemyState = enemyState;
 		aniTick = 0;
 		aniIndex = 0;
 	}
-
-	public void hurt(int damage)
+	public abstract void update(int[][] lvlData, Player player);
+	public void hurt(int damage) // aplica damage asupra inamicului
 	{
 		currentHealth -= damage;
 		if (currentHealth <= 0)
@@ -158,14 +161,14 @@ public abstract class Enemy extends Entity {
 			newState(HIT);
 		}
 	}
-	protected void checkEnemyHit(Rectangle2D.Float attackBox,Player player)
+	protected void checkEnemyHit(Rectangle2D.Float attackBox,Player player) // verifica daca inamicul a lovit jucatorul
 	{
-		if (attackBox.intersects(player.hitbox))
-			player.changeHealth(-GetEnemyDmg(enemyType));
+		if (attackBox.intersects(player.hitbox)) // vedem daca se intersecteaza hitboxul de atack cu hitboxul playerului
+			player.changeHealth(-GetEnemyDmg(enemyType)); // daca da, scadem viata
 		attackChecked = true;
 	}
 
-	protected void updateAnimationTick()
+	protected void updateAnimationTick() // actualizeaza animatia inamicului
 	{
 		aniTick++;
 		if (aniTick >= aniSpeed) {
@@ -185,7 +188,7 @@ public abstract class Enemy extends Entity {
 		return enemyState;
 	}
 
-	protected void changeWalkDir()
+	protected void changeWalkDir() // schimba directia de mers
 	{
 		if (walkDir == LEFT)
 			walkDir = RIGHT;
@@ -193,21 +196,15 @@ public abstract class Enemy extends Entity {
 			walkDir = LEFT;
 	}
 
-	@Override
-	public abstract void render(Graphics g); //{
-////		int screenX = (int) (hitbox.x - getPlaying().getPlayer().getHitboxX() + getPlaying().getPlayer().screenX);
-////		int screenY = (int) (hitbox.y - getPlaying().getPlayer().getHitboxY() + getPlaying().getPlayer().screenY);
-//		int screenX = (int) (getHitbox().x -  getPlaying().getPlayer().getHitboxX() + getPlaying().getPlayer().screenX);
-//		int screenY = (int) (getHitbox().y  - getPlaying().getPlayer().getHitboxY() + getPlaying().getPlayer().screenY);
-//		g.drawImage(animLeft.getCurrentFrame(), screenX - HYENA_DRAWOFFSET_X, screenY - HYENA_DRAWOFFSET_Y, HYENA_WIDTH_DEFAULT, HYENA_HEIGHT_DEFAULT, null);
-//	}
+
+	public abstract void render(Graphics g);
 
 	public boolean isActive()
 	{
 		return active;
 	}
 
-	public void resetEnemy()
+	public void resetEnemy() // reseteaza inamicul la starea initiala
 	{
 		hitbox.x = x;
 		hitbox.y = y;

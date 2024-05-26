@@ -108,7 +108,7 @@ public class Constants
 		public static final int MUMMY_DRAWOFFSET_Y = (int) (14 * Game.SCALE);
 
 		// ----------------------------------------------------- undead
-		public static final int UNDEAD = 2;
+		public static final int UNDEAD = 3;
 		public static final int UNDEAD_WIDTH_DEFAULT = 48;
 		public static final int UNDEAD_HEIGHT_DEFAULT = 48;
 		public static final int UNDEAD_WIDTH = (int) (UNDEAD_WIDTH_DEFAULT * Game.SCALE);
@@ -117,7 +117,7 @@ public class Constants
 		public static final int UNDEAD_DRAWOFFSET_Y = (int) (14 * Game.SCALE);
 
 		// ------------------------------------------------------------ centipede
-		public static final int CENTIPEDE = 3;
+		public static final int CENTIPEDE = 4;
 		public static final int CENTIPEDE_WIDTH_DEFAULT = 72;
 		public static final int CENTIPEDE_HEIGHT_DEFAULT = 48;
 		public static final int CENTIPEDE_WIDTH = (int) (CENTIPEDE_WIDTH_DEFAULT * Game.SCALE);
@@ -125,7 +125,7 @@ public class Constants
 		public static final int CENTIPEDE_DRAWOFFSET_X = (int) (26 * Game.SCALE);
 		public static final int CENTIPEDE_DRAWOFFSET_Y = (int) (12 * Game.SCALE);
 		// ----------------------------------------------------------------- bloated
-		public static final int BLOATED = 4;
+		public static final int BLOATED = 5;
 		public static final int BLOATED_WIDTH_DEFAULT = 72;
 		public static final int BLOATED_HEIGHT_DEFAULT = 48;
 		public static final int BLOATED_WIDTH = (int) (BLOATED_WIDTH_DEFAULT * Game.SCALE);
@@ -167,6 +167,20 @@ public class Constants
 							return 6;
 					}
 				case MUMMY:
+					switch(enemy_state)
+					{
+						case IDLE:
+							return 5;
+						case RUNNING:
+							return 5;
+						case ATTACK:
+							return 6;
+						case HIT:
+							return 2;
+						case DEAD:
+							return 6;
+					}
+				case UNDEAD:
 					switch(enemy_state)
 					{
 						case IDLE:
@@ -222,6 +236,8 @@ public class Constants
 					return 30;
 				case MUMMY:
 					return 20;
+				case UNDEAD:
+					return 20;
 				case CENTIPEDE:
 					return 30;
 				case BLOATED:
@@ -239,6 +255,8 @@ public class Constants
 				case SKELETON:
 					return 15;
 				case MUMMY:
+					return 15;
+				case UNDEAD:
 					return 15;
 				case CENTIPEDE:
 					return 15;

@@ -45,7 +45,7 @@ public class Undead extends Enemy
 	public void update(int[][] lvlData, Player player) {
 		updateBehavior(lvlData, player);
 		updateAnimationTick();
-		System.out.println(aniIndex);
+		//System.out.println(aniIndex);
 		animLeft.tick();
 		updateAttackBox();
 	}
@@ -167,7 +167,7 @@ public class Undead extends Enemy
 				g.drawImage(animIdle.getCurrentFrame(), screenX - UNDEAD_DRAWOFFSET_X + flipX(), screenY - UNDEAD_DRAWOFFSET_Y, UNDEAD_WIDTH_DEFAULT * flipW(), UNDEAD_HEIGHT_DEFAULT, null);
 				break;
 		}
-		drawHitbox(g);
+		//drawHitbox(g);
 		//drawAttackBox(g);
 	}
 
