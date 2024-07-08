@@ -13,3 +13,5 @@ flipping and scaling techniques for dynamic character movement
 between game objects, while simulating realistic physics including gravity, movement, and jump mechanics
 - Designed a high-performance game loop to handle real-time updates and rendering, ensuring smooth gameplay, and
 integrated user input handling with KeyListener to provide responsive and intuitive control over character actions.
+
+More details can be found in the Documentation pdf
